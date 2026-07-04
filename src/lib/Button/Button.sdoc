@@ -1,0 +1,34 @@
+<script lang="ts">
+	import Button from "./Button.svelte";
+</script>
+
+[DOCS title="Button" description=""]
+
+	[preview component={Button} args={{ label:"Login" }}]
+		<Button {...args} />
+	[/preview]
+
+	[example title="Sizes"]
+		<Button size="xs" label="Extra small" />
+		<Button size="sm" label="Small" />
+		<Button size="md" label="Medium" />
+		<Button size="lg" label="Large" />
+	[/example]
+
+	[example title="Intents"]
+		<Button intent="default" label="Default" />
+		<Button intent="mono" label="Mono" />
+		<Button intent="danger" label="Danger" />
+		<Button intent="warning" label="Warning" />
+		<Button intent="success" label="Success" />
+	[/example]
+
+	[example title="Disabled"]
+		<Button intent="default" label="Default" disabled />
+		<Button intent="mono" label="Mono" disabled />
+		<Button intent="danger" label="Danger" disabled />
+		<Button intent="warning" label="Warning" disabled />
+		<Button intent="success" label="Success" disabled />
+	[/example]
+
+[/DOCS]
