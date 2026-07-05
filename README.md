@@ -35,12 +35,16 @@ import 'gabi/global.css';
 ## Development
 
 ```sh
-npm run dev      # showcase app (src/routes)
 npm run check    # type-check
 npm run prepack  # build the library into dist/
 ```
 
-Everything in `src/lib` is the published library; `src/routes` is a local showcase.
+Everything in `src/lib` is the published library. Preview and document the
+components with [sdocs](https://github.com/gabilungu/sdocs):
+
+```sh
+npx sdocs dev
+```
 
 ## Changelog
 
