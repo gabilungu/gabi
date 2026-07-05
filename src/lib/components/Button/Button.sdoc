@@ -2,7 +2,7 @@
 	import Button from "./Button.svelte";
 </script>
 
-[DOCS title=":Form / Button" description=""]
+[DOCS title="@Components/:Form / Button" description=""]
 
 	[preview component={Button} args={{ label:"Login" }}]
 		<Button {...args} />

@@ -19,15 +19,18 @@ export default {
 			contentX: 'left',
 		},
 		page: {
-			maxWidth: '800px',
+			// maxWidth: '800px',
 		},
 	},
 
-	// Sidebar logo text (default: 'sdocs')
+	// Header title text (default: 'sdocs')
+	title: 'gabi',
+
+	// Header logo: 'sdocs' for the mascot, an image URL, or false to hide (default: 'sdocs')
 	// logo: 'sdocs',
 
-	// Sidebar logo icon: 'sdocs' for the mascot, an image URL, or false to hide (default: 'sdocs')
-	// icon: 'sdocs',
+	// Top-bar section order — sections come from @Section/ title prefixes
+	sections: ['Guides', 'Components'],
 
 	// Sidebar configuration
 	// sidebar: {

@@ -3,17 +3,17 @@
 	const version = "0.0.3";
 </script>
 
-[PAGE title="Markdown"]
+[PAGE title="@Guides/Markdown"]
 
 	# Markdown showcase
 
 	Every markdown feature a page supports, in one place. This `#` heading is
-	the page title — the sidebar still says *Markdown*, from the entity
+	the page title — the sidebar still says _Markdown_, from the entity
 	`title`. Values interpolate from the script: gabi is at version {version}.
 
 	## Emphasis and inline code
 
-	Text can be **bold**, *italic*, ***both***, ~~struck through~~, or
+	Text can be **bold**, _italic_, _**both**_, ~~struck through~~, or
 	`inline code`. A literal brace needs an escape: \{ like so \}.
 
 	## Links
@@ -32,12 +32,12 @@
 
 	1. Ordered lists
 	2. Keep their numbers
-		1. And nest
-		2. With sub-items
+	    1. And nest
+	    2. With sub-items
 
 	- Unordered lists
 	- Use bullets
-		- And nest too
+	    - And nest too
 
 	### Task lists
 
@@ -47,11 +47,11 @@
 
 	## Tables
 
-	| Component | Sizes | Notes |
-	|:----------|:-----:|------:|
-	| Button | 4 | left-aligned column |
-	| Input | 4 | centered column |
-	| Textarea | 4 | right-aligned column |
+	| Component | Sizes |                Notes |
+	| :-------- | :---: | -------------------: |
+	| Button    |   4   |  left-aligned column |
+	| Input     |   4   |      centered column |
+	| Textarea  |   4   | right-aligned column |
 
 	## Blockquotes and alerts
 
