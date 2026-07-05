@@ -23,15 +23,6 @@ Requires Svelte 5 as a peer dependency.
 <Input placeholder="Email" size="md" />
 ```
 
-## Components
-
-All components share one size scale — `xs`, `sm`, `md`, `lg`.
-
-- **Button** — `label`, `size`, `intent` (`default`, `mono`, `danger`, `warning`, `success`), `disabled`, `onclick`
-- **Input** — single-line text input
-- **Textarea** — multi-line text input
-- **Select** — native `<select>` with an `options` list
-
 ## Fonts
 
 gabi self-hosts Figtree (text) and JetBrains Mono (mono). Import the global
@@ -50,6 +41,10 @@ npm run prepack  # build the library into dist/
 ```
 
 Everything in `src/lib` is the published library; `src/routes` is a local showcase.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ## License
 
