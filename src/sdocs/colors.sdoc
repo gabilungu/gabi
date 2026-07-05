@@ -3,39 +3,37 @@
 </script>
 
 [PAGE title="Colors"]
-	# Colors bla bla bla
+
+	# Colors
 
 	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-
 	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
 	consequat.
 
-	{#snippet colorBox(color: string)}
-		<div style="background-color:{color}; width:100px; height:100px;"></div>
-	{/snippet}
+	## Foreground ramp
 
-	## something here
+	The stage below runs in gabi's own context — `global.css` loads inside it,
+	so the `--fg` tokens resolve:
 
-	Lorem ipsum dolor sit amet
+	[example title="Foreground" direction="row" gap="8px"]
+		<div style="background-color:var(--fg); width:100px; height:100px;"></div>
+		<div style="background-color:var(--fg-100); width:100px; height:100px;"></div>
+		<div style="background-color:var(--fg-200); width:100px; height:100px;"></div>
+	[/example]
 
-	<div style="display:flex;">
-		{@render colorBox("var(--fg)")}
-		{@render colorBox("var(--fg-100)")}
-		{@render colorBox("var(--fg-200)")}
-	</div>
+	## Components
 
-	## another section
+	Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+	dolore eu fugiat nulla pariatur.
 
-	Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+	[example title="Buttons" direction="row" gap="8px" contentY="middle"]
+		<Button label="Default" />
+		<Button label="Success" intent="success" />
+		<Button label="Danger" intent="danger" />
+	[/example]
 
-	<div style="display:flex; gap:8px;">
-		{@render colorBox("#eab308")}
-		{@render colorBox("#a855f7")}
-	</div>
-
-	And a dummy button:
-
-	<Button label="Dummy button" />
+	And this prose — like the headings above — uses the docs app's styling,
+	not gabi's.
 
 [/PAGE]
