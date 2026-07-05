@@ -16,7 +16,8 @@
 	The stage below runs in gabi's own context — `global.css` loads inside it,
 	so the `--fg` tokens resolve:
 
-	[example title="Foreground" direction="row" gap="8px"]
+
+	[example title="Foreground" direction="column" gap="2px"]
 		<div style="background-color:var(--fg); width:100px; height:100px;"></div>
 		<div style="background-color:var(--fg-100); width:100px; height:100px;"></div>
 		<div style="background-color:var(--fg-200); width:100px; height:100px;"></div>

@@ -11,9 +11,15 @@ export default {
 
 	// CSS loaded in preview iframes
 	css: './src/lib/styles/global.css',
+
+	// Static assets served at the site root (images for pages, etc.)
+	static: './static',
 	content: {
 		docs: {
 			contentX: 'left',
+		},
+		page: {
+			maxWidth: '800px',
 		},
 	},
 
