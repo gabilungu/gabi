@@ -1,0 +1,29 @@
+<script lang="ts">
+	import Select from "./Select.svelte";
+
+	const sizes = [
+		{ label: "Extra small", value: "xs" },
+		{ label: "Small", value: "sm" },
+		{ label: "Medium", value: "md" },
+		{ label: "Large", value: "lg" }
+	];
+</script>
+
+[DOCS title=":Form / Select" description="A basic native select using the mitek size scale."]
+
+	[preview component={Select} args={{ placeholder: "Choose a size…", size: "md" }}]
+		<Select {...args} options={sizes} />
+	[/preview]
+
+	[example title="Sizes"]
+		<Select size="xs" options={sizes} placeholder="Extra small" />
+		<Select size="sm" options={sizes} placeholder="Small" />
+		<Select size="md" options={sizes} placeholder="Medium" />
+		<Select size="lg" options={sizes} placeholder="Large" />
+	[/example]
+
+	[example title="Disabled"]
+		<Select options={sizes} placeholder="Can't choose" disabled />
+	[/example]
+
+[/DOCS]

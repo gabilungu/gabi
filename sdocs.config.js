@@ -10,9 +10,7 @@ export default {
 	// open: false,
 
 	// CSS loaded in preview iframes
-	// css: './src/styles/global.css',
-	// Or named stylesheets:
-	// css: { light: './src/styles/light.css', dark: './src/styles/dark.css' },
+	css: './src/lib/styles/global.css',
 
 	// Sidebar logo text (default: 'sdocs')
 	// logo: 'sdocs',

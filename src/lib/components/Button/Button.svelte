@@ -23,10 +23,9 @@
 <style>
 	button {
 		border: none;
-		border-radius: 6px;
-		padding-inline: 12px;
 		color: white;
 		cursor: pointer;
+		font-family: inherit;
 	}
 	button:disabled {
 		opacity: 0.5;
@@ -35,15 +34,27 @@
 
 	button[data-size='xs'] {
 		height: 24px;
+		padding: 0 9px;
+		font-size: 11px;
+		border-radius: 4px;
 	}
 	button[data-size='sm'] {
 		height: 28px;
+		padding: 0 10px;
+		font-size: 13px;
+		border-radius: 5px;
 	}
 	button[data-size='md'] {
 		height: 32px;
+		padding: 0 12px;
+		font-size: 14px;
+		border-radius: 6px;
 	}
 	button[data-size='lg'] {
 		height: 40px;
+		padding: 0 15px;
+		font-size: 16px;
+		border-radius: 7px;
 	}
 
 	button[data-intent='default'] {

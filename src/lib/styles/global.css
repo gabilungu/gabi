@@ -1,0 +1,17 @@
+@import '../fonts/fonts.css';
+
+:root {
+	--font-sans: 'Figtree', system-ui, -apple-system, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+body {
+	font-family: var(--font-sans);
+}
+
+code,
+kbd,
+samp,
+pre {
+	font-family: var(--font-mono);
+}

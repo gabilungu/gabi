@@ -1,0 +1,28 @@
+<script lang="ts">
+	import Input from "./Input.svelte";
+</script>
+
+[DOCS title=":Form / Input" description="A basic text input using the mitek size scale."]
+
+	[preview component={Input} args={{ placeholder: "Type here…", size: "md" }}]
+		<Input {...args} />
+	[/preview]
+
+	[example title="Sizes"]
+		<Input size="xs" placeholder="Extra small" />
+		<Input size="sm" placeholder="Small" />
+		<Input size="md" placeholder="Medium" />
+		<Input size="lg" placeholder="Large" />
+	[/example]
+
+	[example title="Types"]
+		<Input type="email" placeholder="you@example.com" />
+		<Input type="password" placeholder="Password" />
+		<Input type="search" placeholder="Search…" />
+	[/example]
+
+	[example title="Disabled"]
+		<Input placeholder="Can't type here" disabled />
+	[/example]
+
+[/DOCS]

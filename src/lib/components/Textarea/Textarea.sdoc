@@ -1,0 +1,22 @@
+<script lang="ts">
+	import Textarea from "./Textarea.svelte";
+</script>
+
+[DOCS title=":Form / Textarea" description="A basic multi-line text input using the mitek size scale."]
+
+	[preview component={Textarea} args={{ placeholder: "Write something…", size: "md", rows: 3 }}]
+		<Textarea {...args} />
+	[/preview]
+
+	[example title="Sizes"]
+		<Textarea size="xs" placeholder="Extra small" />
+		<Textarea size="sm" placeholder="Small" />
+		<Textarea size="md" placeholder="Medium" />
+		<Textarea size="lg" placeholder="Large" />
+	[/example]
+
+	[example title="Disabled"]
+		<Textarea placeholder="Can't type here" disabled />
+	[/example]
+
+[/DOCS]
