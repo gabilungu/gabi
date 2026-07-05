@@ -2,6 +2,8 @@
 
 A Svelte 5 component library and design system.
 
+[**Try it in the Svelte playground →**](https://svelte.dev/playground/4c35aab4de2343b4adfacf70bdd034ac)
+
 ## Install
 
 ```sh
