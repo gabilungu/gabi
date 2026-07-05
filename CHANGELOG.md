@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.3] - 2026-07-05
+
+### Changed
+
+- The published package no longer includes the `.sdoc` documentation files.
+
+### Added
+
+- `gabi/global.css` export — import it to load the self-hosted Figtree and
+  JetBrains Mono fonts and apply the type styles.
+
 ## [0.0.2] - 2026-07-05
 
 ### Added

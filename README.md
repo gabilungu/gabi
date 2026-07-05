@@ -30,6 +30,15 @@ All components share one size scale — `xs`, `sm`, `md`, `lg`.
 - **Textarea** — multi-line text input
 - **Select** — native `<select>` with an `options` list
 
+## Fonts
+
+gabi self-hosts Figtree (text) and JetBrains Mono (mono). Import the global
+stylesheet once — it loads the fonts and applies the type styles:
+
+```js
+import 'gabi/global.css';
+```
+
 ## Development
 
 ```sh
