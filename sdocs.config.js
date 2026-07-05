@@ -11,6 +11,11 @@ export default {
 
 	// CSS loaded in preview iframes
 	css: './src/lib/styles/global.css',
+	content: {
+		docs: {
+			contentX: 'left',
+		},
+	},
 
 	// Sidebar logo text (default: 'sdocs')
 	// logo: 'sdocs',

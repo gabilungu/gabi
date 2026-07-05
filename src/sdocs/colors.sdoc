@@ -1,0 +1,41 @@
+<script lang="ts">
+	import Button from "../lib/components/Button/Button.svelte";
+</script>
+
+[PAGE title="Colors"]
+	# Colors bla bla bla
+
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat.
+
+	{#snippet colorBox(color: string)}
+		<div style="background-color:{color}; width:100px; height:100px;"></div>
+	{/snippet}
+
+	## something here
+
+	Lorem ipsum dolor sit amet
+
+	<div style="display:flex;">
+		{@render colorBox("var(--fg)")}
+		{@render colorBox("var(--fg-100)")}
+		{@render colorBox("var(--fg-200)")}
+	</div>
+
+	## another section
+
+	Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+	<div style="display:flex; gap:8px;">
+		{@render colorBox("#eab308")}
+		{@render colorBox("#a855f7")}
+	</div>
+
+	And a dummy button:
+
+	<Button label="Dummy button" />
+
+[/PAGE]
