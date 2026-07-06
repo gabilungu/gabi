@@ -1,0 +1,50 @@
+<script lang="ts">
+	import Button from "../lib/components/Button/Button.svelte";
+	import Input from "../lib/components/Input/Input.svelte";
+	const version = "0.0.3";
+</script>
+
+[PAGE title="@Guides/Introduction"]
+
+	# gabi
+
+	A Svelte 5 component library and design system — currently at version
+	{version}. Small on purpose: a handful of form components, one size
+	scale, one set of intents, and CSS custom properties for everything
+	visual.
+
+	## Installation
+
+	```bash
+	npm install gabi
+	```
+
+	## Usage
+
+	Import components straight from the package; styles ride along:
+
+	```svelte
+	<script>
+		import { Button, Input } from "gabi";
+	</script>
+
+	<Input placeholder="Your name" />
+	<Button label="Save" intent="success" />
+	```
+
+	And this is what they look like, live, in gabi's own css:
+
+	[example title="First contact" direction="row" gap="8px" contentY="middle"]
+		<Input placeholder="Your name" />
+		<Button label="Save" intent="success" />
+	[/example]
+
+	## Where next
+
+	- The **Components** section documents every component with live
+	  previews, prop controls, and examples.
+	- [Colors](./colors) shows the design tokens the components build on.
+	- [Markdown](./markdown) demonstrates everything a docs page like this
+	  one can do.
+
+[/PAGE]

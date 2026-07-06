@@ -33,8 +33,7 @@ export default {
 	sections: ['Guides', 'Components'],
 
 	// Sidebar configuration
-	// sidebar: {
-	// 	order: { root: ['Components', '*', 'Documentation'] },
-	// 	open: ['Components'],
-	// },
+	sidebar: {
+		order: { root: ['Introduction', '*'] },
+	},
 };
