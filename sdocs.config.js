@@ -38,6 +38,6 @@ export default {
 		{ slug: 'components', title: 'Components' },
 	],
 
-	// The landing page (a route path)
-	home: 'guides/introduction',
+	// The landing page: a sectionless [PAGE] routed at the site root
+	home: 'welcome',
 };
