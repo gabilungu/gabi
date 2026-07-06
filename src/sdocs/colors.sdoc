@@ -2,7 +2,7 @@
 	import Button from "../lib/components/Button/Button.svelte";
 </script>
 
-[PAGE title="@guides/Colors"]
+[DOC title="@guides/Colors"]
 
 	# Colors
 
@@ -43,4 +43,4 @@
 	And this prose — like the headings above — uses the docs app's styling,
 	not gabi's.
 
-[/PAGE]
+[/DOC]

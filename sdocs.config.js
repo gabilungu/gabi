@@ -18,7 +18,7 @@ export default {
 		showcase: {
 			contentX: 'left',
 		},
-		page: {
+		doc: {
 			// maxWidth: '800px',
 		},
 	},
