@@ -2,7 +2,7 @@
 	import Input from "./Input.svelte";
 </script>
 
-[DOCS title="@Components/:Form / Input" description="A basic text input using the mitek size scale."]
+[SHOWCASE title="@Components/:Form / Input" description="A basic text input using the mitek size scale."]
 
 	[preview component={Input} args={{ placeholder: "Type here…", size: "md" }}]
 		<Input {...args} />
@@ -25,4 +25,4 @@
 		<Input placeholder="Can't type here" disabled />
 	[/example]
 
-[/DOCS]
+[/SHOWCASE]

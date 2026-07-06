@@ -9,7 +9,7 @@
 	];
 </script>
 
-[DOCS title="@Components/:Form / Select" description="A basic native select using the mitek size scale."]
+[SHOWCASE title="@Components/:Form / Select" description="A basic native select using the mitek size scale."]
 
 	[preview component={Select} args={{ placeholder: "Choose a size…", size: "md" }}]
 		<Select {...args} options={sizes} />
@@ -26,4 +26,4 @@
 		<Select options={sizes} placeholder="Can't choose" disabled />
 	[/example]
 
-[/DOCS]
+[/SHOWCASE]
