@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from "../lib/components/Button/Button.svelte";
+	import Button from "../../lib/components/Button/Button.svelte";
 	const version = "0.0.3";
 </script>
 

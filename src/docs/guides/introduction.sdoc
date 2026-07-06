@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Button from "../lib/components/Button/Button.svelte";
-	import Input from "../lib/components/Input/Input.svelte";
+	import Button from "../../lib/components/Button/Button.svelte";
+	import Input from "../../lib/components/Input/Input.svelte";
 	const version = "0.0.3";
 </script>
 
