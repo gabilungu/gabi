@@ -15,7 +15,7 @@ export default {
 	// Static assets served at the site root (images for pages, etc.)
 	static: './static',
 	content: {
-		docs: {
+		showcase: {
 			contentX: 'left',
 		},
 		page: {
@@ -32,12 +32,12 @@ export default {
 	// Browser-tab favicon — a static path or URL (default: the sdocs icon)
 	favicon: '/logo.svg',
 
-	// Top-bar section order — sections come from @Section/ title prefixes
-	sections: ['Guides', 'Components'],
+	// The site's sections, in top-bar order; titles reference them by slug (@guides/…)
+	sections: [
+		{ slug: 'guides', title: 'Guides', order: ['introduction', 'colors'] },
+		{ slug: 'components', title: 'Components' },
+	],
 
-	// Sidebar configuration
-	// sidebar: {
-	// 	order: { root: ['Components', '*'] },
-	// 	open: ['Components'],
-	// },
+	// The landing page (a route path)
+	home: 'guides/introduction',
 };
