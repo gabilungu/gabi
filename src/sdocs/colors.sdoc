@@ -2,7 +2,7 @@
 	import Button from "../lib/components/Button/Button.svelte";
 </script>
 
-[PAGE title="Colors"]
+[PAGE title="@Guides/Colors"]
 
 	# Colors
 
@@ -13,11 +13,17 @@
 
 	## Foreground ramp
 
-	The stage below runs in gabi's own context — `global.css` loads inside it,
-	so the `--fg` tokens resolve:
+	A live element dropped straight into the page prose renders in the **docs**
+	context — it sees sdocs's own tokens, not gabi's. This box is
+	`var(--color-lime-500)`, a sdocs variable; gabi's `--fg` would resolve to
+	nothing out here:
 
+	<div style="background-color:var(--color-lime-500); width:100px; height:100px;"></div>
 
-	[example title="Foreground" direction="column" gap="2px"]
+	An `[example]` is the opposite — it runs in **gabi's** context with
+	`global.css` loaded, so gabi's `--fg` ramp resolves:
+
+	[example title="Foreground"]
 		<div style="background-color:var(--fg); width:100px; height:100px;"></div>
 		<div style="background-color:var(--fg-100); width:100px; height:100px;"></div>
 		<div style="background-color:var(--fg-200); width:100px; height:100px;"></div>

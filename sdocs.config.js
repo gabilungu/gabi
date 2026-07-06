@@ -27,7 +27,10 @@ export default {
 	title: 'gabi',
 
 	// Header logo: 'sdocs' for the mascot, an image URL, or false to hide (default: 'sdocs')
-	// logo: 'sdocs',
+	logo: '/logo.svg',
+
+	// Browser-tab favicon — a static path or URL (default: the sdocs icon)
+	favicon: '/logo.svg',
 
 	// Top-bar section order — sections come from @Section/ title prefixes
 	sections: ['Guides', 'Components'],

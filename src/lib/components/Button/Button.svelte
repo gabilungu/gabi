@@ -8,14 +8,7 @@
 		onclick?: (event: MouseEvent) => void;
 	}
 
-	let {
-		label,
-		type = 'button',
-		size = 'md',
-		intent = 'default',
-		disabled = false,
-		onclick
-	}: Props = $props();
+	let { label, type = 'button', size = 'md', intent = 'default', disabled = false, onclick }: Props = $props();
 </script>
 
 <button {type} {disabled} {onclick} data-size={size} data-intent={intent}>{label}</button>
