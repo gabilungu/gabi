@@ -1,0 +1,40 @@
+<script lang="ts">
+	import Placeholder from "./Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Utils / Placeholder"
+	description="A sized box with centered text for blocking out layouts. Width fills its container by default and height hugs its content; both accept fill, hug, a px number, or any CSS length."
+]
+
+	[preview component={Placeholder}]
+		<Placeholder {...args} />
+	[/preview]
+
+	[example title="Width — fill, hug, px, length" direction="column"]
+		<Placeholder text="fill (default) — spans the container" />
+		<Placeholder text="hug — only as wide as its text" width="hug" />
+		<Placeholder text="240 (a number is px)" width={240} />
+		<Placeholder text="20em" width="20em" />
+	[/example]
+
+	[example title="Height — hug, px, length" contentY="top"]
+		<Placeholder text="hug (default)" width="hug" />
+		<Placeholder text="96 tall" width="hug" height={96} />
+		<Placeholder text="6em tall" width="hug" height="6em" />
+	[/example]
+
+	[example title="A fixed box"]
+		<Placeholder text="320 × 160" width={320} height={160} />
+	[/example]
+
+	[example title="Image background"]
+		<Placeholder
+			text=""
+			width={480}
+			height={270}
+			--background="url('/placeholder.png') center / cover"
+		/>
+	[/example]
+
+[/SHOWCASE]

@@ -1,0 +1,107 @@
+<script lang="ts">
+	import NavTree from "./index.js";
+	import Root from "./NavTree.svelte";
+	import Group from "./Group.svelte";
+	import Item from "./Item.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/NavTree"
+	description="A composable tree navigation built from three components — the NavTree root, NavTree.Group, and NavTree.Item. Each tab below previews one of them; the props table follows the selected tab."
+]
+
+	[preview component={Root} title="NavTree"]
+		<NavTree>
+			<NavTree.Group label="Getting started">
+				<NavTree.Item label="Introduction" href="#introduction" active />
+				<NavTree.Item label="Installation" href="#installation" />
+			</NavTree.Group>
+
+			<NavTree.Group label="Components">
+				<NavTree.Item label="Forms" expanded>
+					{#snippet left()}<span class="dot" style="background: var(--action)"
+						></span>{/snippet}
+					<NavTree.Item label="Button" href="#button" />
+					<NavTree.Item label="Input" href="#input" />
+					<NavTree.Item label="Select" href="#select" />
+				</NavTree.Item>
+				<NavTree.Item label="Navigation">
+					{#snippet left()}<span
+							class="dot"
+							style="background: var(--success)"
+						></span>{/snippet}
+					<NavTree.Item label="NavTree" href="#navtree" />
+				</NavTree.Item>
+			</NavTree.Group>
+		</NavTree>
+	[/preview]
+
+	[preview
+		component={Group}
+		title="NavTree.Group"
+		args={{ label: "Getting started", expanded: true }}
+	]
+		<NavTree>
+			<NavTree.Group {...args}>
+				<NavTree.Item label="Introduction" href="#introduction" active />
+				<NavTree.Item label="Installation" href="#installation" />
+			</NavTree.Group>
+		</NavTree>
+	[/preview]
+
+	[preview
+		component={Item}
+		title="NavTree.Item"
+		args={{ label: "Projects", href:"#projects", active: true }}
+	]
+		<NavTree>
+			<NavTree.Item label="About" href="#about" />
+			<NavTree.Item {...args} />
+			<NavTree.Item label="Team" href="#team" />
+		</NavTree>
+	[/preview]
+
+	[example title="Expandable folders"]
+		<NavTree>
+			<NavTree.Item label="src" expanded>
+				<NavTree.Item label="components" expanded>
+					<NavTree.Item label={"asd"} href="#f1" />
+					<NavTree.Item label="Input.svelte" href="#f2" />
+				</NavTree.Item>
+				<NavTree.Item label="index.ts" href="#f3" active />
+			</NavTree.Item>
+			<NavTree.Item label="package.json" href="#f4" />
+		</NavTree>
+	[/example]
+
+	[example title="Left and right slots"]
+		<NavTree>
+			<NavTree.Item label="Inbox" href="#inbox" active>
+				{#snippet left()}<span class="dot" style="background: var(--action)"
+					></span>{/snippet}
+				{#snippet right()}<span class="count">12</span>{/snippet}
+			</NavTree.Item>
+			<NavTree.Item label="Drafts" href="#drafts">
+				{#snippet right()}<span class="count">3</span>{/snippet}
+			</NavTree.Item>
+			<NavTree.Item label="Sent" href="#sent" />
+		</NavTree>
+	[/example]
+
+[/SHOWCASE]
+
+<style>
+	.dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+	.count {
+		font-size: 11px;
+		color: var(--fg-100);
+		background: hsl(45, 18%, 90%);
+		border-radius: 999px;
+		padding: 1px 7px;
+	}
+</style>

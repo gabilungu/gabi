@@ -12,7 +12,7 @@
 		size = 'md',
 		type = 'text',
 		placeholder,
-		disabled = false
+		disabled = false,
 	}: Props = $props();
 </script>
 
