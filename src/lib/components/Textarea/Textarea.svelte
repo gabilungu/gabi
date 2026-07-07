@@ -1,5 +1,7 @@
 <script lang="ts">
-	interface Props {
+	import type { HTMLTextareaAttributes } from 'svelte/elements';
+
+	interface Props extends HTMLTextareaAttributes {
 		value?: string;
 		size?: 'xs' | 'sm' | 'md' | 'lg';
 		placeholder?: string;
@@ -12,11 +14,13 @@
 		size = 'md',
 		placeholder,
 		disabled = false,
-		rows = 3
+		rows = 3,
+		class: className,
+		...rest
 	}: Props = $props();
 </script>
 
-<textarea {placeholder} {disabled} {rows} data-size={size} bind:value></textarea>
+<textarea {...rest} class={className} {placeholder} {disabled} {rows} data-size={size} bind:value></textarea>
 
 <style>
 	textarea {

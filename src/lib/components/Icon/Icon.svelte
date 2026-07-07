@@ -1,16 +1,17 @@
 <script lang="ts">
+	import type { HTMLAttributes } from 'svelte/elements';
+
 	/**
 	 * @cssvar {color} --color - Icon color (defaults to the current text color)
 	 * @cssvar {length} --size - Resolved width and height (from `dimension`)
 	 */
-	interface Props {
+	interface Props extends HTMLAttributes<HTMLSpanElement> {
 		/** Route to the SVG, served from the static folder — e.g. "/icons/search.svg". */
 		path: string;
 		/** Size — a number (treated as px) or any CSS length ("20px", "2em"). Default: 16. */
 		dimension?: number | string;
 		/** Accessible label. Omit for a decorative icon (hidden from assistive tech). */
 		label?: string;
-		class?: string;
 	}
 
 	let {
@@ -18,6 +19,7 @@
 		dimension = 16,
 		label,
 		class: className = '',
+		...rest
 	}: Props = $props();
 
 	// A bare number is px; a string is used verbatim.
@@ -32,6 +34,7 @@
 	behave. The SVG's own colors are ignored; only its shape is used.
 -->
 <span
+	{...rest}
 	class="Icon {className}"
 	style:--icon="url('{path}')"
 	style:--size={resolved}

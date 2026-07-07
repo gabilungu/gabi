@@ -1,5 +1,8 @@
 <script lang="ts">
-	interface Props {
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
+	// The native `size` attribute (a character count) is replaced by the scale.
+	interface Props extends Omit<HTMLInputAttributes, 'size'> {
 		value?: string;
 		size?: 'xs' | 'sm' | 'md' | 'lg';
 		type?: 'text' | 'email' | 'password' | 'search' | 'tel' | 'url';
@@ -13,17 +16,24 @@
 		type = 'text',
 		placeholder,
 		disabled = false,
+		class: className,
+		...rest
 	}: Props = $props();
 </script>
 
 <!-- Two-way binding can't use a dynamic `type`, so update `value` by hand. -->
 <input
+	{...rest}
+	class={className}
 	{type}
 	{value}
 	{placeholder}
 	{disabled}
 	data-size={size}
-	oninput={(e) => (value = e.currentTarget.value)}
+	oninput={(e) => {
+		value = e.currentTarget.value;
+		rest.oninput?.(e);
+	}}
 />
 
 <style>

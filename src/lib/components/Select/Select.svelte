@@ -1,10 +1,13 @@
 <script lang="ts">
+	import type { HTMLSelectAttributes } from 'svelte/elements';
+
 	interface Option {
 		label: string;
 		value: string;
 	}
 
-	interface Props {
+	// The native `size` attribute (visible row count) is replaced by the scale.
+	interface Props extends Omit<HTMLSelectAttributes, 'size'> {
 		value?: string;
 		size?: 'xs' | 'sm' | 'md' | 'lg';
 		options?: Option[];
@@ -17,11 +20,13 @@
 		size = 'md',
 		options = [],
 		placeholder,
-		disabled = false
+		disabled = false,
+		class: className,
+		...rest
 	}: Props = $props();
 </script>
 
-<select {disabled} data-size={size} bind:value>
+<select {...rest} class={className} {disabled} data-size={size} bind:value>
 	{#if placeholder}
 		<option value="" disabled>{placeholder}</option>
 	{/if}

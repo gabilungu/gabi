@@ -1,5 +1,7 @@
 <script lang="ts">
-	interface Props {
+	import type { HTMLButtonAttributes } from 'svelte/elements';
+
+	interface Props extends HTMLButtonAttributes {
 		label: string;
 		type?: 'button' | 'submit' | 'reset';
 		size?: 'xs' | 'sm' | 'md' | 'lg';
@@ -8,10 +10,19 @@
 		onclick?: (event: MouseEvent) => void;
 	}
 
-	let { label, type = 'button', size = 'md', intent = 'default', disabled = false, onclick }: Props = $props();
+	let {
+		label,
+		type = 'button',
+		size = 'md',
+		intent = 'default',
+		disabled = false,
+		onclick,
+		class: className,
+		...rest
+	}: Props = $props();
 </script>
 
-<button {type} {disabled} {onclick} data-size={size} data-intent={intent}>{label}</button>
+<button {...rest} class={className} {type} {disabled} {onclick} data-size={size} data-intent={intent}>{label}</button>
 
 <style>
 	button {
