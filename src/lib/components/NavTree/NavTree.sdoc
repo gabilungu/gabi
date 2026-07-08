@@ -76,7 +76,11 @@
 		</NavTree>
 	[/example]
 
-	[example title="Driven by data" background="var(--bg-100)"]
+	[example
+		title="Driven by data"
+		description="The items array and the active state live in this example's own script."
+		background="var(--bg-100)"
+	]
 		<script lang="ts">
 			const items = [
 				{ label: "Introduction", href: "#intro" },
