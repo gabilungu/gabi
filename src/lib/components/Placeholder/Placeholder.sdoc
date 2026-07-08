@@ -7,6 +7,10 @@
 	description="A sized box with centered text for blocking out layouts. Width fills its container by default and height hugs its content; both accept fill, hug, a px number, or any CSS length."
 ]
 
+	<script lang="ts">
+		const steps = [120, 240, 360];
+	</script>
+
 	[preview component={Placeholder}]
 		<Placeholder {...args} />
 	[/preview]
@@ -37,4 +41,18 @@
 		/>
 	[/example]
 
+	[example title="From the entity script" description="The steps array is declared once at the SHOWCASE level and shared by this stage." direction="column"]
+		{#each steps as w (w)}
+			<Placeholder text={`${w}px`} width={w} />
+		{/each}
+		<p class="entity-note">Steps: {steps.join(", ")}</p>
+	[/example]
+
+	<style>
+		.entity-note {
+			margin: 0;
+			font-size: 11px;
+			color: var(--fg-200);
+		}
+	</style>
 [/SHOWCASE]
