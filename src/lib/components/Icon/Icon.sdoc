@@ -18,7 +18,7 @@
 	description="Renders an SVG from the static folder by path. Drawn as a CSS mask, so it takes the current text color and any size — ideal for the monochrome icons in /static/icons."
 ]
 
-	[preview component={Icon} args={{ path: "/icons/search.svg"}}]
+	[preview component={Icon} args={{ path: "icons/search.svg"}}]
 		<Icon {...args} />
 	[/preview]
 
@@ -28,7 +28,7 @@
 				<div
 					style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 60px;"
 				>
-					<Icon path={`/icons/${name}.svg`} dimension={20} label={name} />
+					<Icon path={`icons/${name}.svg`} dimension={20} label={name} />
 					<span style="font-size: 11px; color: var(--fg-100);">{name}</span>
 				</div>
 			{/each}
@@ -37,27 +37,27 @@
 
 	[example title="Dimension (number → px, or any CSS length)"]
 		<div style="display: flex; gap: 20px; align-items: flex-end;">
-			<Icon path="/icons/folder.svg" dimension={12} />
-			<Icon path="/icons/folder.svg" dimension={16} />
-			<Icon path="/icons/folder.svg" dimension={24} />
-			<Icon path="/icons/folder.svg" dimension="2em" />
-			<Icon path="/icons/folder.svg" dimension="48px" />
+			<Icon path="icons/folder.svg" dimension={12} />
+			<Icon path="icons/folder.svg" dimension={16} />
+			<Icon path="icons/folder.svg" dimension={24} />
+			<Icon path="icons/folder.svg" dimension="2em" />
+			<Icon path="icons/folder.svg" dimension="48px" />
 		</div>
 	[/example]
 
 	[example title="Color follows the text"]
 		<div style="display: flex; gap: 20px; align-items: center;">
 			<span style="color: var(--fg);"
-				><Icon path="/icons/info.svg" dimension={22} /></span
+				><Icon path="icons/info.svg" dimension={22} /></span
 			>
 			<span style="color: var(--action);"
-				><Icon path="/icons/info.svg" dimension={22} /></span
+				><Icon path="icons/info.svg" dimension={22} /></span
 			>
 			<span style="color: var(--success);"
-				><Icon path="/icons/check.svg" dimension={22} /></span
+				><Icon path="icons/check.svg" dimension={22} /></span
 			>
 			<span style="color: var(--danger);"
-				><Icon path="/icons/x.svg" dimension={22} /></span
+				><Icon path="icons/x.svg" dimension={22} /></span
 			>
 		</div>
 	[/example]
@@ -66,7 +66,7 @@
 		<p
 			style="display: flex; align-items: center; gap: 6px; font-size: 14px; margin: 0;"
 		>
-			<Icon path="/icons/search.svg" /> Search the docs
+			<Icon path="icons/search.svg" /> Search the docs
 		</p>
 	[/example]
 

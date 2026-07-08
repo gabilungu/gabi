@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from "./Button.svelte";
+	let a = 2;
 </script>
 
 [SHOWCASE title="@components/:Form / Button" description=""]
@@ -31,4 +32,57 @@
 		<Button intent="success" label="Success" disabled />
 	[/example]
 
+	[example title="Gabi2"]
+		<script>
+			let b = 4;
+		</script>
+
+		<div class="gabi">
+			abc: {a + b}
+		</div>
+
+		<style>
+			.gabi {
+				background-color: blue;
+			}
+		</style>
+	[/example]
+
+	[example title="Gabi"]
+		<script>
+			let b = 3;
+		</script>
+
+		<div class="gabi">
+			abc: {a + b}
+		</div>
+
+		<style>
+			.gabi {
+				background-color: red;
+			}
+		</style>
+	[/example]
+	[example title="Gabi3"]
+		<script>
+			let b = 4;
+		</script>
+
+		<div class="gabi">
+			abc: {a + b}
+		</div>
+
+		<style>
+			.gabi {
+				background-color: yellow;
+			}
+		</style>
+	[/example]
+
 [/SHOWCASE]
+
+<style>
+	.gabi {
+		padding: 16px;
+	}
+</style>
