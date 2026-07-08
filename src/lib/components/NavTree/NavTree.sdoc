@@ -74,7 +74,7 @@
 		</NavTree>
 	[/example]
 
-	[example title="Driven by data"]
+	[example title="Driven by data" background="var(--bg-100)"]
 		<script lang="ts">
 			const items = [
 				{ label: "Introduction", href: "#intro" },
