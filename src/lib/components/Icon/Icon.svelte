@@ -26,6 +26,14 @@
 	const resolved = $derived(
 		typeof dimension === 'number' ? `${dimension}px` : dimension,
 	);
+
+	// Relative url() values inside a custom property resolve against the
+	// stylesheet that USES the var — in a production build that's the emitted
+	// css asset, not the page. Resolving to an absolute URL here makes the
+	// mask immune to where the stylesheet lives (and to deploy sub-paths).
+	const resolvedPath = $derived(
+		typeof document === 'undefined' ? path : new URL(path, document.baseURI).href,
+	);
 </script>
 
 <!--
@@ -36,7 +44,7 @@
 <span
 	{...rest}
 	class="Icon {className}"
-	style:--icon="url('{path}')"
+	style:--icon="url('{resolvedPath}')"
 	style:--size={resolved}
 	role={label ? 'img' : undefined}
 	aria-label={label}

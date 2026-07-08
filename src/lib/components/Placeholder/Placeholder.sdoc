@@ -33,7 +33,7 @@
 			text=""
 			width={480}
 			height={270}
-			--background="url('placeholder.png') center / cover"
+			style="background: url('placeholder.png') center / cover"
 		/>
 	[/example]
 
