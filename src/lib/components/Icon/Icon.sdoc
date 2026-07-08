@@ -47,18 +47,18 @@
 
 	[example title="Color follows the text"]
 		<div style="display: flex; gap: 20px; align-items: center;">
-			<span style="color: var(--fg);"
-				><Icon path="icons/info.svg" dimension={22} /></span
-			>
-			<span style="color: var(--action);"
-				><Icon path="icons/info.svg" dimension={22} /></span
-			>
-			<span style="color: var(--success);"
-				><Icon path="icons/check.svg" dimension={22} /></span
-			>
-			<span style="color: var(--danger);"
-				><Icon path="icons/x.svg" dimension={22} /></span
-			>
+			<span style="color: var(--fg);">
+				<Icon path="icons/info.svg" dimension={22} />
+			</span>
+			<span style="color: var(--action);">
+				<Icon path="icons/info.svg" dimension={22} />
+			</span>
+			<span style="color: var(--success);">
+				<Icon path="icons/check.svg" dimension={22} />
+			</span>
+			<span style="color: var(--danger);">
+				<Icon path="icons/x.svg" dimension={22} />
+			</span>
 		</div>
 	[/example]
 
