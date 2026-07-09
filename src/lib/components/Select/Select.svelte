@@ -5,7 +5,7 @@
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
 	import { tick } from 'svelte';
-	import { InternalIcon } from '../../internal/icons';
+	import { InternalIcon } from '../../internal/icons/index.js';
 
 	interface Option {
 		label: string;
