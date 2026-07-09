@@ -45,21 +45,21 @@
 		<Select width={160} options={sizes} placeholder="Fixed 160px" />
 	[/example]
 
-	[example title="Searchable" minHeight="320px"]
+	[example title="Searchable" minHeight="320px" maxWidth="200px"]
 		<Select search options={fruits} placeholder="Search a fruit…" />
 	[/example]
 
-	[example title="Clearable" minHeight="320px"]
-		<Select clearable options={fruits} value="cherry" />
+	[example title="Clearable" minHeight="320px" maxWidth="200px"]
+		<Select clearable options={fruits} value="cherry" placeholder="Pick a fruit" />
 	[/example]
 
-	[example title="Validation"]
+	[example title="Validation" maxWidth="200px"]
 		<Select intent="success" options={sizes} value="md" />
 		<Select intent="warning" options={sizes} value="md" />
 		<Select intent="danger" options={sizes} placeholder="Choose a size…" />
 	[/example]
 
-	[example title="Disabled"]
+	[example title="Disabled" maxWidth="200px"]
 		<Select options={sizes} placeholder="Can't choose" disabled />
 	[/example]
 
