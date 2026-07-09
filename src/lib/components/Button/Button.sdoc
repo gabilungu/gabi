@@ -2,7 +2,7 @@
 	import Button from "./Button.svelte";
 </script>
 
-[SHOWCASE title="@components/:Form / Button" description=""]
+[SHOWCASE title="@components/:Form / Button" description="Buttons trigger an action. Pick an intent for meaning and a variant for emphasis."]
 
 	[preview component={Button} args={{ label:"Login" }}]
 		<Button {...args} />
@@ -21,6 +21,12 @@
 		<Button intent="danger" label="Danger" />
 		<Button intent="warning" label="Warning" />
 		<Button intent="success" label="Success" />
+	[/example]
+
+	[example title="Variants"]
+		<Button variant="solid" label="Solid" />
+		<Button variant="outline" label="Outline" />
+		<Button variant="ghost" label="Ghost" />
 	[/example]
 
 	[example title="Disabled"]

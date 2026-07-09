@@ -51,7 +51,7 @@
 		font: inherit;
 		font-size: 11px;
 		font-weight: var(--font-weight, 600);
-		color: var(--fg-200);
+		color: var(--fg-ll);
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
 		cursor: pointer;
@@ -59,7 +59,7 @@
 	}
 
 	.NavTree-group-label:hover {
-		color: var(--fg-100);
+		color: var(--fg-l);
 	}
 
 	.NavTree-group-text {

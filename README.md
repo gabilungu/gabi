@@ -25,11 +25,12 @@ Requires Svelte 5 as a peer dependency.
 
 ## Fonts
 
-gabi self-hosts Figtree (text) and JetBrains Mono (mono). Import the global
-stylesheet once — it loads the fonts and applies the type styles:
+gabi self-hosts Figtree (text) and JetBrains Mono (mono). Import a theme
+stylesheet once — it loads the fonts and applies the type styles and colour
+tokens:
 
 ```js
-import 'gabi/global.css';
+import 'gabi/gabiLight.css';
 ```
 
 ## Development

@@ -21,12 +21,12 @@
 	<div style="background-color:var(--color-lime-500); width:100px; height:100px;"></div>
 
 	An `[example]` is the opposite — it runs in **gabi's** context with
-	`global.css` loaded, so gabi's `--fg` ramp resolves:
+	`gabiLight.css` loaded, so gabi's `--fg` ramp resolves:
 
 	[example title="Foreground"]
 		<div style="background-color:var(--fg); width:100px; height:100px;"></div>
-		<div style="background-color:var(--fg-100); width:100px; height:100px;"></div>
-		<div style="background-color:var(--fg-200); width:100px; height:100px;"></div>
+		<div style="background-color:var(--fg-l); width:100px; height:100px;"></div>
+		<div style="background-color:var(--fg-ll); width:100px; height:100px;"></div>
 	[/example]
 
 	## Components

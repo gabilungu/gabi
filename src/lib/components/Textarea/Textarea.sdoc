@@ -2,7 +2,7 @@
 	import Textarea from "./Textarea.svelte";
 </script>
 
-[SHOWCASE title="@components/:Form / Textarea" description="A basic multi-line text input using the mitek size scale."]
+[SHOWCASE title="@components/:Form / Textarea" description="A multi-line text input using the gabi size scale."]
 
 	[preview component={Textarea} args={{ placeholder: "Write something…", size: "md", rows: 3 }}]
 		<Textarea {...args} />
@@ -13,6 +13,12 @@
 		<Textarea size="sm" placeholder="Small" />
 		<Textarea size="md" placeholder="Medium" />
 		<Textarea size="lg" placeholder="Large" />
+	[/example]
+
+	[example title="Validation"]
+		<Textarea intent="success" value="Looks good" />
+		<Textarea intent="warning" value="Double-check this" />
+		<Textarea intent="danger" value="Something's wrong" />
 	[/example]
 
 	[example title="Disabled"]

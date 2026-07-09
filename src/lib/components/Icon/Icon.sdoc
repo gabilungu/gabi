@@ -29,7 +29,7 @@
 					style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 60px;"
 				>
 					<Icon path={`icons/${name}.svg`} dimension={20} label={name} />
-					<span style="font-size: 11px; color: var(--fg-100);">{name}</span>
+					<span style="font-size: 11px; color: var(--fg-l);">{name}</span>
 				</div>
 			{/each}
 		</div>

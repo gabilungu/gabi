@@ -37,7 +37,7 @@
 		box-sizing: border-box;
 		padding: var(--padding, 8px);
 		overflow: hidden;
-		color: var(--fg-100);
+		color: var(--fg-l);
 		background: var(--background, var(--focus));
 		font-family: var(--font-sans);
 		font-size: 14px;

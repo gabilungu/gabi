@@ -1,0 +1,127 @@
+@import '../fonts/fonts.css';
+
+:root {
+	--font-sans: 'Figtree', system-ui, -apple-system, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+}
+
+body {
+	font-family: var(--font-sans);
+	color: var(--fg);
+	background-color: var(--bg);
+}
+
+code,
+kbd,
+samp,
+pre {
+	font-family: var(--font-mono);
+}
+
+/* SEMANTIC COLORS
+   Every ramp steps from its base token: -l/-ll/-lll go lighter,
+   -d/-dd/-ddd go darker. */
+
+:root {
+	/* Surfaces — page and panel backgrounds. */
+	--bg-l: hsl(0, 0%, 100%);
+	--bg: hsl(40, 27%, 98%);
+	--bg-d: hsl(48, 20%, 95%);
+	--bg-dd: hsl(45, 18%, 90%);
+	--bg-ddd: hsl(45, 16%, 83%);
+
+	/* Text and icons on those surfaces. */
+	--fg-lll: hsl(46, 8%, 70%);
+	--fg-ll: hsl(46, 8%, 55%);
+	--fg-l: hsl(45, 8%, 40%);
+	--fg: hsl(45, 10%, 25%);
+	--fg-d: hsl(45, 10%, 15%);
+	--fg-dd: hsl(45, 10%, 10%);
+	--fg-ddd: hsl(45, 10%, 5%);
+
+	/* Disabled, inactive elements. */
+	--disabled-lll: hsl(46, 8%, 98%);
+	--disabled-ll: hsl(46, 8%, 95%);
+	--disabled-l: hsl(46, 8%, 90%);
+	--disabled: hsl(46, 8%, 85%);
+	--disabled-d: hsl(46, 8%, 70%);
+	--disabled-dd: hsl(46, 8%, 55%);
+	--disabled-ddd: hsl(46, 8%, 40%);
+
+	/* Interactive elements — buttons, links, controls. */
+	--action-llll: hsl(216, 83%, 95%);
+	--action-lll: hsl(216, 83%, 83%);
+	--action-ll: hsl(217, 83%, 73%);
+	--action-l: hsl(218, 83%, 58%);
+	--action: hsl(221, 83%, 53%);
+	--action-d: hsl(221, 83%, 43%);
+	--action-dd: hsl(221, 83%, 33%);
+	--action-ddd: hsl(221, 83%, 23%);
+	--action-dddd: hsl(221, 83%, 13%);
+
+	/* Selection and focus — selected items, focus rings, highlights. */
+	--focus-llll: hsl(48, 100%, 95%);
+	--focus-lll: hsl(48, 100%, 87%);
+	--focus-ll: hsl(48, 100%, 77%);
+	--focus-l: hsl(48, 100%, 66%);
+	--focus: hsl(48, 100%, 55%);
+	--focus-d: hsl(44, 100%, 46%);
+	--focus-dd: hsl(40, 100%, 37%);
+	--focus-ddd: hsl(36, 100%, 27%);
+	--focus-dddd: hsl(32, 100%, 17%);
+
+	/* Positive / success states. */
+	--success-llll: hsl(142, 66%, 90%);
+	--success-lll: hsl(142, 68%, 75%);
+	--success-ll: hsl(142, 70%, 56%);
+	--success-l: hsl(142, 72%, 42%);
+	--success: hsl(142, 77%, 36%);
+	--success-d: hsl(142, 77%, 26%);
+	--success-dd: hsl(142, 77%, 18%);
+	--success-ddd: hsl(142, 77%, 12%);
+	--success-dddd: hsl(142, 77%, 6%);
+
+	/* Warnings, caution — proceed carefully. */
+	--warning-llll: hsl(28, 92%, 95%);
+	--warning-lll: hsl(28, 92%, 83%);
+	--warning-ll: hsl(28, 92%, 73%);
+	--warning-l: hsl(28, 92%, 63%);
+	--warning: hsl(28, 92%, 53%);
+	--warning-d: hsl(28, 92%, 43%);
+	--warning-dd: hsl(28, 92%, 33%);
+	--warning-ddd: hsl(28, 92%, 23%);
+	--warning-dddd: hsl(28, 92%, 13%);
+
+	/* Errors and destructive actions. */
+	--danger-llll: hsl(0, 72%, 95%);
+	--danger-lll: hsl(0, 72%, 81%);
+	--danger-ll: hsl(0, 72%, 71%);
+	--danger-l: hsl(0, 72%, 61%);
+	--danger: hsl(0, 72%, 51%);
+	--danger-d: hsl(0, 72%, 41%);
+	--danger-dd: hsl(0, 72%, 31%);
+	--danger-ddd: hsl(0, 72%, 21%);
+	--danger-dddd: hsl(0, 72%, 11%);
+
+	/* Informational notices. */
+	--info-llll: hsl(199, 89%, 88%);
+	--info-lll: hsl(199, 89%, 78%);
+	--info-ll: hsl(199, 89%, 68%);
+	--info-l: hsl(199, 89%, 58%);
+	--info: hsl(199, 89%, 48%);
+	--info-d: hsl(199, 89%, 38%);
+	--info-dd: hsl(199, 89%, 28%);
+	--info-ddd: hsl(199, 89%, 18%);
+	--info-dddd: hsl(199, 89%, 8%);
+
+	/* Emphasis for non-interactive elements — highlight, draw attention. */
+	--accent-llll: hsl(25, 30%, 90%);
+	--accent-lll: hsl(25, 30%, 80%);
+	--accent-ll: hsl(25, 30%, 70%);
+	--accent-l: hsl(25, 30%, 60%);
+	--accent: hsl(25, 30%, 50%);
+	--accent-d: hsl(25, 30%, 40%);
+	--accent-dd: hsl(25, 30%, 30%);
+	--accent-ddd: hsl(25, 30%, 20%);
+	--accent-dddd: hsl(25, 30%, 10%);
+}

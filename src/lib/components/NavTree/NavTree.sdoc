@@ -79,7 +79,7 @@
 	[example
 		title="Driven by data"
 		description="The items array and the active state live in this example's own script."
-		background="var(--bg-100)"
+		background="var(--bg-l)"
 	]
 		<script lang="ts">
 			const items = [
@@ -111,7 +111,7 @@
 			.current {
 				margin: 12px 0 0;
 				font-size: 12px;
-				color: var(--fg-100);
+				color: var(--fg-l);
 			}
 		</style>
 	[/example]
@@ -143,7 +143,7 @@
 	}
 	.count {
 		font-size: 11px;
-		color: var(--fg-100);
+		color: var(--fg-l);
 		background: hsl(45, 18%, 90%);
 		border-radius: 999px;
 		padding: 1px 7px;

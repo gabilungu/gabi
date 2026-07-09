@@ -5,13 +5,30 @@
 		{ label: "Extra small", value: "xs" },
 		{ label: "Small", value: "sm" },
 		{ label: "Medium", value: "md" },
-		{ label: "Large", value: "lg" }
+		{ label: "Large", value: "lg" },
+	];
+
+	const fruits = [
+		{ label: "Apple", value: "apple" },
+		{ label: "Banana", value: "banana" },
+		{ label: "Cherry", value: "cherry" },
+		{ label: "Date", value: "date" },
+		{ label: "Elderberry", value: "elderberry" },
+		{ label: "Fig", value: "fig" },
+		{ label: "Grape", value: "grape" },
 	];
 </script>
 
-[SHOWCASE title="@components/:Form / Select" description="A basic native select using the mitek size scale."]
+[SHOWCASE
+	title="@components/:Form / Select"
+	description="A custom select with a styled dropdown, keyboard navigation, optional search, and clear."
+]
 
-	[preview component={Select} args={{ placeholder: "Choose a size…", size: "md" }}]
+	[preview
+		component={Select}
+		args={{ placeholder: "Choose a size…", size: "md", search: false, clearable: false }}
+		minHeight="320px"
+	]
 		<Select {...args} options={sizes} />
 	[/preview]
 
@@ -20,6 +37,20 @@
 		<Select size="sm" options={sizes} placeholder="Small" />
 		<Select size="md" options={sizes} placeholder="Medium" />
 		<Select size="lg" options={sizes} placeholder="Large" />
+	[/example]
+
+	[example title="Searchable" minHeight="320px"]
+		<Select search options={fruits} placeholder="Search a fruit…" />
+	[/example]
+
+	[example title="Clearable" minHeight="320px"]
+		<Select clearable options={fruits} value="cherry" />
+	[/example]
+
+	[example title="Validation"]
+		<Select intent="success" options={sizes} value="md" />
+		<Select intent="warning" options={sizes} value="md" />
+		<Select intent="danger" options={sizes} placeholder="Choose a size…" />
 	[/example]
 
 	[example title="Disabled"]

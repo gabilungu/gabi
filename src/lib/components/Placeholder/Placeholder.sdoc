@@ -52,7 +52,7 @@
 		.entity-note {
 			margin: 0;
 			font-size: 11px;
-			color: var(--fg-200);
+			color: var(--fg-ll);
 		}
 	</style>
 [/SHOWCASE]

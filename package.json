@@ -1,6 +1,6 @@
 {
 	"name": "gabi",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "A Svelte 5 component library and design system.",
 	"license": "MIT",
 	"repository": {
@@ -30,7 +30,7 @@
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		},
-		"./global.css": "./dist/styles/global.css"
+		"./gabiLight.css": "./dist/styles/gabiLight.css"
 	},
 	"peerDependencies": {
 		"svelte": "^5.0.0"

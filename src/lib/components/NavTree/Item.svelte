@@ -109,19 +109,19 @@
 	.NavTree-item:hover {
 		background: var(--bg-hover, hsl(48, 20%, 95%));
 		color: var(--font-color-hover, inherit);
-		--expander-color: var(--expander-color-hover, var(--fg-200));
+		--expander-color: var(--expander-color-hover, var(--fg-ll));
 	}
 
 	.NavTree-item.active {
 		background: var(--bg-active, hsl(45, 18%, 90%));
 		color: var(--font-color-active, inherit);
 		font-weight: 500;
-		--expander-color: var(--expander-color-active, var(--fg-200));
+		--expander-color: var(--expander-color-active, var(--fg-ll));
 	}
 
 	.NavTree-item.active:hover {
 		background: var(--bg-active-hover, hsl(45, 16%, 83%));
-		--expander-color: var(--expander-color-hover, var(--fg-100));
+		--expander-color: var(--expander-color-hover, var(--fg-l));
 	}
 
 	.NavTree-item-label {
@@ -145,7 +145,7 @@
 		align-items: center;
 		width: var(--expander-size, 14px);
 		height: var(--expander-size, 14px);
-		color: var(--expander-color, var(--fg-200));
+		color: var(--expander-color, var(--fg-ll));
 		flex-shrink: 0;
 		visibility: hidden;
 	}

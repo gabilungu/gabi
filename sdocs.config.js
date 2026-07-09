@@ -10,7 +10,7 @@ export default {
 	// open: false,
 
 	// CSS loaded in preview iframes
-	css: './src/lib/styles/global.css',
+	css: './src/lib/styles/gabiLight.css',
 
 	// Static assets served at the site root (images for pages, etc.)
 	static: './static',
