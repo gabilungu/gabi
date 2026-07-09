@@ -4,13 +4,15 @@
 
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
-	import { tick } from 'svelte';
 	import { InternalIcon } from '../../internal/icons/index.js';
 
 	interface Option {
 		label: string;
 		value: string;
 	}
+
+	type Side = 'bottom' | 'top' | 'left' | 'right';
+	type Align = 'start' | 'center' | 'end';
 
 	interface Props extends Omit<HTMLAttributes<HTMLDivElement>, 'onchange'> {
 		value?: string;
@@ -23,6 +25,25 @@
 		search?: boolean;
 		/** Show a clear (X) button when a value is selected. */
 		clearable?: boolean;
+		/** Trigger width: `'fill'` (100% of the container — the default), a number
+		 * (px), any CSS length, or `'auto'` to fit its content. */
+		width?: 'fill' | number | string;
+		/** Where the menu opens. `'auto'` opens below and flips above when there's
+		 * no room; the explicit values pin a side and a cross-axis alignment. */
+		placement?:
+			| 'auto'
+			| 'bottom-start'
+			| 'bottom-center'
+			| 'bottom-end'
+			| 'top-start'
+			| 'top-center'
+			| 'top-end'
+			| 'left-start'
+			| 'left-center'
+			| 'left-end'
+			| 'right-start'
+			| 'right-center'
+			| 'right-end';
 		onchange?: (value: string) => void;
 	}
 
@@ -35,12 +56,15 @@
 		disabled = false,
 		search = false,
 		clearable = false,
+		width = 'fill',
+		placement = 'auto',
 		onchange,
 		class: className = '',
 		...rest
 	}: Props = $props();
 
 	const listboxId = `gabi-select-${++uid}`;
+	const GAP = 4;
 
 	let open = $state(false);
 	let activeIndex = $state(0);
@@ -48,12 +72,23 @@
 
 	let root = $state<HTMLDivElement>();
 	let trigger = $state<HTMLDivElement>();
+	let menu = $state<HTMLDivElement>();
 	let searchInput = $state<HTMLInputElement>();
+
+	const resolvedWidth = $derived(
+		width === 'fill'
+			? '100%'
+			: typeof width === 'number'
+				? `${width}px`
+				: (width ?? undefined),
+	);
 
 	const selected = $derived(options.find((o) => o.value === value));
 	const filtered = $derived(
 		search && query.trim()
-			? options.filter((o) => o.label.toLowerCase().includes(query.trim().toLowerCase()))
+			? options.filter((o) =>
+					o.label.toLowerCase().includes(query.trim().toLowerCase()),
+				)
 			: options,
 	);
 	const activeId = $derived(
@@ -62,19 +97,76 @@
 			: undefined,
 	);
 
+	function showMenu() {
+		if (menu && !menu.matches(':popover-open')) menu.showPopover();
+	}
+	function hideMenu() {
+		if (menu && menu.matches(':popover-open')) menu.hidePopover();
+	}
+
+	/** Place the top-layer menu against the trigger, honouring `placement` and
+	 * flipping below↔above for `auto`; the final spot is clamped to the viewport. */
+	function positionMenu() {
+		if (!trigger || !menu) return;
+		const t = trigger.getBoundingClientRect();
+		// At least as wide as the trigger, then grow to fit the widest option.
+		menu.style.minWidth = `${t.width}px`;
+		const m = menu.getBoundingClientRect();
+
+		let side: Side;
+		let align: Align;
+		if (placement === 'auto') {
+			const below = window.innerHeight - t.bottom;
+			side = below < m.height && t.top > below ? 'top' : 'bottom';
+			align = 'start';
+		} else {
+			[side, align] = placement.split('-') as [Side, Align];
+		}
+
+		const vertical = side === 'top' || side === 'bottom';
+		let top = 0;
+		let left = 0;
+
+		if (side === 'bottom') top = t.bottom + GAP;
+		else if (side === 'top') top = t.top - GAP - m.height;
+		else if (side === 'right') left = t.right + GAP;
+		else left = t.left - GAP - m.width;
+
+		if (vertical) {
+			if (align === 'start') left = t.left;
+			else if (align === 'center')
+				left = t.left + t.width / 2 - m.width / 2;
+			else left = t.right - m.width;
+		} else {
+			if (align === 'start') top = t.top;
+			else if (align === 'center')
+				top = t.top + t.height / 2 - m.height / 2;
+			else top = t.bottom - m.height;
+		}
+
+		left = Math.max(GAP, Math.min(left, window.innerWidth - m.width - GAP));
+		top = Math.max(GAP, Math.min(top, window.innerHeight - m.height - GAP));
+
+		menu.style.left = `${left}px`;
+		menu.style.top = `${top}px`;
+	}
+
 	function openMenu() {
 		if (disabled || open) return;
 		open = true;
 		const i = options.findIndex((o) => o.value === value);
 		activeIndex = i >= 0 ? i : 0;
-		if (search) tick().then(() => searchInput?.focus());
+		showMenu();
+		positionMenu();
+		if (search) searchInput?.focus();
 	}
 
 	function closeMenu(refocus = true) {
 		if (!open) return;
 		open = false;
 		query = '';
-		if (refocus) tick().then(() => trigger?.focus());
+		hideMenu();
+		if (refocus) trigger?.focus();
 	}
 
 	function toggle() {
@@ -126,7 +218,8 @@
 			case 'Enter':
 				event.preventDefault();
 				if (open) {
-					if (filtered[activeIndex]) selectOption(filtered[activeIndex]);
+					if (filtered[activeIndex])
+						selectOption(filtered[activeIndex]);
 				} else {
 					openMenu();
 				}
@@ -150,20 +243,35 @@
 		}
 	}
 
-	// Close on any pointer press outside the component.
+	// While open: close on outside pointer, and keep the menu glued to the
+	// trigger as the page scrolls or resizes.
 	$effect(() => {
 		if (!open) return;
 		const onPointerDown = (event: PointerEvent) => {
 			if (root && !root.contains(event.target as Node)) closeMenu(false);
 		};
+		let raf = 0;
+		const reposition = () => {
+			cancelAnimationFrame(raf);
+			raf = requestAnimationFrame(positionMenu);
+		};
 		document.addEventListener('pointerdown', onPointerDown, true);
-		return () => document.removeEventListener('pointerdown', onPointerDown, true);
+		window.addEventListener('scroll', reposition, true);
+		window.addEventListener('resize', reposition);
+		return () => {
+			cancelAnimationFrame(raf);
+			document.removeEventListener('pointerdown', onPointerDown, true);
+			window.removeEventListener('scroll', reposition, true);
+			window.removeEventListener('resize', reposition);
+		};
 	});
 
 	// Keep the active option scrolled into view.
 	$effect(() => {
 		if (open && activeId) {
-			document.getElementById(activeId)?.scrollIntoView({ block: 'nearest' });
+			document
+				.getElementById(activeId)
+				?.scrollIntoView({ block: 'nearest' });
 		}
 	});
 </script>
@@ -175,6 +283,7 @@
 	data-size={size}
 	data-intent={intent}
 	data-open={open || undefined}
+	style:width={resolvedWidth}
 >
 	<!-- The role is always the interactive combobox or button, so tabindex is valid. -->
 	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -185,7 +294,7 @@
 		tabindex={disabled ? -1 : 0}
 		aria-haspopup="listbox"
 		aria-expanded={open}
-		aria-controls={open ? listboxId : undefined}
+		aria-controls={listboxId}
 		aria-activedescendant={!search && open ? activeId : undefined}
 		aria-disabled={disabled || undefined}
 		aria-invalid={intent === 'danger' ? 'true' : undefined}
@@ -197,61 +306,67 @@
 		</span>
 		<span class="affix">
 			{#if clearable && selected && !disabled}
-				<button type="button" class="clear" aria-label="Clear selection" onclick={clear}>
+				<button
+					type="button"
+					class="clear"
+					aria-label="Clear selection"
+					onclick={clear}
+				>
 					<InternalIcon icon="close" size={14} />
 				</button>
 			{/if}
-			<InternalIcon icon="chevron" direction={open ? 'up' : 'down'} size={16} />
+			<InternalIcon
+				icon="chevron"
+				direction={open ? 'up' : 'down'}
+				size={16}
+			/>
 		</span>
 	</div>
 
-	{#if open}
-		<div class="menu">
-			{#if search}
-				<div class="search">
-					<InternalIcon icon="search" size={16} />
-					<input
-						bind:this={searchInput}
-						class="search-input"
-						type="text"
-						role="combobox"
-						aria-expanded="true"
-						aria-controls={listboxId}
-						aria-activedescendant={activeId}
-						aria-label="Search options"
-						placeholder="Search…"
-						bind:value={query}
-						oninput={() => (activeIndex = 0)}
-						onkeydown={onKeydown}
-					/>
-				</div>
+	<div class="menu" popover="manual" bind:this={menu}>
+		{#if search}
+			<div class="search">
+				<InternalIcon icon="search" size={16} />
+				<input
+					bind:this={searchInput}
+					class="search-input"
+					type="text"
+					role="combobox"
+					aria-expanded="true"
+					aria-controls={listboxId}
+					aria-activedescendant={activeId}
+					aria-label="Search options"
+					placeholder="Search…"
+					bind:value={query}
+					oninput={() => (activeIndex = 0)}
+					onkeydown={onKeydown}
+				/>
+			</div>
+		{/if}
+		<ul id={listboxId} class="listbox" role="listbox">
+			{#each filtered as option, i (option.value)}
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<li
+					id={`${listboxId}-opt-${i}`}
+					class="option"
+					role="option"
+					aria-selected={option.value === value}
+					data-active={i === activeIndex || undefined}
+					onclick={() => selectOption(option)}
+					onpointermove={() => (activeIndex = i)}
+				>
+					{option.label}
+				</li>
+			{/each}
+			{#if filtered.length === 0}
+				<li class="empty">No results</li>
 			{/if}
-			<ul id={listboxId} class="listbox" role="listbox">
-				{#each filtered as option, i (option.value)}
-					<!-- svelte-ignore a11y_click_events_have_key_events -->
-					<li
-						id={`${listboxId}-opt-${i}`}
-						class="option"
-						role="option"
-						aria-selected={option.value === value}
-						data-active={i === activeIndex || undefined}
-						onclick={() => selectOption(option)}
-						onpointermove={() => (activeIndex = i)}
-					>
-						{option.label}
-					</li>
-				{/each}
-				{#if filtered.length === 0}
-					<li class="empty">No results</li>
-				{/if}
-			</ul>
-		</div>
-	{/if}
+		</ul>
+	</div>
 </div>
 
 <style>
 	.Select {
-		position: relative;
 		display: inline-block;
 		font-family: inherit;
 	}
@@ -263,6 +378,10 @@
 		align-items: center;
 		gap: 6px;
 		width: 100%;
+		/* Active edge + halo colours; intents override these, and the resting
+		   border stays neutral until the menu opens (or keyboard focus). */
+		--_edge: var(--focus);
+		--_ring: var(--focus-ll);
 		border: 1px solid var(--bg-ddd);
 		background: var(--bg-l);
 		color: var(--fg);
@@ -273,9 +392,11 @@
 			border-color 150ms ease,
 			box-shadow 150ms ease;
 	}
-	.trigger:focus-visible {
-		border-color: var(--focus);
-		box-shadow: 0 0 0 3px var(--focus-ll);
+	/* Halo — shown while the menu is open, or on keyboard focus. */
+	.trigger:focus-visible,
+	.Select[data-open] .trigger {
+		border-color: var(--_edge);
+		box-shadow: 0 0 0 3px var(--_ring);
 	}
 
 	.label {
@@ -313,50 +434,53 @@
 		background: var(--bg-dd);
 	}
 
-	/* Validation — success/warning via intent, invalid via aria-invalid. */
+	/* Validation intents colour the resting border and drive the halo. */
 	.Select[data-intent='success'] .trigger {
+		--_edge: var(--success);
+		--_ring: var(--success-llll);
 		border-color: var(--success);
 	}
-	.Select[data-intent='success'] .trigger:focus-visible {
-		box-shadow: 0 0 0 3px var(--success-llll);
-	}
 	.Select[data-intent='warning'] .trigger {
+		--_edge: var(--warning);
+		--_ring: var(--warning-llll);
 		border-color: var(--warning);
 	}
-	.Select[data-intent='warning'] .trigger:focus-visible {
-		box-shadow: 0 0 0 3px var(--warning-llll);
-	}
 	.trigger[aria-invalid='true'] {
+		--_edge: var(--danger);
+		--_ring: var(--danger-llll);
 		border-color: var(--danger);
 	}
-	.trigger[aria-invalid='true']:focus-visible {
-		box-shadow: 0 0 0 3px var(--danger-llll);
-	}
 
-	/* Disabled wins over the validation intents. */
-	.trigger[aria-disabled='true'] {
+	/* Disabled wins — neutral border, no intent colour, no halo. */
+	.Select .trigger[aria-disabled='true'] {
 		background: var(--disabled-lll);
 		color: var(--disabled-dd);
 		border-color: var(--disabled-l);
+		box-shadow: none;
 		cursor: not-allowed;
 	}
 
-	/* Menu — drops directly under the field, with its own padding. */
+	/* Menu — rendered in the top layer via the Popover API, positioned in JS.
+	   Inheritance still follows the DOM, so it picks up the size font-size. */
 	.menu {
-		position: absolute;
-		top: calc(100% + 4px);
-		left: 0;
-		right: 0;
-		z-index: 50;
-		display: flex;
+		position: fixed;
+		margin: 0;
+		inset: auto;
+		box-sizing: border-box;
 		flex-direction: column;
-		max-height: 16rem;
+		width: max-content;
+		max-width: min(90vw, 24rem);
 		padding: 4px;
 		border: 1px solid var(--bg-ddd);
 		border-radius: 6px;
 		background: var(--bg-l);
+		color: var(--fg);
 		box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.25);
 		overflow: hidden;
+		font-family: inherit;
+	}
+	.menu:popover-open {
+		display: flex;
 	}
 
 	.search {
@@ -382,10 +506,15 @@
 	}
 
 	.listbox {
-		flex: 1;
+		/* Size to content with its own scroll cap — not flex:1, which Safari
+		   collapses to 0 height inside an intrinsically-sized popover. */
+		display: flex;
+		flex-direction: column;
+		gap: 1px;
 		margin: 0;
 		padding: 0;
 		list-style: none;
+		max-height: 15rem;
 		overflow-y: auto;
 	}
 	.option {
@@ -397,12 +526,13 @@
 		white-space: nowrap;
 		cursor: pointer;
 	}
+	/* Hover / keyboard highlight is light; the selected row is stronger and,
+	   ordered last, wins when it's also the highlighted one. */
 	.option[data-active] {
-		background: var(--bg-dd);
+		background: var(--focus-llll);
 	}
 	.option[aria-selected='true'] {
-		color: var(--action);
-		font-weight: 600;
+		background: var(--focus);
 	}
 	.empty {
 		padding: 6px 8px;

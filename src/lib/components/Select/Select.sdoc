@@ -21,22 +21,28 @@
 
 [SHOWCASE
 	title="@components/:Form / Select"
-	description="A custom select with a styled dropdown, keyboard navigation, optional search, and clear."
+	description="A custom select with a top-layer dropdown, keyboard navigation, configurable width and placement, optional search, and clear."
 ]
 
 	[preview
 		component={Select}
-		args={{ placeholder: "Choose a size…", size: "md", search: false, clearable: false }}
-		minHeight="320px"
+		args={{ placeholder: "Choose a size…", size: "md", placement: "auto", search: false, clearable: false }}
+		minHeight="200px"
+		maxWidth="200px"
 	]
 		<Select {...args} options={sizes} />
 	[/preview]
 
-	[example title="Sizes"]
+	[example title="Sizes" maxWidth="200px"]
 		<Select size="xs" options={sizes} placeholder="Extra small" />
 		<Select size="sm" options={sizes} placeholder="Small" />
 		<Select size="md" options={sizes} placeholder="Medium" />
 		<Select size="lg" options={sizes} placeholder="Large" />
+	[/example]
+
+	[example title="Width" direction="column"]
+		<Select options={sizes} placeholder="Fill the container (default)" />
+		<Select width={160} options={sizes} placeholder="Fixed 160px" />
 	[/example]
 
 	[example title="Searchable" minHeight="320px"]

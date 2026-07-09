@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.5] - 2026-07-09
+
+### Added
+
+- `placement` on Select — `'auto'` (opens below, flips above when there's no
+  room) plus the twelve explicit `side-alignment` values (`bottom-start` …
+  `right-end`).
+- `width` on Select — `'fill'` (the default, 100% of the container), a number
+  (px), any CSS length, or `'auto'` to fit its content.
+
+### Changed
+
+- Select's menu now renders in the top layer via the Popover API, so it's no
+  longer clipped by an ancestor's `overflow`; it's positioned in JS with
+  auto-flip and viewport clamping, and the trigger shows an intent-coloured
+  halo while the menu is open.
+
 ## [0.0.4] - 2026-07-09
 
 ### Changed
