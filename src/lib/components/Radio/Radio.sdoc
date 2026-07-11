@@ -1,0 +1,44 @@
+<script lang="ts">
+	import Radio from "./Radio.svelte";
+
+	let picked = $state("email");
+</script>
+
+[SHOWCASE
+	title="@components/:Form / Radio"
+	description="A single choice from a group, on the gabi size scale. Bind `group` across the radios that share a selection; the one whose `value` matches is filled."
+]
+
+	[preview
+		component={Radio}
+		args={{ value: "email", label: "Email", size: "md" }}
+	]
+		<Radio {...args} bind:group={picked} />
+	[/preview]
+
+	[example title="Sizes" gap="24px" contentY="middle"]
+		<script>
+			let sizeChoice = $state("md");
+		</script>
+
+		<Radio bind:group={sizeChoice} value="sm" size="sm" label="Small" />
+		<Radio bind:group={sizeChoice} value="md" size="md" label="Medium" />
+		<Radio bind:group={sizeChoice} value="lg" size="lg" label="Large" />
+	[/example]
+
+	[example title="A group" direction="column" gap="10px"]
+		<script>
+			let plan = $state("pro");
+		</script>
+
+		<Radio bind:group={plan} name="plan" value="free" label="Free" />
+		<Radio bind:group={plan} name="plan" value="pro" label="Pro" />
+		<Radio bind:group={plan} name="plan" value="team" label="Team" />
+	[/example]
+
+	[example title="Disabled" direction="column" gap="10px"]
+		<Radio value="on" group="on" label="Selected, disabled" disabled />
+		<Radio value="off" group="on" label="Unselected, disabled" disabled />
+	[/example]
+
+[/SHOWCASE]

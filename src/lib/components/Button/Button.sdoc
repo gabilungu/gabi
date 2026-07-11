@@ -16,25 +16,47 @@
 	[/example]
 
 	[example title="Intents"]
-		<Button intent="default" label="Default" />
-		<Button intent="mono" label="Mono" />
+		<Button intent="action" label="Action" />
+		<Button intent="neutral" label="Neutral" />
 		<Button intent="danger" label="Danger" />
 		<Button intent="warning" label="Warning" />
 		<Button intent="success" label="Success" />
 	[/example]
 
-	[example title="Variants"]
-		<Button variant="solid" label="Solid" />
-		<Button variant="outline" label="Outline" />
-		<Button variant="ghost" label="Ghost" />
+	[example title="Variants" direction="column" gap="12px"]
+		<script>
+			const intents = ["action", "neutral", "danger", "warning", "success"] as const;
+			const variants = [
+				"primary",
+				"secondary",
+				"tertiary",
+				"outlined",
+				"ghost",
+				"link",
+			] as const;
+		</script>
+
+		{#each intents as intent (intent)}
+			<div
+				style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;"
+			>
+				<span style="width: 60px; font-size: 12px; color: var(--base-500);"
+					>{intent}</span
+				>
+				{#each variants as variant (variant)}
+					<Button {intent} {variant} label={variant} />
+				{/each}
+			</div>
+		{/each}
 	[/example]
 
 	[example title="Disabled"]
-		<Button intent="default" label="Default" disabled />
-		<Button intent="mono" label="Mono" disabled />
-		<Button intent="danger" label="Danger" disabled />
-		<Button intent="warning" label="Warning" disabled />
-		<Button intent="success" label="Success" disabled />
+		<Button variant="primary" label="Primary" disabled />
+		<Button variant="secondary" label="Secondary" disabled />
+		<Button variant="tertiary" label="Tertiary" disabled />
+		<Button variant="outlined" label="Outlined" disabled />
+		<Button variant="ghost" label="Ghost" disabled />
+		<Button variant="link" label="Link" disabled />
 	[/example]
 
 [/SHOWCASE]

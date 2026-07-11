@@ -3,6 +3,12 @@ export { default as Button } from './components/Button/Button.svelte';
 export { default as Input } from './components/Input/Input.svelte';
 export { default as Textarea } from './components/Textarea/Textarea.svelte';
 export { default as Select } from './components/Select/Select.svelte';
+export { default as Radio } from './components/Radio/Radio.svelte';
+export { default as Checkbox } from './components/Checkbox/Checkbox.svelte';
+export { default as Toggle } from './components/Toggle/Toggle.svelte';
+export { default as Chip } from './components/Chip/Chip.svelte';
+export { default as Badge } from './components/Badge/Badge.svelte';
+export { default as Tooltip } from './components/Tooltip/Tooltip.svelte';
 export { default as Icon } from './components/Icon/Icon.svelte';
 export { default as Placeholder } from './components/Placeholder/Placeholder.svelte';
 // Compound component: NavTree with .Group and .Item attached.

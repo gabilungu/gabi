@@ -1,22 +1,5 @@
 <script lang="ts">
 	import Select from "./Select.svelte";
-
-	const sizes = [
-		{ label: "Extra small", value: "xs" },
-		{ label: "Small", value: "sm" },
-		{ label: "Medium", value: "md" },
-		{ label: "Large", value: "lg" },
-	];
-
-	const fruits = [
-		{ label: "Apple", value: "apple" },
-		{ label: "Banana", value: "banana" },
-		{ label: "Cherry", value: "cherry" },
-		{ label: "Date", value: "date" },
-		{ label: "Elderberry", value: "elderberry" },
-		{ label: "Fig", value: "fig" },
-		{ label: "Grape", value: "grape" },
-	];
 </script>
 
 [SHOWCASE
@@ -30,10 +13,28 @@
 		minHeight="200px"
 		maxWidth="200px"
 	]
+		<script>
+			const sizes = [
+				{ label: "Extra small", value: "xs" },
+				{ label: "Small", value: "sm" },
+				{ label: "Medium", value: "md" },
+				{ label: "Large", value: "lg" },
+			];
+		</script>
+
 		<Select {...args} options={sizes} />
 	[/preview]
 
 	[example title="Sizes" maxWidth="200px"]
+		<script>
+			const sizes = [
+				{ label: "Extra small", value: "xs" },
+				{ label: "Small", value: "sm" },
+				{ label: "Medium", value: "md" },
+				{ label: "Large", value: "lg" },
+			];
+		</script>
+
 		<Select size="xs" options={sizes} placeholder="Extra small" />
 		<Select size="sm" options={sizes} placeholder="Small" />
 		<Select size="md" options={sizes} placeholder="Medium" />
@@ -41,25 +42,76 @@
 	[/example]
 
 	[example title="Width" direction="column"]
+		<script>
+			const sizes = [
+				{ label: "Extra small", value: "xs" },
+				{ label: "Small", value: "sm" },
+				{ label: "Medium", value: "md" },
+				{ label: "Large", value: "lg" },
+			];
+		</script>
+
 		<Select options={sizes} placeholder="Fill the container (default)" />
 		<Select width={160} options={sizes} placeholder="Fixed 160px" />
 	[/example]
 
 	[example title="Searchable" minHeight="320px" maxWidth="200px"]
+		<script>
+			const fruits = [
+				{ label: "Apple", value: "apple" },
+				{ label: "Banana", value: "banana" },
+				{ label: "Cherry", value: "cherry" },
+				{ label: "Date", value: "date" },
+				{ label: "Elderberry", value: "elderberry" },
+				{ label: "Fig", value: "fig" },
+				{ label: "Grape", value: "grape" },
+			];
+		</script>
+
 		<Select search options={fruits} placeholder="Search a fruit…" />
 	[/example]
 
 	[example title="Clearable" minHeight="320px" maxWidth="200px"]
+		<script>
+			const fruits = [
+				{ label: "Apple", value: "apple" },
+				{ label: "Banana", value: "banana" },
+				{ label: "Cherry", value: "cherry" },
+				{ label: "Date", value: "date" },
+				{ label: "Elderberry", value: "elderberry" },
+				{ label: "Fig", value: "fig" },
+				{ label: "Grape", value: "grape" },
+			];
+		</script>
+
 		<Select clearable options={fruits} value="cherry" placeholder="Pick a fruit" />
 	[/example]
 
 	[example title="Validation" maxWidth="200px"]
+		<script>
+			const sizes = [
+				{ label: "Extra small", value: "xs" },
+				{ label: "Small", value: "sm" },
+				{ label: "Medium", value: "md" },
+				{ label: "Large", value: "lg" },
+			];
+		</script>
+
 		<Select intent="success" options={sizes} value="md" />
 		<Select intent="warning" options={sizes} value="md" />
 		<Select intent="danger" options={sizes} placeholder="Choose a size…" />
 	[/example]
 
 	[example title="Disabled" maxWidth="200px"]
+		<script>
+			const sizes = [
+				{ label: "Extra small", value: "xs" },
+				{ label: "Small", value: "sm" },
+				{ label: "Medium", value: "md" },
+				{ label: "Large", value: "lg" },
+			];
+		</script>
+
 		<Select options={sizes} placeholder="Can't choose" disabled />
 	[/example]
 

@@ -1,0 +1,79 @@
+<script lang="ts">
+	import Chip from "./Chip.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Form / Chip"
+	description="A compact pill for tags, filters, and attributes. Pick an intent for colour and a variant for emphasis; make it removable to show a × button."
+]
+
+	[preview
+		component={Chip}
+		args={{ label: "Chip", intent: "neutral", variant: "secondary" }}
+	]
+		<Chip {...args} />
+	[/preview]
+
+	[example title="Intents & variants" direction="column" gap="12px"]
+		<script>
+			const intents = ["action", "neutral", "danger", "warning", "success"] as const;
+			const variants = ["primary", "secondary", "outlined"] as const;
+		</script>
+
+		{#each intents as intent (intent)}
+			<div
+				style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;"
+			>
+				<span style="width: 60px; font-size: 12px; color: var(--base-500);"
+					>{intent}</span
+				>
+				{#each variants as variant (variant)}
+					<Chip {intent} {variant} label={variant} />
+				{/each}
+			</div>
+		{/each}
+	[/example]
+
+	[example title="Sizes" contentY="middle"]
+		<Chip size="xs" label="Extra small" />
+		<Chip size="sm" label="Small" />
+		<Chip size="md" label="Medium" />
+		<Chip size="lg" label="Large" />
+	[/example]
+
+	[example title="Filter (multi-select)"]
+		<script>
+			let picked = $state({ svelte: true, css: false, icons: true });
+		</script>
+
+		<Chip intent="action" label="Svelte" bind:selected={picked.svelte} />
+		<Chip intent="action" label="CSS" bind:selected={picked.css} />
+		<Chip intent="action" label="Icons" bind:selected={picked.icons} />
+	[/example]
+
+	[example title="Choice (single-select)"]
+		<script>
+			let size = $state("md");
+		</script>
+
+		<Chip intent="action" value="sm" label="Small" bind:group={size} />
+		<Chip intent="action" value="md" label="Medium" bind:group={size} />
+		<Chip intent="action" value="lg" label="Large" bind:group={size} />
+	[/example]
+
+	[example title="Removable"]
+		<script>
+			let tags = $state(["Design", "Svelte", "CSS", "Icons"]);
+		</script>
+
+		{#each tags as tag (tag)}
+			<Chip
+				intent="action"
+				label={tag}
+				removable
+				onremove={() => (tags = tags.filter((t) => t !== tag))}
+			/>
+		{/each}
+	[/example]
+
+[/SHOWCASE]

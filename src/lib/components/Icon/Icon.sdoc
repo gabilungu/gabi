@@ -1,73 +1,54 @@
 <script lang="ts">
 	import Icon from "./Icon.svelte";
-
-	const icons = [
-		"chevron-right",
-		"chevron-down",
-		"check",
-		"x",
-		"search",
-		"info",
-		"folder",
-		"file",
-	];
+	// A ?raw import hands the component the SVG markup directly — no static file.
+	import searchRaw from "../../internal/icons/search.svg?raw";
 </script>
 
 [SHOWCASE
 	title="@components/Icon"
-	description="Renders an SVG from the static folder by path. Drawn as a CSS mask, so it takes the current text color and any size — ideal for the monochrome icons in /static/icons."
+	description="Renders an SVG inline in the current text color at any size. Give it an `icon` — a path to a file in the static folder, or raw SVG markup (e.g. from a ?raw import). It's repainted to follow the text color: `mode='stroke'` (the default) outlines it at `weight`, `mode='fill'` fills it."
 ]
 
-	[preview component={Icon} args={{ path: "icons/search.svg"}}]
+	[preview component={Icon} args={{ icon: "icons/search.svg" }}]
 		<Icon {...args} />
 	[/preview]
 
-	[example title="The icon set"]
-		<div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-			{#each icons as name (name)}
-				<div
-					style="display: flex; flex-direction: column; align-items: center; gap: 8px; width: 60px;"
-				>
-					<Icon path={`icons/${name}.svg`} dimension={20} label={name} />
-					<span style="font-size: 11px; color: var(--fg-l);">{name}</span>
-				</div>
-			{/each}
-		</div>
+	[example title="From a path (static folder)" gap="20px" contentY="bottom"]
+		<Icon icon="icons/folder.svg" dimension={12} />
+		<Icon icon="icons/folder.svg" dimension={16} />
+		<Icon icon="icons/folder.svg" dimension={24} />
+		<Icon icon="icons/folder.svg" dimension="2em" />
+		<Icon icon="icons/folder.svg" dimension="48px" />
 	[/example]
 
-	[example title="Dimension (number → px, or any CSS length)"]
-		<div style="display: flex; gap: 20px; align-items: flex-end;">
-			<Icon path="icons/folder.svg" dimension={12} />
-			<Icon path="icons/folder.svg" dimension={16} />
-			<Icon path="icons/folder.svg" dimension={24} />
-			<Icon path="icons/folder.svg" dimension="2em" />
-			<Icon path="icons/folder.svg" dimension="48px" />
-		</div>
+	[example title="From raw SVG markup (?raw import)" gap="20px" contentY="middle"]
+		<Icon icon={searchRaw} dimension={16} />
+		<Icon icon={searchRaw} dimension={24} />
+		<span style="color: var(--action-500);">
+			<Icon icon={searchRaw} dimension={32} />
+		</span>
 	[/example]
 
-	[example title="Color follows the text"]
-		<div style="display: flex; gap: 20px; align-items: center;">
-			<span style="color: var(--fg);">
-				<Icon path="icons/info.svg" dimension={22} />
-			</span>
-			<span style="color: var(--action);">
-				<Icon path="icons/info.svg" dimension={22} />
-			</span>
-			<span style="color: var(--success);">
-				<Icon path="icons/check.svg" dimension={22} />
-			</span>
-			<span style="color: var(--danger);">
-				<Icon path="icons/x.svg" dimension={22} />
-			</span>
-		</div>
+	[example title="Stroke weight (inline stroke mode)" gap="24px" contentY="middle"]
+		<Icon icon={searchRaw} mode="stroke" weight={1} dimension={30} />
+		<Icon icon={searchRaw} mode="stroke" weight={1.5} dimension={30} />
+		<Icon icon={searchRaw} mode="stroke" weight={2} dimension={30} />
+		<Icon icon={searchRaw} mode="stroke" weight={3} dimension={30} />
 	[/example]
 
-	[example title="Inline with text (default 16)"]
-		<p
-			style="display: flex; align-items: center; gap: 6px; font-size: 14px; margin: 0;"
-		>
-			<Icon path="icons/search.svg" /> Search the docs
-		</p>
+	[example title="Color follows the text" gap="20px"]
+		<span style="color: var(--base-700);">
+			<Icon icon="icons/info.svg" dimension={22} />
+		</span>
+		<span style="color: var(--action-500);">
+			<Icon icon="icons/info.svg" dimension={22} />
+		</span>
+		<span style="color: var(--success-500);">
+			<Icon icon="icons/check.svg" dimension={22} />
+		</span>
+		<span style="color: var(--danger-500);">
+			<Icon icon="icons/x.svg" dimension={22} />
+		</span>
 	[/example]
 
 [/SHOWCASE]

@@ -1,0 +1,46 @@
+<script lang="ts">
+	import Tooltip from "./Tooltip.svelte";
+	import Button from "../Button/Button.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Display / Tooltip"
+	description="A short hint shown on hover or keyboard focus of its trigger. Rendered in the top layer so it's never clipped; opens on the chosen side and clamps to the viewport."
+]
+
+	[preview
+		component={Tooltip}
+		args={{ content: "Copy link", placement: "top" }}
+		minHeight="140px"
+		contentY="middle"
+	]
+		<Tooltip {...args}>
+			<Button label="Hover me" variant="secondary" />
+		</Tooltip>
+	[/preview]
+
+	[example title="Placements" gap="16px" contentY="middle" minHeight="160px"]
+		<Tooltip content="On top" placement="top">
+			<Button label="Top" variant="secondary" />
+		</Tooltip>
+		<Tooltip content="Below" placement="bottom">
+			<Button label="Bottom" variant="secondary" />
+		</Tooltip>
+		<Tooltip content="To the left" placement="left">
+			<Button label="Left" variant="secondary" />
+		</Tooltip>
+		<Tooltip content="To the right" placement="right">
+			<Button label="Right" variant="secondary" />
+		</Tooltip>
+	[/example]
+
+	[example title="On any trigger" gap="16px" contentY="middle" minHeight="140px"]
+		<Tooltip content="Delete this item — cannot be undone">
+			<Button intent="danger" label="Delete" />
+		</Tooltip>
+		<Tooltip content="Opens in a new tab" placement="bottom">
+			<Button variant="link" label="Learn more" />
+		</Tooltip>
+	[/example]
+
+[/SHOWCASE]

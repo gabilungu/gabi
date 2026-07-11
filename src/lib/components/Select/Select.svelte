@@ -4,7 +4,10 @@
 
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
-	import { InternalIcon } from '../../internal/icons/index.js';
+	import Icon from '../Icon/Icon.svelte';
+	import chevronRaw from '../../internal/icons/chevron.svg?raw';
+	import closeRaw from '../../internal/icons/close.svg?raw';
+	import searchRaw from '../../internal/icons/search.svg?raw';
 
 	interface Option {
 		label: string;
@@ -312,21 +315,17 @@
 					aria-label="Clear selection"
 					onclick={clear}
 				>
-					<InternalIcon icon="close" size={14} />
+					<Icon icon={closeRaw} dimension={14} />
 				</button>
 			{/if}
-			<InternalIcon
-				icon="chevron"
-				direction={open ? 'up' : 'down'}
-				size={16}
-			/>
+			<Icon icon={chevronRaw} class="chevron" dimension={16} />
 		</span>
 	</div>
 
 	<div class="menu" popover="manual" bind:this={menu}>
 		{#if search}
 			<div class="search">
-				<InternalIcon icon="search" size={16} />
+				<Icon icon={searchRaw} dimension={16} />
 				<input
 					bind:this={searchInput}
 					class="search-input"
@@ -380,11 +379,11 @@
 		width: 100%;
 		/* Active edge + halo colours; intents override these, and the resting
 		   border stays neutral until the menu opens (or keyboard focus). */
-		--_edge: var(--focus);
-		--_ring: var(--focus-ll);
-		border: 1px solid var(--bg-ddd);
-		background: var(--bg-l);
-		color: var(--fg);
+		--_edge: var(--focus-500);
+		--_ring: var(--focus-200);
+		border: 1px solid var(--base-200);
+		background: var(--base-0);
+		color: var(--base-700);
 		cursor: pointer;
 		user-select: none;
 		outline: none;
@@ -398,6 +397,11 @@
 		border-color: var(--_edge);
 		box-shadow: 0 0 0 3px var(--_ring);
 	}
+	/* Hover halo — only while closed and unfocused; focus/open takes over. */
+	.Select:not([data-open])
+		.trigger:hover:not(:focus-visible):not([aria-disabled='true']) {
+		box-shadow: 0 0 0 3px var(--action-50);
+	}
 
 	.label {
 		flex: 1;
@@ -408,14 +412,14 @@
 		text-align: left;
 	}
 	.label[data-placeholder] {
-		color: var(--fg-lll);
+		color: var(--base-350);
 	}
 
 	.affix {
 		display: flex;
 		align-items: center;
 		gap: 2px;
-		color: var(--fg-lll);
+		color: var(--base-400);
 	}
 	.clear {
 		display: inline-flex;
@@ -430,32 +434,43 @@
 		cursor: pointer;
 	}
 	.clear:hover {
-		color: var(--fg);
-		background: var(--bg-dd);
+		color: var(--base-700);
+		background: var(--base-200);
+	}
+	/* Chevron highlights when the trigger is hovered (icon uses currentColor). */
+	.trigger:hover:not([aria-disabled='true']) :global(.chevron) {
+		color: var(--action-300);
+	}
+	/* The glyph points down; flip it up while the menu is open. */
+	.Select :global(.chevron) {
+		transition: transform 150ms ease;
+	}
+	.Select[data-open] :global(.chevron) {
+		transform: rotate(180deg);
 	}
 
 	/* Validation intents colour the resting border and drive the halo. */
 	.Select[data-intent='success'] .trigger {
-		--_edge: var(--success);
-		--_ring: var(--success-llll);
-		border-color: var(--success);
+		--_edge: var(--success-500);
+		--_ring: var(--success-200);
+		border-color: var(--success-500);
 	}
 	.Select[data-intent='warning'] .trigger {
-		--_edge: var(--warning);
-		--_ring: var(--warning-llll);
-		border-color: var(--warning);
+		--_edge: var(--warning-500);
+		--_ring: var(--warning-200);
+		border-color: var(--warning-500);
 	}
 	.trigger[aria-invalid='true'] {
-		--_edge: var(--danger);
-		--_ring: var(--danger-llll);
-		border-color: var(--danger);
+		--_edge: var(--danger-500);
+		--_ring: var(--danger-200);
+		border-color: var(--danger-500);
 	}
 
 	/* Disabled wins — neutral border, no intent colour, no halo. */
 	.Select .trigger[aria-disabled='true'] {
-		background: var(--disabled-lll);
-		color: var(--disabled-dd);
-		border-color: var(--disabled-l);
+		background: var(--base-50);
+		color: var(--base-300);
+		border-color: var(--base-150);
 		box-shadow: none;
 		cursor: not-allowed;
 	}
@@ -471,10 +486,10 @@
 		width: max-content;
 		max-width: min(90vw, 24rem);
 		padding: 4px;
-		border: 1px solid var(--bg-ddd);
+		border: 1px solid var(--base-200);
 		border-radius: 6px;
-		background: var(--bg-l);
-		color: var(--fg);
+		background: var(--base-0);
+		color: var(--base-700);
 		box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.25);
 		overflow: hidden;
 		font-family: inherit;
@@ -489,8 +504,8 @@
 		gap: 6px;
 		padding: 4px 6px 6px;
 		margin-bottom: 4px;
-		border-bottom: 1px solid var(--bg-dd);
-		color: var(--fg-lll);
+		border-bottom: 1px solid var(--base-200);
+		color: var(--base-400);
 	}
 	.search-input {
 		flex: 1;
@@ -498,11 +513,11 @@
 		border: none;
 		outline: none;
 		background: none;
-		color: var(--fg);
+		color: var(--base-700);
 		font: inherit;
 	}
 	.search-input::placeholder {
-		color: var(--fg-lll);
+		color: var(--base-350);
 	}
 
 	.listbox {
@@ -522,21 +537,21 @@
 		align-items: center;
 		padding: 6px 8px;
 		border-radius: 4px;
-		color: var(--fg);
+		color: var(--base-700);
 		white-space: nowrap;
 		cursor: pointer;
 	}
 	/* Hover / keyboard highlight is light; the selected row is stronger and,
 	   ordered last, wins when it's also the highlighted one. */
 	.option[data-active] {
-		background: var(--focus-llll);
+		background: var(--action-50);
 	}
 	.option[aria-selected='true'] {
-		background: var(--focus);
+		background: var(--focus-300);
 	}
 	.empty {
 		padding: 6px 8px;
-		color: var(--fg-lll);
+		color: var(--base-400);
 	}
 
 	/* Sizes — trigger metrics per step; font-size on the root so the menu inherits it. */

@@ -7,8 +7,8 @@
 
 body {
 	font-family: var(--font-sans);
-	color: var(--fg);
-	background-color: var(--bg);
+	color: var(--base-700);
+	background-color: var(--base-0);
 }
 
 code,
@@ -19,109 +19,414 @@ pre {
 }
 
 /* SEMANTIC COLORS
-   Every ramp steps from its base token: -l/-ll/-lll go lighter,
-   -d/-dd/-ddd go darker. */
+   Each ramp aliases a Colorama ramp, stepped 50–950. base additionally
+   gets the endpoints: 0 is white, 1000 is black. */
 
 :root {
-	/* Surfaces — page and panel backgrounds. */
-	--bg-l: hsl(0, 0%, 100%);
-	--bg: hsl(40, 27%, 98%);
-	--bg-d: hsl(48, 20%, 95%);
-	--bg-dd: hsl(45, 18%, 90%);
-	--bg-ddd: hsl(45, 16%, 83%);
+	/* base — surfaces, text, borders (gray) */
+	--base-0: oklch(100% 0 0);
+	--base-50: var(--gray-50);
+	--base-100: var(--gray-100);
+	--base-150: var(--gray-150);
+	--base-200: var(--gray-200);
+	--base-250: var(--gray-250);
+	--base-300: var(--gray-300);
+	--base-350: var(--gray-350);
+	--base-400: var(--gray-400);
+	--base-450: var(--gray-450);
+	--base-500: var(--gray-500);
+	--base-550: var(--gray-550);
+	--base-600: var(--gray-600);
+	--base-650: var(--gray-650);
+	--base-700: var(--gray-700);
+	--base-750: var(--gray-750);
+	--base-800: var(--gray-800);
+	--base-850: var(--gray-850);
+	--base-900: var(--gray-900);
+	--base-950: var(--gray-950);
+	--base-1000: oklch(0% 0 0);
 
-	/* Text and icons on those surfaces. */
-	--fg-lll: hsl(46, 8%, 70%);
-	--fg-ll: hsl(46, 8%, 55%);
-	--fg-l: hsl(45, 8%, 40%);
-	--fg: hsl(45, 10%, 25%);
-	--fg-d: hsl(45, 10%, 15%);
-	--fg-dd: hsl(45, 10%, 10%);
-	--fg-ddd: hsl(45, 10%, 5%);
+	/* action — interactive elements: buttons, links, controls (blue) */
+	--action-50: var(--blue-50);
+	--action-100: var(--blue-100);
+	--action-150: var(--blue-150);
+	--action-200: var(--blue-200);
+	--action-250: var(--blue-250);
+	--action-300: var(--blue-300);
+	--action-350: var(--blue-350);
+	--action-400: var(--blue-400);
+	--action-450: var(--blue-450);
+	--action-500: var(--blue-500);
+	--action-550: var(--blue-550);
+	--action-600: var(--blue-600);
+	--action-650: var(--blue-650);
+	--action-700: var(--blue-700);
+	--action-750: var(--blue-750);
+	--action-800: var(--blue-800);
+	--action-850: var(--blue-850);
+	--action-900: var(--blue-900);
+	--action-950: var(--blue-950);
 
-	/* Disabled, inactive elements. */
-	--disabled-lll: hsl(46, 8%, 98%);
-	--disabled-ll: hsl(46, 8%, 95%);
-	--disabled-l: hsl(46, 8%, 90%);
-	--disabled: hsl(46, 8%, 85%);
-	--disabled-d: hsl(46, 8%, 70%);
-	--disabled-dd: hsl(46, 8%, 55%);
-	--disabled-ddd: hsl(46, 8%, 40%);
+	/* focus — selected items, focus rings, highlights (yellow) */
+	--focus-50: var(--yellow-50);
+	--focus-100: var(--yellow-100);
+	--focus-150: var(--yellow-150);
+	--focus-200: var(--yellow-200);
+	--focus-250: var(--yellow-250);
+	--focus-300: var(--yellow-300);
+	--focus-350: var(--yellow-350);
+	--focus-400: var(--yellow-400);
+	--focus-450: var(--yellow-450);
+	--focus-500: var(--yellow-500);
+	--focus-550: var(--yellow-550);
+	--focus-600: var(--yellow-600);
+	--focus-650: var(--yellow-650);
+	--focus-700: var(--yellow-700);
+	--focus-750: var(--yellow-750);
+	--focus-800: var(--yellow-800);
+	--focus-850: var(--yellow-850);
+	--focus-900: var(--yellow-900);
+	--focus-950: var(--yellow-950);
 
-	/* Interactive elements — buttons, links, controls. */
-	--action-llll: hsl(216, 83%, 95%);
-	--action-lll: hsl(216, 83%, 83%);
-	--action-ll: hsl(217, 83%, 73%);
-	--action-l: hsl(218, 83%, 58%);
-	--action: hsl(221, 83%, 53%);
-	--action-d: hsl(221, 83%, 43%);
-	--action-dd: hsl(221, 83%, 33%);
-	--action-ddd: hsl(221, 83%, 23%);
-	--action-dddd: hsl(221, 83%, 13%);
+	/* success — positive states (green) */
+	--success-50: var(--green-50);
+	--success-100: var(--green-100);
+	--success-150: var(--green-150);
+	--success-200: var(--green-200);
+	--success-250: var(--green-250);
+	--success-300: var(--green-300);
+	--success-350: var(--green-350);
+	--success-400: var(--green-400);
+	--success-450: var(--green-450);
+	--success-500: var(--green-500);
+	--success-550: var(--green-550);
+	--success-600: var(--green-600);
+	--success-650: var(--green-650);
+	--success-700: var(--green-700);
+	--success-750: var(--green-750);
+	--success-800: var(--green-800);
+	--success-850: var(--green-850);
+	--success-900: var(--green-900);
+	--success-950: var(--green-950);
 
-	/* Selection and focus — selected items, focus rings, highlights. */
-	--focus-llll: hsl(48, 100%, 95%);
-	--focus-lll: hsl(48, 100%, 87%);
-	--focus-ll: hsl(48, 100%, 77%);
-	--focus-l: hsl(48, 100%, 66%);
-	--focus: hsl(48, 100%, 55%);
-	--focus-d: hsl(44, 100%, 46%);
-	--focus-dd: hsl(40, 100%, 37%);
-	--focus-ddd: hsl(36, 100%, 27%);
-	--focus-dddd: hsl(32, 100%, 17%);
+	/* warning — caution, proceed carefully (orange) */
+	--warning-50: var(--orange-50);
+	--warning-100: var(--orange-100);
+	--warning-150: var(--orange-150);
+	--warning-200: var(--orange-200);
+	--warning-250: var(--orange-250);
+	--warning-300: var(--orange-300);
+	--warning-350: var(--orange-350);
+	--warning-400: var(--orange-400);
+	--warning-450: var(--orange-450);
+	--warning-500: var(--orange-500);
+	--warning-550: var(--orange-550);
+	--warning-600: var(--orange-600);
+	--warning-650: var(--orange-650);
+	--warning-700: var(--orange-700);
+	--warning-750: var(--orange-750);
+	--warning-800: var(--orange-800);
+	--warning-850: var(--orange-850);
+	--warning-900: var(--orange-900);
+	--warning-950: var(--orange-950);
 
-	/* Positive / success states. */
-	--success-llll: hsl(142, 66%, 90%);
-	--success-lll: hsl(142, 68%, 75%);
-	--success-ll: hsl(142, 70%, 56%);
-	--success-l: hsl(142, 72%, 42%);
-	--success: hsl(142, 77%, 36%);
-	--success-d: hsl(142, 77%, 26%);
-	--success-dd: hsl(142, 77%, 18%);
-	--success-ddd: hsl(142, 77%, 12%);
-	--success-dddd: hsl(142, 77%, 6%);
+	/* danger — errors and destructive actions (red) */
+	--danger-50: var(--red-50);
+	--danger-100: var(--red-100);
+	--danger-150: var(--red-150);
+	--danger-200: var(--red-200);
+	--danger-250: var(--red-250);
+	--danger-300: var(--red-300);
+	--danger-350: var(--red-350);
+	--danger-400: var(--red-400);
+	--danger-450: var(--red-450);
+	--danger-500: var(--red-500);
+	--danger-550: var(--red-550);
+	--danger-600: var(--red-600);
+	--danger-650: var(--red-650);
+	--danger-700: var(--red-700);
+	--danger-750: var(--red-750);
+	--danger-800: var(--red-800);
+	--danger-850: var(--red-850);
+	--danger-900: var(--red-900);
+	--danger-950: var(--red-950);
 
-	/* Warnings, caution — proceed carefully. */
-	--warning-llll: hsl(28, 92%, 95%);
-	--warning-lll: hsl(28, 92%, 83%);
-	--warning-ll: hsl(28, 92%, 73%);
-	--warning-l: hsl(28, 92%, 63%);
-	--warning: hsl(28, 92%, 53%);
-	--warning-d: hsl(28, 92%, 43%);
-	--warning-dd: hsl(28, 92%, 33%);
-	--warning-ddd: hsl(28, 92%, 23%);
-	--warning-dddd: hsl(28, 92%, 13%);
+	/* info — informational notices (cyan) */
+	--info-50: var(--cyan-50);
+	--info-100: var(--cyan-100);
+	--info-150: var(--cyan-150);
+	--info-200: var(--cyan-200);
+	--info-250: var(--cyan-250);
+	--info-300: var(--cyan-300);
+	--info-350: var(--cyan-350);
+	--info-400: var(--cyan-400);
+	--info-450: var(--cyan-450);
+	--info-500: var(--cyan-500);
+	--info-550: var(--cyan-550);
+	--info-600: var(--cyan-600);
+	--info-650: var(--cyan-650);
+	--info-700: var(--cyan-700);
+	--info-750: var(--cyan-750);
+	--info-800: var(--cyan-800);
+	--info-850: var(--cyan-850);
+	--info-900: var(--cyan-900);
+	--info-950: var(--cyan-950);
 
-	/* Errors and destructive actions. */
-	--danger-llll: hsl(0, 72%, 95%);
-	--danger-lll: hsl(0, 72%, 81%);
-	--danger-ll: hsl(0, 72%, 71%);
-	--danger-l: hsl(0, 72%, 61%);
-	--danger: hsl(0, 72%, 51%);
-	--danger-d: hsl(0, 72%, 41%);
-	--danger-dd: hsl(0, 72%, 31%);
-	--danger-ddd: hsl(0, 72%, 21%);
-	--danger-dddd: hsl(0, 72%, 11%);
+	/* accent — non-interactive emphasis (bronze) */
+	--accent-50: var(--bronze-50);
+	--accent-100: var(--bronze-100);
+	--accent-150: var(--bronze-150);
+	--accent-200: var(--bronze-200);
+	--accent-250: var(--bronze-250);
+	--accent-300: var(--bronze-300);
+	--accent-350: var(--bronze-350);
+	--accent-400: var(--bronze-400);
+	--accent-450: var(--bronze-450);
+	--accent-500: var(--bronze-500);
+	--accent-550: var(--bronze-550);
+	--accent-600: var(--bronze-600);
+	--accent-650: var(--bronze-650);
+	--accent-700: var(--bronze-700);
+	--accent-750: var(--bronze-750);
+	--accent-800: var(--bronze-800);
+	--accent-850: var(--bronze-850);
+	--accent-900: var(--bronze-900);
+	--accent-950: var(--bronze-950);
+}
 
-	/* Informational notices. */
-	--info-llll: hsl(199, 89%, 88%);
-	--info-lll: hsl(199, 89%, 78%);
-	--info-ll: hsl(199, 89%, 68%);
-	--info-l: hsl(199, 89%, 58%);
-	--info: hsl(199, 89%, 48%);
-	--info-d: hsl(199, 89%, 38%);
-	--info-dd: hsl(199, 89%, 28%);
-	--info-ddd: hsl(199, 89%, 18%);
-	--info-dddd: hsl(199, 89%, 8%);
+/* COLORS */
+/* gabi — Colorama tokens */
+:root {
+	--gray-50: oklch(95% 0.0011 0);
+	--gray-100: oklch(91.111% 0.00209 0);
+	--gray-150: oklch(87.222% 0.0032 0);
+	--gray-200: oklch(83.333% 0.00446 0);
+	--gray-250: oklch(79.444% 0.00588 0);
+	--gray-300: oklch(75.556% 0.00747 0);
+	--gray-350: oklch(71.667% 0.00927 0);
+	--gray-400: oklch(67.778% 0.01128 0);
+	--gray-450: oklch(63.889% 0.01138 0);
+	--gray-500: oklch(60% 0.01096 0);
+	--gray-550: oklch(53.889% 0.01012 0);
+	--gray-600: oklch(47.778% 0.00921 0);
+	--gray-650: oklch(41.667% 0.00825 0);
+	--gray-700: oklch(35.556% 0.00722 0);
+	--gray-750: oklch(29.444% 0.00614 0);
+	--gray-800: oklch(23.333% 0.005 0);
+	--gray-850: oklch(17.222% 0.00382 0);
+	--gray-900: oklch(11.111% 0.00264 0);
+	--gray-950: oklch(5% 0.00191 0);
 
-	/* Emphasis for non-interactive elements — highlight, draw attention. */
-	--accent-llll: hsl(25, 30%, 90%);
-	--accent-lll: hsl(25, 30%, 80%);
-	--accent-ll: hsl(25, 30%, 70%);
-	--accent-l: hsl(25, 30%, 60%);
-	--accent: hsl(25, 30%, 50%);
-	--accent-d: hsl(25, 30%, 40%);
-	--accent-dd: hsl(25, 30%, 30%);
-	--accent-ddd: hsl(25, 30%, 20%);
-	--accent-dddd: hsl(25, 30%, 10%);
+	--blue-50: oklch(95% 0.0195 246);
+	--blue-100: oklch(90% 0.04031 248.21);
+	--blue-150: oklch(85% 0.06256 250.43);
+	--blue-200: oklch(80% 0.08637 252.64);
+	--blue-250: oklch(75% 0.11187 254.86);
+	--blue-300: oklch(70% 0.1392 257.07);
+	--blue-350: oklch(65% 0.1685 259.29);
+	--blue-400: oklch(60% 0.19991 261.5);
+	--blue-450: oklch(55% 0.2336 263.72);
+	--blue-500: oklch(50% 0.26973 265.93);
+	--blue-550: oklch(45% 0.27779 265.92);
+	--blue-600: oklch(40% 0.24851 265.91);
+	--blue-650: oklch(35% 0.21887 265.89);
+	--blue-700: oklch(30% 0.18888 265.88);
+	--blue-750: oklch(25% 0.15855 265.87);
+	--blue-800: oklch(20% 0.12796 265.86);
+	--blue-850: oklch(15% 0.09727 265.84);
+	--blue-900: oklch(10% 0.06717 265.83);
+	--blue-950: oklch(5% 0.04194 265.82);
+
+	--red-50: oklch(95% 0.02506 30); /* gamut-mapped */
+	--red-100: oklch(91.111% 0.04604 30); /* gamut-mapped */
+	--red-150: oklch(87.222% 0.06854 30); /* gamut-mapped */
+	--red-200: oklch(83.333% 0.09272 30); /* gamut-mapped */
+	--red-250: oklch(79.444% 0.11881 30); /* gamut-mapped */
+	--red-300: oklch(75.556% 0.14702 30); /* gamut-mapped */
+	--red-350: oklch(71.667% 0.17762 30); /* gamut-mapped */
+	--red-400: oklch(67.778% 0.21089 30); /* gamut-mapped */
+	--red-450: oklch(63.889% 0.24714 30); /* gamut-mapped */
+	--red-500: oklch(60% 0.2408 30); /* gamut-mapped */
+	--red-550: oklch(53.889% 0.21634 30); /* gamut-mapped */
+	--red-600: oklch(47.778% 0.19189 30); /* gamut-mapped */
+	--red-650: oklch(41.667% 0.16746 30); /* gamut-mapped */
+	--red-700: oklch(35.556% 0.14308 30); /* gamut-mapped */
+	--red-750: oklch(29.444% 0.11879 30); /* gamut-mapped */
+	--red-800: oklch(23.333% 0.09471 30); /* gamut-mapped */
+	--red-850: oklch(17.222% 0.07115 30); /* gamut-mapped */
+	--red-900: oklch(11.111% 0.04846 30); /* gamut-mapped */
+	--red-950: oklch(5% 0.03303 30); /* gamut-mapped */
+
+	--yellow-50: oklch(95% 0.06692 95);
+	--yellow-100: oklch(93.571% 0.08563 93.57);
+	--yellow-150: oklch(92.143% 0.10452 92.14);
+	--yellow-200: oklch(90.714% 0.12226 90.71); /* gamut-mapped */
+	--yellow-250: oklch(89.286% 0.1341 89.29); /* gamut-mapped */
+	--yellow-300: oklch(87.857% 0.14515 87.86); /* gamut-mapped */
+	--yellow-350: oklch(86.429% 0.15561 86.43); /* gamut-mapped */
+	--yellow-400: oklch(85% 0.16564 85); /* gamut-mapped */
+	--yellow-450: oklch(82.5% 0.16952 83.5); /* gamut-mapped */
+	--yellow-500: oklch(80% 0.16489 82); /* gamut-mapped */
+	--yellow-550: oklch(71.667% 0.14895 79); /* gamut-mapped */
+	--yellow-600: oklch(63.333% 0.13311 76); /* gamut-mapped */
+	--yellow-650: oklch(55% 0.11725 73); /* gamut-mapped */
+	--yellow-700: oklch(46.667% 0.10124 70); /* gamut-mapped */
+	--yellow-750: oklch(38.333% 0.08493 67); /* gamut-mapped */
+	--yellow-800: oklch(30% 0.06822 64); /* gamut-mapped */
+	--yellow-850: oklch(21.667% 0.05105 61); /* gamut-mapped */
+	--yellow-900: oklch(13.333% 0.03392 58); /* gamut-mapped */
+	--yellow-950: oklch(5% 0.0374 55); /* gamut-mapped */
+
+	--green-50: oklch(95% 0.04759 140);
+	--green-100: oklch(91.667% 0.08874 140);
+	--green-150: oklch(88.333% 0.14052 140);
+	--green-200: oklch(85% 0.16097 140);
+	--green-250: oklch(81.667% 0.18095 140);
+	--green-300: oklch(78.333% 0.19879 140);
+	--green-350: oklch(75% 0.20312 140);
+	--green-400: oklch(71.667% 0.20632 140);
+	--green-450: oklch(68.333% 0.20839 140);
+	--green-500: oklch(65% 0.20932 140);
+	--green-550: oklch(58.333% 0.18421 140);
+	--green-600: oklch(51.667% 0.15994 140);
+	--green-650: oklch(45% 0.13654 140);
+	--green-700: oklch(38.333% 0.114 140);
+	--green-750: oklch(31.667% 0.09235 140);
+	--green-800: oklch(25% 0.07166 140);
+	--green-850: oklch(18.333% 0.05212 140);
+	--green-900: oklch(11.667% 0.03466 140);
+	--green-950: oklch(5% 0.03627 140); /* gamut-mapped */
+
+	--cyan-50: oklch(95% 0.02985 203);
+	--cyan-100: oklch(92.5% 0.04725 203);
+	--cyan-150: oklch(90% 0.06635 203);
+	--cyan-200: oklch(87.5% 0.08718 203);
+	--cyan-250: oklch(85% 0.10978 203);
+	--cyan-300: oklch(82.5% 0.11658 203);
+	--cyan-350: oklch(80.75% 0.12699 203);
+	--cyan-400: oklch(79% 0.13456 203); /* gamut-mapped */
+	--cyan-450: oklch(77.25% 0.13158 203); /* gamut-mapped */
+	--cyan-500: oklch(75.5% 0.1286 203); /* gamut-mapped */
+	--cyan-550: oklch(67.667% 0.11527 203); /* gamut-mapped */
+	--cyan-600: oklch(59.833% 0.10194 203); /* gamut-mapped */
+	--cyan-650: oklch(52% 0.08862 203); /* gamut-mapped */
+	--cyan-700: oklch(44.167% 0.07531 203); /* gamut-mapped */
+	--cyan-750: oklch(36.333% 0.06201 203); /* gamut-mapped */
+	--cyan-800: oklch(28.5% 0.04876 203); /* gamut-mapped */
+	--cyan-850: oklch(20.667% 0.03562 203); /* gamut-mapped */
+	--cyan-900: oklch(12.833% 0.02297 203); /* gamut-mapped */
+	--cyan-950: oklch(5% 0.01638 203); /* gamut-mapped */
+
+	--bronze-50: oklch(95% 0.00769 57);
+	--bronze-100: oklch(91.211% 0.01457 57);
+	--bronze-150: oklch(87.422% 0.02244 57);
+	--bronze-200: oklch(83.634% 0.03141 57);
+	--bronze-250: oklch(79.845% 0.04157 57);
+	--bronze-300: oklch(76.056% 0.05253 57);
+	--bronze-350: oklch(72.267% 0.0584 57);
+	--bronze-400: oklch(68.478% 0.06339 57);
+	--bronze-450: oklch(64.689% 0.06748 57);
+	--bronze-500: oklch(60.9% 0.07069 57);
+	--bronze-550: oklch(54.689% 0.0682 57);
+	--bronze-600: oklch(48.478% 0.06465 57);
+	--bronze-650: oklch(42.267% 0.06005 57);
+	--bronze-700: oklch(36.056% 0.05439 57);
+	--bronze-750: oklch(29.844% 0.04772 57);
+	--bronze-800: oklch(23.633% 0.04006 57);
+	--bronze-850: oklch(17.422% 0.0316 57);
+	--bronze-900: oklch(11.211% 0.02311 57);
+	--bronze-950: oklch(5% 0.02955 57);
+
+	--orange-50: oklch(95% 0.02795 54);
+	--orange-100: oklch(92.841% 0.04159 54);
+	--orange-150: oklch(90.683% 0.05602 54); /* gamut-mapped */
+	--orange-200: oklch(88.524% 0.0702 54); /* gamut-mapped */
+	--orange-250: oklch(86.365% 0.08489 54); /* gamut-mapped */
+	--orange-300: oklch(84.207% 0.10011 54); /* gamut-mapped */
+	--orange-350: oklch(82.048% 0.11591 54); /* gamut-mapped */
+	--orange-400: oklch(79.889% 0.13232 54); /* gamut-mapped */
+	--orange-450: oklch(77.731% 0.14937 54); /* gamut-mapped */
+	--orange-500: oklch(75.572% 0.16711 54); /* gamut-mapped */
+	--orange-550: oklch(67.731% 0.17175 53.11); /* gamut-mapped */
+	--orange-600: oklch(59.889% 0.15367 52.22); /* gamut-mapped */
+	--orange-650: oklch(52.048% 0.1352 51.33); /* gamut-mapped */
+	--orange-700: oklch(44.207% 0.11634 50.44); /* gamut-mapped */
+	--orange-750: oklch(36.365% 0.09705 49.56); /* gamut-mapped */
+	--orange-800: oklch(28.524% 0.07738 48.67); /* gamut-mapped */
+	--orange-850: oklch(20.683% 0.05746 47.78); /* gamut-mapped */
+	--orange-900: oklch(12.841% 0.03813 46.89); /* gamut-mapped */
+	--orange-950: oklch(5% 0.03505 46); /* gamut-mapped */
+}
+
+/* Full-fidelity Display-P3 overrides (only the tokens that differ) */
+@supports (color: color(display-p3 1 1 1)) {
+	@media (color-gamut: p3) {
+		:root {
+			--red-50: oklch(95% 0.03093 30);
+			--red-100: oklch(91.111% 0.05636 30);
+			--red-150: oklch(87.222% 0.08315 30);
+			--red-200: oklch(83.333% 0.11146 30);
+			--red-250: oklch(79.444% 0.14145 30);
+			--red-300: oklch(75.556% 0.17328 30);
+			--red-350: oklch(71.667% 0.20713 30);
+			--red-400: oklch(67.778% 0.24319 30);
+			--red-450: oklch(63.889% 0.25947 30);
+			--red-500: oklch(60% 0.24221 30);
+			--red-550: oklch(53.889% 0.21895 30);
+			--red-600: oklch(47.778% 0.1954 30);
+			--red-650: oklch(41.667% 0.17158 30);
+			--red-700: oklch(35.556% 0.1475 30);
+			--red-750: oklch(29.444% 0.12322 30);
+			--red-800: oklch(23.333% 0.09885 30);
+			--red-850: oklch(17.222% 0.07477 30);
+			--red-900: oklch(11.111% 0.05149 30);
+			--red-950: oklch(5% 0.035 30);
+			--yellow-200: oklch(90.714% 0.12369 90.71);
+			--yellow-250: oklch(89.286% 0.14324 89.29);
+			--yellow-300: oklch(87.857% 0.16325 87.86);
+			--yellow-350: oklch(86.429% 0.18377 86.43);
+			--yellow-400: oklch(85% 0.20088 85);
+			--yellow-450: oklch(82.5% 0.19533 83.5);
+			--yellow-500: oklch(80% 0.18989 82);
+			--yellow-550: oklch(71.667% 0.17137 79);
+			--yellow-600: oklch(63.333% 0.15301 76);
+			--yellow-650: oklch(55% 0.13465 73);
+			--yellow-700: oklch(46.667% 0.11614 70);
+			--yellow-750: oklch(38.333% 0.09734 67);
+			--yellow-800: oklch(30% 0.07811 64);
+			--yellow-850: oklch(21.667% 0.05841 61);
+			--yellow-900: oklch(13.333% 0.0389 58);
+			--yellow-950: oklch(5% 0.04147 55);
+			--green-950: oklch(5% 0.03719 140);
+			--cyan-400: oklch(79% 0.13685 203);
+			--cyan-450: oklch(77.25% 0.14614 203);
+			--cyan-500: oklch(75.5% 0.15488 203);
+			--cyan-550: oklch(67.667% 0.14054 203);
+			--cyan-600: oklch(59.833% 0.1258 203);
+			--cyan-650: oklch(52% 0.11068 203);
+			--cyan-700: oklch(44.167% 0.09517 203);
+			--cyan-750: oklch(36.333% 0.0793 203);
+			--cyan-800: oklch(28.5% 0.06308 203);
+			--cyan-850: oklch(20.667% 0.04662 203);
+			--cyan-900: oklch(12.833% 0.03044 203);
+			--cyan-950: oklch(5% 0.0225 203);
+			--orange-150: oklch(90.683% 0.05624 54);
+			--orange-200: oklch(88.524% 0.07196 54);
+			--orange-250: oklch(86.365% 0.08882 54);
+			--orange-300: oklch(84.207% 0.10685 54);
+			--orange-350: oklch(82.048% 0.12614 54);
+			--orange-400: oklch(79.889% 0.14674 54);
+			--orange-450: oklch(77.731% 0.16873 54);
+			--orange-500: oklch(75.572% 0.19218 54);
+			--orange-550: oklch(67.731% 0.18002 53.11);
+			--orange-600: oklch(59.889% 0.16274 52.22);
+			--orange-650: oklch(52.048% 0.14466 51.33);
+			--orange-700: oklch(44.207% 0.12574 50.44);
+			--orange-750: oklch(36.365% 0.10596 49.56);
+			--orange-800: oklch(28.524% 0.08534 48.67);
+			--orange-850: oklch(20.683% 0.06404 47.78);
+			--orange-900: oklch(12.841% 0.04305 46.89);
+			--orange-950: oklch(5% 0.03894 46);
+		}
+	}
 }

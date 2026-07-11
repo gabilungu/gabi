@@ -1,0 +1,45 @@
+<script lang="ts">
+	import Badge from "./Badge.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Display / Badge"
+	description="A tiny status or count indicator — the small, non-interactive sibling of Chip. Give it a label (or `dot` for a status dot), an intent for colour, and a solid or soft variant."
+]
+
+	[preview component={Badge} args={{ label: "3", intent: "danger", variant: "solid" }}]
+		<Badge {...args} />
+	[/preview]
+
+	[example title="Intents"]
+		<Badge intent="action" label="Action" />
+		<Badge intent="neutral" label="Neutral" />
+		<Badge intent="danger" label="Danger" />
+		<Badge intent="warning" label="Warning" />
+		<Badge intent="success" label="Success" />
+	[/example]
+
+	[example title="Variants"]
+		<Badge variant="solid" intent="action" label="Solid" />
+		<Badge variant="soft" intent="action" label="Soft" />
+	[/example]
+
+	[example title="Counts" contentY="middle"]
+		<Badge intent="danger" label="3" />
+		<Badge intent="danger" label="12" />
+		<Badge intent="danger" label="99+" />
+	[/example]
+
+	[example title="Status dots" contentY="middle"]
+		<Badge dot intent="success" />
+		<Badge dot intent="warning" />
+		<Badge dot intent="danger" />
+		<Badge dot intent="neutral" />
+	[/example]
+
+	[example title="Sizes" contentY="middle"]
+		<Badge size="sm" label="5" />
+		<Badge size="md" label="5" />
+	[/example]
+
+[/SHOWCASE]

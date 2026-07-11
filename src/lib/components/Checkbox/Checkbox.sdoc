@@ -1,0 +1,31 @@
+<script lang="ts">
+	import Checkbox from "./Checkbox.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Form / Checkbox"
+	description="An on/off toggle on the gabi size scale — the square sibling of Radio. Bind `checked`; each box is independent."
+]
+
+	[preview component={Checkbox} args={{ label: "Accept terms", size: "md" }}]
+		<Checkbox {...args} />
+	[/preview]
+
+	[example title="Sizes" gap="24px" contentY="middle"]
+		<Checkbox size="sm" label="Small" />
+		<Checkbox size="md" label="Medium" />
+		<Checkbox size="lg" label="Large" />
+	[/example]
+
+	[example title="A set" direction="column" gap="10px"]
+		<Checkbox label="Email notifications" />
+		<Checkbox label="SMS notifications" />
+		<Checkbox label="Push notifications" />
+	[/example]
+
+	[example title="Disabled" direction="column" gap="10px"]
+		<Checkbox checked label="Checked, disabled" disabled />
+		<Checkbox label="Unchecked, disabled" disabled />
+	[/example]
+
+[/SHOWCASE]

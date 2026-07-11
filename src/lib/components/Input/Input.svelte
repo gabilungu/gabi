@@ -43,9 +43,9 @@
 <style>
 	input {
 		box-sizing: border-box;
-		border: 1px solid var(--bg-ddd);
-		background: var(--bg-l);
-		color: var(--fg);
+		border: 1px solid var(--base-200);
+		background: var(--base-0);
+		color: var(--base-700);
 		font-family: inherit;
 		line-height: 1;
 		outline: none;
@@ -54,47 +54,50 @@
 			box-shadow 150ms ease;
 	}
 	input::placeholder {
-		color: var(--fg-lll);
+		color: var(--base-350);
+	}
+	input:hover:not(:focus):not(:disabled) {
+		box-shadow: 0 0 0 3px var(--action-50);
 	}
 	input:focus {
-		border-color: var(--focus);
-		box-shadow: 0 0 0 3px var(--focus-ll);
+		border-color: var(--focus-500);
+		box-shadow: 0 0 0 3px var(--focus-200);
 	}
 
 	/* Success and warning are presentational hints with no ARIA equivalent, so
 	   they key off the intent prop. After :focus so the border wins the tie,
 	   and the focused rule out-specifies the plain focus ring. */
 	input[data-intent='success'] {
-		border-color: var(--success);
+		border-color: var(--success-500);
 	}
 	input[data-intent='success']:focus {
-		box-shadow: 0 0 0 3px var(--success-llll);
+		box-shadow: 0 0 0 3px var(--success-200);
 	}
 	input[data-intent='warning'] {
-		border-color: var(--warning);
+		border-color: var(--warning-500);
 	}
 	input[data-intent='warning']:focus {
-		box-shadow: 0 0 0 3px var(--warning-llll);
+		box-shadow: 0 0 0 3px var(--warning-200);
 	}
 
 	/* Invalid is bound to the ARIA state itself, so it lights up both for
 	   intent="danger" and for any form validation that sets aria-invalid. */
 	input[aria-invalid='true'] {
-		border-color: var(--danger);
+		border-color: var(--danger-500);
 	}
 	input[aria-invalid='true']:focus {
-		box-shadow: 0 0 0 3px var(--danger-llll);
+		box-shadow: 0 0 0 3px var(--danger-200);
 	}
 
 	/* Disabled wins over the validation intents — a disabled field should read inert, not alarming. */
 	input:disabled {
-		background: var(--disabled-lll);
-		color: var(--disabled-dd);
-		border-color: var(--disabled-l);
+		background: var(--base-50);
+		color: var(--base-300);
+		border-color: var(--base-150);
 		cursor: not-allowed;
 	}
 	input:disabled::placeholder {
-		color: var(--disabled-dd);
+		color: var(--base-300);
 	}
 
 	input[data-size='xs'] {

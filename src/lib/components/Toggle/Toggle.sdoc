@@ -1,0 +1,31 @@
+<script lang="ts">
+	import Toggle from "./Toggle.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Form / Toggle"
+	description="An on/off switch on the gabi size scale. Bind `checked` — like Checkbox, each is independent and toggles on its own without any binding."
+]
+
+	[preview component={Toggle} args={{ label: "Wi-Fi", size: "md" }}]
+		<Toggle {...args} />
+	[/preview]
+
+	[example title="Sizes" gap="24px" contentY="middle"]
+		<Toggle size="sm" label="Small" />
+		<Toggle size="md" label="Medium" />
+		<Toggle size="lg" label="Large" />
+	[/example]
+
+	[example title="A set" direction="column" gap="10px"]
+		<Toggle checked label="Wi-Fi" />
+		<Toggle label="Bluetooth" />
+		<Toggle checked label="Location services" />
+	[/example]
+
+	[example title="Disabled" direction="column" gap="10px"]
+		<Toggle checked label="On, disabled" disabled />
+		<Toggle label="Off, disabled" disabled />
+	[/example]
+
+[/SHOWCASE]
