@@ -1,0 +1,238 @@
+<script lang="ts">
+	import Flex from "./Flex.svelte";
+	import Placeholder from "../Placeholder/Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Layout / Flex"
+	description="A 1D layout primitive. `contentX` / `contentY` place the content along physical axes (they stay horizontal / vertical whatever the `direction`), with `gap`, `padding`, `margin`, `wrap`, and per-element `grow` / `flexGrow` / `flexShrink` / `flexBasis` for nesting. No styling props — theme the optional shell with `--bg`, `--fg`, `--border`, `--shadow`."
+]
+
+	[preview
+		component={Flex}
+		args={{ gap: 8, padding: 12, direction: "row", contentX: "left", contentY: "top", wrap: "nowrap", width: "fill" }}
+	]
+		<Flex {...args} --bg="var(--accent-50)" style="min-height: 120px">
+			<Placeholder text="1" width={64} height={48} />
+			<Placeholder text="2" width={64} height={48} />
+			<Placeholder text="3" width={64} height={48} />
+			<Placeholder text="4" width={64} height={48} />
+			<Placeholder text="5" width={64} height={48} />
+		</Flex>
+	[/preview]
+
+	[example
+		title="Direction"
+		description="Lay children in a row (default) or a column via `direction`."
+		direction="column"
+		gap="20px"
+	]
+		<Flex gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="1" width={56} height={44} />
+			<Placeholder text="2" width={56} height={44} />
+			<Placeholder text="3" width={56} height={44} />
+		</Flex>
+		<Flex direction="column" gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="1" width={56} height={44} />
+			<Placeholder text="2" width={56} height={44} />
+			<Placeholder text="3" width={56} height={44} />
+		</Flex>
+	[/example]
+
+	[example
+		title="Physical alignment"
+		description="`contentX` / `contentY` are physical — the same values place content the same way whether it is a row or a column. Both boxes below use contentX=center, contentY=center."
+		gap="16px"
+	]
+		<Flex
+			contentX="center"
+			contentY="center"
+			gap={8}
+			padding={12}
+			width={240}
+			--bg="var(--accent-50)"
+			style="height: 140px; border-radius: 8px;"
+		>
+			<Placeholder text="1" width={48} height={40} />
+			<Placeholder text="2" width={48} height={40} />
+		</Flex>
+		<Flex
+			direction="column"
+			contentX="center"
+			contentY="center"
+			gap={8}
+			padding={12}
+			width={240}
+			--bg="var(--accent-50)"
+			style="height: 140px; border-radius: 8px;"
+		>
+			<Placeholder text="1" width={48} height={40} />
+			<Placeholder text="2" width={48} height={40} />
+		</Flex>
+	[/example]
+
+	[example
+		title="Content X — horizontal"
+		description="`contentX` places content on the horizontal axis. Shown `width=fill` for room."
+		direction="column"
+		gap="12px"
+	]
+		<Flex width="fill" contentX="left" gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="1" width={56} height={40} />
+			<Placeholder text="2" width={56} height={40} />
+			<Placeholder text="3" width={56} height={40} />
+		</Flex>
+		<Flex
+			width="fill"
+			contentX="center"
+			gap={8}
+			padding={12}
+			--bg="var(--accent-50)"
+		>
+			<Placeholder text="1" width={56} height={40} />
+			<Placeholder text="2" width={56} height={40} />
+			<Placeholder text="3" width={56} height={40} />
+		</Flex>
+		<Flex
+			width="fill"
+			contentX="right"
+			gap={8}
+			padding={12}
+			--bg="var(--accent-50)"
+		>
+			<Placeholder text="1" width={56} height={40} />
+			<Placeholder text="2" width={56} height={40} />
+			<Placeholder text="3" width={56} height={40} />
+		</Flex>
+		<Flex
+			width="fill"
+			contentX="between"
+			gap={8}
+			padding={12}
+			--bg="var(--accent-50)"
+		>
+			<Placeholder text="1" width={56} height={40} />
+			<Placeholder text="2" width={56} height={40} />
+			<Placeholder text="3" width={56} height={40} />
+		</Flex>
+	[/example]
+
+	[example
+		title="Content Y — vertical"
+		description="`contentY` places content on the vertical axis. The tall item gives the row its height."
+		direction="column"
+		gap="12px"
+	]
+		<Flex contentY="top" gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="tall" width={56} height={72} />
+			<Placeholder text="1" width={56} height={40} />
+			<Placeholder text="2" width={56} height={40} />
+		</Flex>
+		<Flex contentY="center" gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="tall" width={56} height={72} />
+			<Placeholder text="1" width={56} height={40} />
+			<Placeholder text="2" width={56} height={40} />
+		</Flex>
+		<Flex contentY="bottom" gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="tall" width={56} height={72} />
+			<Placeholder text="1" width={56} height={40} />
+			<Placeholder text="2" width={56} height={40} />
+		</Flex>
+	[/example]
+
+	[example
+		title="Padding & margin"
+		description="`padding` insets the content inside the fill; `margin` adds space outside it (the tinted stage shows the margin)."
+		direction="column"
+	]
+		<Flex gap={8} padding={20} margin={32} --bg="var(--accent-50)">
+			<Placeholder text="1" width={56} height={40} />
+			<Placeholder text="2" width={56} height={40} />
+			<Placeholder text="3" width={56} height={40} />
+		</Flex>
+	[/example]
+
+	[example
+		title="Wrap"
+		description="`wrap` flows children onto new lines when they run out of room."
+		direction="column"
+	]
+		<Flex
+			wrap="wrap"
+			gap={8}
+			padding={12}
+			--bg="var(--accent-50)"
+			style="max-width: 320px;"
+		>
+			<Placeholder text="1" width={72} height={40} />
+			<Placeholder text="2" width={72} height={40} />
+			<Placeholder text="3" width={72} height={40} />
+			<Placeholder text="4" width={72} height={40} />
+			<Placeholder text="5" width={72} height={40} />
+			<Placeholder text="6" width={72} height={40} />
+		</Flex>
+	[/example]
+
+	[example
+		title="Grow"
+		description="`grow` fills the free space with an *equal* share (basis 0). Pass a number (`grow={2}`) for a weighted ratio. Nest a Flex to grow a region."
+		direction="column"
+		gap="12px"
+	]
+		<Flex width="fill" gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="fixed" width={80} height={44} />
+			<Flex grow>
+				<Placeholder text="grow" height={44} />
+			</Flex>
+			<Placeholder text="fixed" width={80} height={44} />
+		</Flex>
+		<Flex width="fill" gap={8} padding={12} --bg="var(--accent-50)">
+			<Flex grow>
+				<Placeholder text="×1" height={44} />
+			</Flex>
+			<Flex grow={2}>
+				<Placeholder text="×2" height={44} />
+			</Flex>
+		</Flex>
+	[/example]
+
+	[example
+		title="Shrink"
+		description="Flex items shrink to fit by default; `shrink={false}` keeps one at its size, so a tight row overflows instead."
+		direction="column"
+		gap="12px"
+	]
+		<Flex gap={8} padding={12} width={280} --bg="var(--accent-50)">
+			<Flex width={140}><Placeholder text="shrinks" height={40} /></Flex>
+			<Flex width={140}><Placeholder text="shrinks" height={40} /></Flex>
+		</Flex>
+		<Flex gap={8} padding={12} width={280} --bg="var(--accent-50)">
+			<Flex shrink={false} width={140}>
+				<Placeholder text="fixed" height={40} />
+			</Flex>
+			<Flex shrink={false} width={140}>
+				<Placeholder text="fixed" height={40} />
+			</Flex>
+		</Flex>
+	[/example]
+
+	[example
+		title="Styled shell"
+		description="Flex has no styling props — set `--bg`, `--border`, `--shadow` (and `--fg`) to theme it, or wrap it in a Container."
+		direction="column"
+	]
+		<Flex
+			gap={8}
+			padding={12}
+			--bg="var(--base-0)"
+			--border="1px solid var(--base-100)"
+			--shadow="0 1px 3px rgb(0 0 0 / 0.08)"
+			style="border-radius: 10px;"
+		>
+			<Placeholder text="1" width={56} height={40} />
+			<Placeholder text="2" width={56} height={40} />
+			<Placeholder text="3" width={56} height={40} />
+		</Flex>
+	[/example]
+
+[/SHOWCASE]

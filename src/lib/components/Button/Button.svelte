@@ -1,8 +1,21 @@
 <script lang="ts">
 	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import Icon from '../Icon/Icon.svelte';
 
 	interface Props extends HTMLButtonAttributes {
-		label: string;
+		/** Button text. Omit (with an icon) for a square, icon-only button. */
+		text?: string;
+		/** Icon — a path to an SVG in /static, or raw SVG markup (a `?raw` import), like Icon. */
+		icon?: string;
+		/** Put the icon after the text instead of before it. Default: false. */
+		iconAfterText?: boolean;
+		/** Horizontal layout of the icon + text: 'left' | 'center' | 'right' |
+		 * 'justify'. `justify` pushes them to opposite edges; a lone icon or text
+		 * stays centred. Default: 'center'. */
+		alignContent?: 'left' | 'center' | 'right' | 'justify';
+		/** Width: 'fill' (100% of the container), a number (px), or any CSS length.
+		 * Default: fits its content. */
+		width?: 'fill' | number | string;
 		type?: 'button' | 'submit' | 'reset';
 		size?: 'xs' | 'sm' | 'md' | 'lg';
 		intent?: 'action' | 'neutral' | 'danger' | 'warning' | 'success';
@@ -13,7 +26,11 @@
 	}
 
 	let {
-		label,
+		text,
+		icon,
+		iconAfterText = false,
+		alignContent = 'center',
+		width,
 		type = 'button',
 		size = 'md',
 		intent = 'action',
@@ -23,6 +40,14 @@
 		class: className,
 		...rest
 	}: Props = $props();
+
+	const hasText = $derived(text !== undefined && text !== '');
+	// A lone child (only icon or only text) stays centred even under `justify`.
+	const solo = $derived(!!icon !== hasText);
+	const iconSize = $derived(({ xs: 14, sm: 16, md: 16, lg: 18 })[size]);
+	const resolvedWidth = $derived(
+		width === 'fill' ? '100%' : typeof width === 'number' ? `${width}px` : (width ?? undefined),
+	);
 </script>
 
 <button
@@ -34,20 +59,55 @@
 	data-size={size}
 	data-intent={intent}
 	data-variant={variant}
->{label}</button>
+	data-align={alignContent}
+	data-square={!hasText || undefined}
+	data-solo={solo || undefined}
+	data-fill={width === 'fill' || undefined}
+	style:width={resolvedWidth}
+>
+	{#if icon && !iconAfterText}<Icon {icon} dimension={iconSize} />{/if}
+	{#if hasText}<span class="label">{text}</span>{/if}
+	{#if icon && iconAfterText}<Icon {icon} dimension={iconSize} />{/if}
+</button>
 
 <style>
 	button {
 		box-sizing: border-box;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 		/* Transparent by default; only `outlined` colours it. */
 		border: 1px solid transparent;
 		cursor: pointer;
 		font-family: inherit;
 		text-decoration: none;
+		white-space: nowrap;
 		transition:
 			background-color 120ms ease,
 			border-color 120ms ease,
 			color 120ms ease;
+	}
+	.label {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	/* Horizontal layout of the icon + text. */
+	button[data-align='left'] {
+		justify-content: flex-start;
+	}
+	button[data-align='center'] {
+		justify-content: center;
+	}
+	button[data-align='right'] {
+		justify-content: flex-end;
+	}
+	button[data-align='justify'] {
+		justify-content: space-between;
+	}
+	/* A lone icon or lone text stays centred, even under justify. */
+	button[data-align='justify'][data-solo] {
+		justify-content: center;
 	}
 
 	/* Each intent maps the palette into a shared --c-* ramp; the variant rules
@@ -179,23 +239,45 @@
 		padding: 0 9px;
 		font-size: 11px;
 		border-radius: 4px;
+		gap: 5px;
 	}
 	button[data-size='sm'] {
 		height: 28px;
 		padding: 0 10px;
 		font-size: 13px;
 		border-radius: 5px;
+		gap: 6px;
 	}
 	button[data-size='md'] {
 		height: 32px;
 		padding: 0 12px;
 		font-size: 14px;
 		border-radius: 6px;
+		gap: 7px;
 	}
 	button[data-size='lg'] {
 		height: 40px;
 		padding: 0 15px;
 		font-size: 16px;
 		border-radius: 7px;
+		gap: 8px;
+	}
+
+	/* No text → a square icon button (min-width = height), unless width is 'fill'. */
+	button[data-square]:not([data-fill])[data-size='xs'] {
+		min-width: 24px;
+		padding: 0;
+	}
+	button[data-square]:not([data-fill])[data-size='sm'] {
+		min-width: 28px;
+		padding: 0;
+	}
+	button[data-square]:not([data-fill])[data-size='md'] {
+		min-width: 32px;
+		padding: 0;
+	}
+	button[data-square]:not([data-fill])[data-size='lg'] {
+		min-width: 40px;
+		padding: 0;
 	}
 </style>

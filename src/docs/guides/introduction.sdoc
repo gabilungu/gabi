@@ -29,14 +29,14 @@
 	</script>
 
 	<Input placeholder="Your name" />
-	<Button label="Save" intent="success" />
+	<Button text="Save" intent="success" />
 	```
 
 	And this is what they look like, live, in gabi's own css:
 
 	[example title="First contact" direction="row" gap="8px" contentY="middle"]
 		<Input placeholder="Your name" />
-		<Button label="Save" intent="success" />
+		<Button text="Save" intent="success" />
 	[/example]
 
 	## Where next

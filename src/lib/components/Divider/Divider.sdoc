@@ -1,0 +1,40 @@
+<script lang="ts">
+	import Divider from "./Divider.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Layout / Divider"
+	description="A thin rule between content, horizontal or vertical. Colour it with the `--color` custom property; `thickness` and `margin` take a number (px) or any CSS length."
+]
+
+	[preview component={Divider} args={{ direction: "horizontal", thickness: 1 }}]
+		<Divider {...args} />
+	[/preview]
+
+	[example title="Horizontal" direction="column"]
+		<p style="margin: 0 0 8px;">Above the line</p>
+		<Divider />
+		<p style="margin: 8px 0 0;">Below the line</p>
+	[/example]
+
+	[example title="Vertical" contentY="middle"]
+		<span>Home</span>
+		<Divider direction="vertical" />
+		<span>About</span>
+		<Divider direction="vertical" />
+		<span>Contact</span>
+	[/example]
+
+	[example title="Colour" direction="column"]
+		<Divider />
+		<Divider style="--color: var(--action-500)" />
+		<Divider style="--color: var(--danger-500)" thickness={2} />
+	[/example]
+
+	[example title="Thickness" direction="column"]
+		<Divider thickness={1} />
+		<Divider thickness={2} />
+		<Divider thickness={4} />
+	[/example]
+
+[/SHOWCASE]

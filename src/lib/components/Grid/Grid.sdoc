@@ -1,0 +1,133 @@
+<script lang="ts">
+	import Grid from "./index.js";
+	import GridRoot from "./Grid.svelte";
+	import Cell from "./Cell.svelte";
+	import Placeholder from "../Placeholder/Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Layout / Grid"
+	description="A 2D layout primitive — the sibling of Flex. `columns` / `rows` (a number → equal tracks, or raw CSS) with `gap` / `rowGap`, and `contentX` / `contentY` place items within their cells. Shares Flex's `width`, `padding`, `margin`, `grow`, `shrink`, and the `--bg` / `--fg` / `--border` / `--shadow` shell."
+]
+
+	[preview
+		component={GridRoot}
+		title="Grid"
+		args={{ columns: 3, gap: 12, padding: 12, contentX: "stretch", contentY: "stretch" }}
+	]
+		<Grid {...args} --bg="var(--accent-50)">
+			<Placeholder text="1" height={48} />
+			<Placeholder text="2" height={48} />
+			<Placeholder text="3" height={48} />
+			<Placeholder text="4" height={48} />
+			<Placeholder text="5" height={48} />
+			<Placeholder text="6" height={48} />
+		</Grid>
+	[/preview]
+
+	[preview component={Cell} title="Grid.Cell" args={{ colSpan: 2 }}]
+		<Grid columns={4} gap={8} padding={12} --bg="var(--accent-50)">
+			<Grid.Cell {...args}><Placeholder text="cell" height={44} /></Grid.Cell>
+			<Placeholder text="1" height={44} />
+			<Grid.Cell rowSpan={2}><Placeholder text="rowSpan 2" height="fill" /></Grid.Cell>
+			<Placeholder text="2" height={44} />
+			<Placeholder text="3" height={44} />
+			<Placeholder text="4" height={44} />
+		</Grid>
+	[/preview]
+
+	[example title="Columns" description="A number gives that many equal columns; pass a CSS string for custom tracks (e.g. `2fr 1fr`)." direction="column" gap="16px"]
+		<Grid columns={2} gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="1" height={44} />
+			<Placeholder text="2" height={44} />
+			<Placeholder text="3" height={44} />
+			<Placeholder text="4" height={44} />
+		</Grid>
+		<Grid columns={4} gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="1" height={44} />
+			<Placeholder text="2" height={44} />
+			<Placeholder text="3" height={44} />
+			<Placeholder text="4" height={44} />
+		</Grid>
+		<Grid columns="2fr 1fr" gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="2fr" height={44} />
+			<Placeholder text="1fr" height={44} />
+		</Grid>
+	[/example]
+
+	[example title="Gap & row gap" description="`gap` spaces every cell; `rowGap` overrides just the vertical gap." direction="column" gap="16px"]
+		<Grid columns={3} gap={8} rowGap={24} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="1" height={40} />
+			<Placeholder text="2" height={40} />
+			<Placeholder text="3" height={40} />
+			<Placeholder text="4" height={40} />
+			<Placeholder text="5" height={40} />
+			<Placeholder text="6" height={40} />
+		</Grid>
+	[/example]
+
+	[example title="Cell alignment" description="`contentX` / `contentY` place items within their cells (when the item is smaller than the cell). The cells here are taller than the boxes." direction="column" gap="16px"]
+		<Grid columns={3} rows="72px" gap={8} padding={12} contentX="left" contentY="top" --bg="var(--accent-50)">
+			<Placeholder text="1" width={40} height={40} />
+			<Placeholder text="2" width={40} height={40} />
+			<Placeholder text="3" width={40} height={40} />
+		</Grid>
+		<Grid columns={3} rows="72px" gap={8} padding={12} contentX="center" contentY="center" --bg="var(--accent-50)">
+			<Placeholder text="1" width={40} height={40} />
+			<Placeholder text="2" width={40} height={40} />
+			<Placeholder text="3" width={40} height={40} />
+		</Grid>
+		<Grid columns={3} rows="72px" gap={8} padding={12} contentX="right" contentY="bottom" --bg="var(--accent-50)">
+			<Placeholder text="1" width={40} height={40} />
+			<Placeholder text="2" width={40} height={40} />
+			<Placeholder text="3" width={40} height={40} />
+		</Grid>
+	[/example]
+
+	[example title="Spanning" description="Wrap a child in `Grid.Cell` to span columns or rows with `colSpan` / `rowSpan` (a number → span N, or a raw CSS value)." direction="column" gap="16px"]
+		<Grid columns={3} gap={8} padding={12} --bg="var(--accent-50)">
+			<Grid.Cell colSpan={2}><Placeholder text="colSpan 2" height={44} /></Grid.Cell>
+			<Placeholder text="1" height={44} />
+			<Placeholder text="2" height={44} />
+			<Placeholder text="3" height={44} />
+			<Placeholder text="4" height={44} />
+		</Grid>
+		<Grid columns={3} gap={8} padding={12} --bg="var(--accent-50)">
+			<Grid.Cell rowSpan={2}><Placeholder text="rowSpan 2" height="fill" /></Grid.Cell>
+			<Placeholder text="1" height={44} />
+			<Placeholder text="2" height={44} />
+			<Placeholder text="3" height={44} />
+			<Placeholder text="4" height={44} />
+		</Grid>
+	[/example]
+
+	[example title="Width" description="`fill` (default) spans the container; `hug` shrinks to the tracks; a number sets a fixed width." direction="column" gap="16px"]
+		<Grid columns={3} width="fill" gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="1" height={40} />
+			<Placeholder text="2" height={40} />
+			<Placeholder text="3" height={40} />
+		</Grid>
+		<Grid columns="repeat(3, 72px)" width="hug" gap={8} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="1" height={40} />
+			<Placeholder text="2" height={40} />
+			<Placeholder text="3" height={40} />
+		</Grid>
+	[/example]
+
+	[example title="Styled shell" description="Grid has no styling props — set `--bg`, `--border`, `--shadow` (and `--fg`) to theme it, or wrap it in a Container." direction="column"]
+		<Grid
+			columns={3}
+			gap={8}
+			padding={12}
+			--bg="var(--accent-50)"
+			--border="1px solid var(--accent-200)"
+			--shadow="0 1px 3px rgb(0 0 0 / 0.08)"
+			style="border-radius: 10px;"
+		>
+			<Placeholder text="1" height={40} />
+			<Placeholder text="2" height={40} />
+			<Placeholder text="3" height={40} />
+		</Grid>
+	[/example]
+
+[/SHOWCASE]

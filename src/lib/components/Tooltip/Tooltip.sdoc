@@ -15,31 +15,31 @@
 		contentY="middle"
 	]
 		<Tooltip {...args}>
-			<Button label="Hover me" variant="secondary" />
+			<Button text="Hover me" variant="secondary" />
 		</Tooltip>
 	[/preview]
 
 	[example title="Placements" gap="16px" contentY="middle" minHeight="160px"]
 		<Tooltip content="On top" placement="top">
-			<Button label="Top" variant="secondary" />
+			<Button text="Top" variant="secondary" />
 		</Tooltip>
 		<Tooltip content="Below" placement="bottom">
-			<Button label="Bottom" variant="secondary" />
+			<Button text="Bottom" variant="secondary" />
 		</Tooltip>
 		<Tooltip content="To the left" placement="left">
-			<Button label="Left" variant="secondary" />
+			<Button text="Left" variant="secondary" />
 		</Tooltip>
 		<Tooltip content="To the right" placement="right">
-			<Button label="Right" variant="secondary" />
+			<Button text="Right" variant="secondary" />
 		</Tooltip>
 	[/example]
 
 	[example title="On any trigger" gap="16px" contentY="middle" minHeight="140px"]
 		<Tooltip content="Delete this item — cannot be undone">
-			<Button intent="danger" label="Delete" />
+			<Button intent="danger" text="Delete" />
 		</Tooltip>
 		<Tooltip content="Opens in a new tab" placement="bottom">
-			<Button variant="link" label="Learn more" />
+			<Button variant="link" text="Learn more" />
 		</Tooltip>
 	[/example]
 

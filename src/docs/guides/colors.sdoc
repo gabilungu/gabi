@@ -35,9 +35,9 @@
 	dolore eu fugiat nulla pariatur.
 
 	[example title="Buttons" direction="row" gap="8px" contentY="middle"]
-		<Button label="Default" />
-		<Button label="Success" intent="success" />
-		<Button label="Danger" intent="danger" />
+		<Button text="Default" />
+		<Button text="Success" intent="success" />
+		<Button text="Danger" intent="danger" />
 	[/example]
 
 	And this prose — like the headings above — uses the docs app's styling,

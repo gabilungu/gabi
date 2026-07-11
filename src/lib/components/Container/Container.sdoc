@@ -1,0 +1,91 @@
+<script lang="ts">
+	import Container from "./Container.svelte";
+	import Placeholder from "../Placeholder/Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Layout / Container"
+	description="A styled surface for a region of the page. Sizing, padding, margin, and overflow are props; the shell is themed with CSS custom properties — `--border`, `--bg` (a colour *or* an image), and `--shadow`. Children stack in a flex column by default; set `flexDirection` for a row."
+]
+
+	[preview component={Container} args={{ padding: 16, gap: 8, radius: 8 }}]
+		<Container {...args} --border="1px solid var(--base-100)">
+			<Placeholder text="a" />
+			<Placeholder text="b" />
+			<Placeholder text="c" />
+		</Container>
+	[/preview]
+
+	[example
+		title="Direction"
+		description="Children stack in a column by default; `flexDirection` switches to a row (or the `-reverse` variants)."
+	]
+		<Container width="hug" padding={12} gap={8} radius={8} --border="1px solid var(--base-100)">
+			<Placeholder text="a" width="hug" />
+			<Placeholder text="b" width="hug" />
+			<Placeholder text="c" width="hug" />
+		</Container>
+		<Container flexDirection="row" width="hug" padding={12} gap={8} radius={8} --border="1px solid var(--base-100)">
+			<Placeholder text="a" width="hug" />
+			<Placeholder text="b" width="hug" />
+			<Placeholder text="c" width="hug" />
+		</Container>
+	[/example]
+
+	[example
+		title="Sizing"
+		description="`width`/`height` take `hug` (fit content), `fill` (100%), a number (px), or any CSS length."
+		direction="column"
+		maxWidth="360px"
+	]
+		<Container width="hug" padding={12} radius={8} --border="1px solid var(--base-100)">
+			<Placeholder width="hug" text="hug — shrinks to content" />
+		</Container>
+		<Container width="fill" padding={12} radius={8} --border="1px solid var(--base-100)">
+			<Placeholder text="fill — spans the row" />
+		</Container>
+	[/example]
+
+	[example
+		title="Border & radius"
+		description="`--border` is a full border shorthand; `radius` is a number (px) or any CSS length."
+	]
+		<Container width={120} height={80} radius={4} --border="1px solid var(--base-300)" />
+		<Container width={120} height={80} radius={12} --border="2px solid var(--action-400)" />
+		<Container width={120} height={80} radius="50%" --border="1px dashed var(--base-400)" />
+	[/example]
+
+	[example
+		title="Background"
+		description="`--bg` is a background shorthand: a palette colour, or an image with its own sizing and position."
+	]
+		<Container width={200} height={120} radius={10} --bg="var(--action-100)" />
+		<Container width={200} height={120} radius={10} overflow="hidden" --bg="url(/placeholder.png) center / cover no-repeat" />
+	[/example]
+
+	[example
+		title="Shadow"
+		description="`--shadow` takes any box-shadow value."
+		gap="24px"
+		background="var(--base-100)"
+	]
+		<Container width={120} height={80} radius={8} --bg="var(--base-0)" --shadow="0 1px 2px rgb(0 0 0 / 0.08)" />
+		<Container width={120} height={80} radius={8} --bg="var(--base-0)" --shadow="0 4px 12px rgb(0 0 0 / 0.12)" />
+		<Container width={120} height={80} radius={8} --bg="var(--base-0)" --shadow="0 12px 32px rgb(0 0 0 / 0.18)" />
+	[/example]
+
+	[example
+		title="Overflow"
+		description="A fixed height plus `overflow` set to `scrollY` scrolls the content and clips it to the corner radius."
+	]
+		<Container width={220} height={140} padding={12} gap={8} radius={8} overflow="scrollY" --border="1px solid var(--base-100)">
+			<Placeholder text="Item 1" />
+			<Placeholder text="Item 2" />
+			<Placeholder text="Item 3" />
+			<Placeholder text="Item 4" />
+			<Placeholder text="Item 5" />
+			<Placeholder text="Item 6" />
+		</Container>
+	[/example]
+
+[/SHOWCASE]

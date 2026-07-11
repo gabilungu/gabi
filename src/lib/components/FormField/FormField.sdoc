@@ -1,0 +1,103 @@
+<script lang="ts">
+	import FormField from "./FormField.svelte";
+	import Input from "../Input/Input.svelte";
+	import Textarea from "../Textarea/Textarea.svelte";
+	import Placeholder from "../Placeholder/Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Form / FormField"
+	description="Wraps a single form control (Input / Select / Textarea) with a label, a right-aligned hint, and helper text on either side — each with an optional icon. `size` scales the text; `intent` colours the helper text, so an error is just a helper message with `intent` set to `danger`."
+]
+
+	[preview component={FormField} args={{ label: "Email", required: false, leftHelperText: "Use your work address.", leftHelperIcon: "/icons/info.svg" }}]
+		<FormField {...args}>
+			<Placeholder text="Control" />
+		</FormField>
+	[/preview]
+
+	[example title="Label, required & right text" direction="column"]
+		<FormField label="Full name" required width={300}>
+			<Input placeholder="Jane Doe" />
+		</FormField>
+		<FormField label="Nickname" rightText="Optional" width={300}>
+			<Input placeholder="JD" />
+		</FormField>
+	[/example]
+
+	[example title="Helper text & counter" direction="column"]
+		<FormField label="Username" leftHelperText="Letters and numbers only." leftHelperIcon="/icons/info.svg" width={300}>
+			<Input placeholder="jane_doe" />
+		</FormField>
+		<FormField label="Bio" rightHelperText="0 / 160" width={300}>
+			<Textarea rows={2} placeholder="A short bio" />
+		</FormField>
+	[/example]
+
+	[example title="Intents" description="`intent` colours the helper text and its icon. Pair it with the control's own intent — an error is just a `danger` helper message." direction="column"]
+		<FormField label="Default" leftHelperText="Helper text" leftHelperIcon="/icons/info.svg" width={320}>
+			<Input placeholder="Default" />
+		</FormField>
+		<FormField label="Success" intent="success" leftHelperText="Looks good." leftHelperIcon="/icons/circle-check.svg" width={320}>
+			<Input intent="success" value="jane_doe" />
+		</FormField>
+		<FormField label="Warning" intent="warning" leftHelperText="Double-check this value." leftHelperIcon="/icons/triangle-alert.svg" width={320}>
+			<Input intent="warning" value="maybe" />
+		</FormField>
+		<FormField label="Password" intent="danger" leftHelperText="Must be at least 8 characters." leftHelperIcon="/icons/circle-alert.svg" rightHelperText="3 / 8" width={320}>
+			<Input type="password" intent="danger" value="abc" />
+		</FormField>
+	[/example]
+
+	[example title="Sizes" gap="20px"]
+		<FormField size="xs" label="Extra small" leftHelperText="Hint text" leftHelperIcon="/icons/info.svg" width={180}>
+			<Input size="xs" placeholder="xs" />
+		</FormField>
+		<FormField size="sm" label="Small" leftHelperText="Hint text" leftHelperIcon="/icons/info.svg" width={180}>
+			<Input size="sm" placeholder="sm" />
+		</FormField>
+		<FormField size="md" label="Medium" leftHelperText="Hint text" leftHelperIcon="/icons/info.svg" width={180}>
+			<Input size="md" placeholder="md" />
+		</FormField>
+		<FormField size="lg" label="Large" leftHelperText="Hint text" leftHelperIcon="/icons/info.svg" width={180}>
+			<Input size="lg" placeholder="lg" />
+		</FormField>
+	[/example]
+
+	[example title="In a row" description="Fields lay out side by side and top-align, so labels and controls line up. Give each a `width` so they share the space." gap="20px"]
+		<FormField label="First name" width={200}>
+			<Input placeholder="Jane" />
+		</FormField>
+		<FormField label="Last name" width={200}>
+			<Input placeholder="Doe" />
+		</FormField>
+		<FormField label="Suffix" rightText="Optional" width={140}>
+			<Input placeholder="Jr." />
+		</FormField>
+	[/example]
+
+	[example title="Height & alignment" description="By default a field hugs its content. `height` sizes it and the control slot grows to fill the space, pushing the helper to the bottom; `fill` stretches a field to match the tallest on the row, and `contentY` then places the control — `top`, `centered` (default), or `bottom`." gap="20px"]
+		<FormField label="default" leftHelperText="Hint text" width={175}>
+			<Placeholder text="40px" height={40} />
+		</FormField>
+		<FormField label="height: 140" height={140} leftHelperText="Hint text" width={175}>
+			<Placeholder text="filled" height="fill" />
+		</FormField>
+		<FormField label="fill · top" height="fill" contentY="top" leftHelperText="Hint text" width={175}>
+			<Placeholder text="top" height={40} />
+		</FormField>
+		<FormField label="fill · centered" height="fill" leftHelperText="Hint text" width={175}>
+			<Placeholder text="centered" height={40} />
+		</FormField>
+		<FormField label="fill · bottom" height="fill" contentY="bottom" leftHelperText="Hint text" width={175}>
+			<Placeholder text="bottom" height={40} />
+		</FormField>
+	[/example]
+
+	[example title="Disabled" direction="column"]
+		<FormField label="Locked" disabled leftHelperText="You can't change this." leftHelperIcon="/icons/info.svg" width={300}>
+			<Input placeholder="Read only" disabled />
+		</FormField>
+	[/example]
+
+[/SHOWCASE]

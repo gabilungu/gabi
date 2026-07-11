@@ -4,33 +4,39 @@
 
 [SHOWCASE
 	title="@components/:Form / Input"
-	description="A text input using the gabi size scale."
+	description="A text input using the gabi size scale. Fills its container by default; set `width` for a fixed or intrinsic size."
 ]
 
-	[preview component={Input} args={{ placeholder: "Type here…", size: "md" }}]
+	[preview component={Input} args={{ placeholder: "Type here…", size: "md" }} maxWidth="220px"]
 		<Input {...args} />
 	[/preview]
 
-	[example title="Sizes"]
+	[example title="Sizes" maxWidth="220px"]
 		<Input size="xs" placeholder="Extra small" />
 		<Input size="sm" placeholder="Small" />
 		<Input size="md" placeholder="Medium" />
 		<Input size="lg" placeholder="Large" />
 	[/example]
 
-	[example title="Types"]
+	[example title="Types" maxWidth="220px"]
 		<Input type="email" placeholder="you@example.com" />
 		<Input type="password" placeholder="Password" />
 		<Input type="search" placeholder="Search…" />
 	[/example]
 
-	[example title="Validation"]
+	[example title="Width" description="`width` is `fill` (100%) by default; pass a number (px), any CSS length, or `auto` to fit the content." direction="column"]
+		<Input placeholder="Fill the container (default)" />
+		<Input width={160} placeholder="Fixed 160px" />
+		<Input width="auto" placeholder="Auto — fits content" />
+	[/example]
+
+	[example title="Validation" maxWidth="220px"]
 		<Input intent="success" value="Looks good" />
 		<Input intent="warning" value="Double-check this" />
 		<Input intent="danger" type="email" value="not-an-email" />
 	[/example]
 
-	[example title="Disabled"]
+	[example title="Disabled" maxWidth="220px"]
 		<Input placeholder="Can't type here" disabled />
 	[/example]
 

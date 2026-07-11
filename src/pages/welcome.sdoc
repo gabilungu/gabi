@@ -6,8 +6,8 @@
 		'\timport { Button, Input } from "gabi";',
 		'</' + 'script>',
 		'',
-		'<Input label="Email" />',
-		'<Button intent="primary">Sign up</Button>',
+		'<Input type="email" placeholder="Email" />',
+		'<Button text="Sign up" />',
 	].join('\n');
 </script>
 

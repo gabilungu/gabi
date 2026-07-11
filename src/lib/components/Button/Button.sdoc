@@ -2,25 +2,25 @@
 	import Button from "./Button.svelte";
 </script>
 
-[SHOWCASE title="@components/:Form / Button" description="Buttons trigger an action. Pick an intent for meaning and a variant for emphasis."]
+[SHOWCASE title="@components/:Form / Button" description="Buttons trigger an action. Pick an intent for meaning and a variant for emphasis; add an `icon` (before or after the text), or omit the text for a square, icon-only button."]
 
-	[preview component={Button} args={{ label:"Login" }}]
+	[preview component={Button} args={{ text: "Login", icon: "/icons/log-in.svg" }}]
 		<Button {...args} />
 	[/preview]
 
 	[example title="Sizes"]
-		<Button size="xs" label="Extra small" />
-		<Button size="sm" label="Small" />
-		<Button size="md" label="Medium" />
-		<Button size="lg" label="Large" />
+		<Button size="xs" text="Extra small" />
+		<Button size="sm" text="Small" />
+		<Button size="md" text="Medium" />
+		<Button size="lg" text="Large" />
 	[/example]
 
 	[example title="Intents"]
-		<Button intent="action" label="Action" />
-		<Button intent="neutral" label="Neutral" />
-		<Button intent="danger" label="Danger" />
-		<Button intent="warning" label="Warning" />
-		<Button intent="success" label="Success" />
+		<Button intent="action" text="Action" />
+		<Button intent="neutral" text="Neutral" />
+		<Button intent="danger" text="Danger" />
+		<Button intent="warning" text="Warning" />
+		<Button intent="success" text="Success" />
 	[/example]
 
 	[example title="Variants" direction="column" gap="12px"]
@@ -44,19 +44,58 @@
 					>{intent}</span
 				>
 				{#each variants as variant (variant)}
-					<Button {intent} {variant} label={variant} />
+					<Button {intent} {variant} text={variant} />
 				{/each}
 			</div>
 		{/each}
 	[/example]
 
+	[example title="Icons"]
+		<Button icon="/icons/search.svg" text="Search" />
+		<Button icon="/icons/arrow-right.svg" iconAfterText text="Next" />
+		<Button icon="/icons/plus.svg" aria-label="Add" />
+		<Button icon="/icons/plus.svg" aria-label="Add" variant="outlined" />
+	[/example]
+
+	[example title="Align Content" description="`alignContent` lays out the icon + text horizontally. `justify` pushes them to opposite edges, but a lone icon or text stays centred — only visible when the button is wider than its content, so these set `width` to `fill`."]
+		<script>
+			const aligns = ["left", "center", "right", "justify"] as const;
+			const cols = [
+				{ head: "ICON + TEXT", icon: "/icons/arrow-left.svg", after: false, label: true },
+				{ head: "ICON AFTER TEXT", icon: "/icons/arrow-right.svg", after: true, label: true },
+				{ head: "TEXT ONLY", icon: undefined, after: false, label: true },
+				{ head: "ICON ONLY", icon: "/icons/plus.svg", after: false, label: false },
+			];
+		</script>
+
+		<div style="display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap;">
+			{#each cols as col (col.head)}
+				<div style="display: flex; flex-direction: column; gap: 10px; width: 220px;">
+					<span style="font-size: 12px; letter-spacing: 0.04em; color: var(--base-500);"
+						>{col.head}</span
+					>
+					{#each aligns as a (a)}
+						<Button
+							width="fill"
+							alignContent={a}
+							icon={col.icon}
+							iconAfterText={col.after}
+							text={col.label ? a : undefined}
+							aria-label={col.label ? undefined : "Add"}
+						/>
+					{/each}
+				</div>
+			{/each}
+		</div>
+	[/example]
+
 	[example title="Disabled"]
-		<Button variant="primary" label="Primary" disabled />
-		<Button variant="secondary" label="Secondary" disabled />
-		<Button variant="tertiary" label="Tertiary" disabled />
-		<Button variant="outlined" label="Outlined" disabled />
-		<Button variant="ghost" label="Ghost" disabled />
-		<Button variant="link" label="Link" disabled />
+		<Button variant="primary" text="Primary" disabled />
+		<Button variant="secondary" text="Secondary" disabled />
+		<Button variant="tertiary" text="Tertiary" disabled />
+		<Button variant="outlined" text="Outlined" disabled />
+		<Button variant="ghost" text="Ghost" disabled />
+		<Button variant="link" text="Link" disabled />
 	[/example]
 
 [/SHOWCASE]

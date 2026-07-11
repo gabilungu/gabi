@@ -2,11 +2,14 @@
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	// The native `size` attribute (a character count) is replaced by the scale.
-	interface Props extends Omit<HTMLInputAttributes, 'size'> {
+	interface Props extends Omit<HTMLInputAttributes, 'size' | 'width'> {
 		value?: string;
 		size?: 'xs' | 'sm' | 'md' | 'lg';
 		type?: 'text' | 'email' | 'password' | 'search' | 'tel' | 'url';
 		intent?: 'default' | 'success' | 'warning' | 'danger';
+		/** Width: `'fill'` (100% of the container — the default), a number (px),
+		 * any CSS length, or `'auto'` to fit its content. */
+		width?: 'fill' | number | string;
 		placeholder?: string;
 		disabled?: boolean;
 	}
@@ -16,11 +19,20 @@
 		size = 'md',
 		type = 'text',
 		intent = 'default',
+		width = 'fill',
 		placeholder,
 		disabled = false,
 		class: className,
 		...rest
 	}: Props = $props();
+
+	const resolvedWidth = $derived(
+		width === 'fill'
+			? '100%'
+			: typeof width === 'number'
+				? `${width}px`
+				: (width ?? undefined),
+	);
 </script>
 
 <!-- Two-way binding can't use a dynamic `type`, so update `value` by hand. -->
@@ -34,6 +46,7 @@
 	{disabled}
 	data-size={size}
 	data-intent={intent}
+	style:width={resolvedWidth}
 	oninput={(e) => {
 		value = e.currentTarget.value;
 		rest.oninput?.(e);
@@ -43,6 +56,8 @@
 <style>
 	input {
 		box-sizing: border-box;
+		/* No intrinsic min-width from the browser, so it can fill or shrink freely. */
+		min-width: 0;
 		border: 1px solid var(--base-200);
 		background: var(--base-0);
 		color: var(--base-700);

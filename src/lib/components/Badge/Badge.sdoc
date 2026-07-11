@@ -4,42 +4,37 @@
 
 [SHOWCASE
 	title="@components/:Display / Badge"
-	description="A tiny status or count indicator — the small, non-interactive sibling of Chip. Give it a label (or `dot` for a status dot), an intent for colour, and a solid or soft variant."
+	description="A tiny status or count indicator — the small, non-interactive sibling of Chip. Give it `text` (or `dot` for a status dot) and colour it with the `--bg` and `--fg` custom properties."
 ]
 
-	[preview component={Badge} args={{ label: "3", intent: "danger", variant: "solid" }}]
+	[preview component={Badge} args={{ text: "3", size: "md" }}]
 		<Badge {...args} />
 	[/preview]
 
-	[example title="Intents"]
-		<Badge intent="action" label="Action" />
-		<Badge intent="neutral" label="Neutral" />
-		<Badge intent="danger" label="Danger" />
-		<Badge intent="warning" label="Warning" />
-		<Badge intent="success" label="Success" />
-	[/example]
-
-	[example title="Variants"]
-		<Badge variant="solid" intent="action" label="Solid" />
-		<Badge variant="soft" intent="action" label="Soft" />
+	[example title="Colours"]
+		<Badge text="Neutral" />
+		<Badge text="Action" style="--bg: var(--action-500); --fg: var(--base-0)" />
+		<Badge text="Danger" style="--bg: var(--danger-500); --fg: var(--base-0)" />
+		<Badge text="Soft" style="--bg: var(--success-100); --fg: var(--success-700)" />
 	[/example]
 
 	[example title="Counts" contentY="middle"]
-		<Badge intent="danger" label="3" />
-		<Badge intent="danger" label="12" />
-		<Badge intent="danger" label="99+" />
+		<Badge text="3" style="--bg: var(--danger-500); --fg: var(--base-0)" />
+		<Badge text="12" style="--bg: var(--danger-500); --fg: var(--base-0)" />
+		<Badge text="99+" style="--bg: var(--danger-500); --fg: var(--base-0)" />
 	[/example]
 
 	[example title="Status dots" contentY="middle"]
-		<Badge dot intent="success" />
-		<Badge dot intent="warning" />
-		<Badge dot intent="danger" />
-		<Badge dot intent="neutral" />
+		<Badge dot style="--bg: var(--success-500)" />
+		<Badge dot style="--bg: var(--warning-500)" />
+		<Badge dot style="--bg: var(--danger-500)" />
+		<Badge dot />
 	[/example]
 
 	[example title="Sizes" contentY="middle"]
-		<Badge size="sm" label="5" />
-		<Badge size="md" label="5" />
+		<Badge size="xs" text="5" />
+		<Badge size="sm" text="5" />
+		<Badge size="md" text="5" />
 	[/example]
 
 [/SHOWCASE]

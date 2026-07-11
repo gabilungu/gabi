@@ -35,7 +35,13 @@ export default {
 	// The site's sections, in top-bar order; titles reference them by slug (@guides/…)
 	sections: [
 		{ slug: 'guides', title: 'Guides', order: ['introduction', 'colors'] },
-		{ slug: 'components', title: 'Components' },
+		{
+			slug: 'components',
+			title: 'Components',
+			// Explicit full order so the Layouts group lands last (unlisted nodes
+			// would otherwise sort alphabetically *before* it).
+			order: ['layout', 'display', 'form', 'icon', 'navtree', 'utils', 'layouts'],
+		},
 	],
 
 	// The landing page: a sectionless [PAGE] routed at the site root

@@ -1,0 +1,138 @@
+<script lang="ts">
+	import Container from "../lib/components/Container/Container.svelte";
+	import FormField from "../lib/components/FormField/FormField.svelte";
+	import Input from "../lib/components/Input/Input.svelte";
+	import Button from "../lib/components/Button/Button.svelte";
+	import Divider from "../lib/components/Divider/Divider.svelte";
+	import Checkbox from "../lib/components/Checkbox/Checkbox.svelte";
+	import Text from "../lib/components/Text/Text.svelte";
+</script>
+
+[LAYOUT title="@components/:Layouts / Auth / Sign in"]
+	<div
+		style="display: flex; align-items: center; justify-content: center; min-height: 640px; padding: 48px 24px; background: var(--base-100); box-sizing: border-box;"
+	>
+		<Container
+			width={380}
+			padding={28}
+			radius={14}
+			gap={20}
+			--bg="var(--base-0)"
+			--border="1px solid var(--base-100)"
+			--shadow="0 10px 40px rgb(0 0 0 / 0.08)"
+		>
+			<div style="display: flex; flex-direction: column; gap: 4px;">
+				<Text variant="h3">Sign in</Text>
+				<Text variant="small">Welcome back — please enter your details.</Text>
+			</div>
+
+			<FormField label="Email">
+				<Input type="email" placeholder="you@work.com" />
+			</FormField>
+
+			<FormField label="Password">
+				<Input type="password" placeholder="••••••••" />
+			</FormField>
+
+			<div style="display: flex; align-items: center; justify-content: space-between;">
+				<Checkbox label="Remember me" size="sm" />
+				<Button text="Forgot password?" variant="link" size="sm" />
+			</div>
+
+			<Button text="Sign in" icon="/icons/log-in.svg" size="lg" width="fill" />
+
+			<Divider />
+
+			<Text variant="small" style="text-align: center;">
+				Don't have an account?
+				<a href="/signup" style="color: var(--action-600); font-weight: 500; text-decoration: none;">Sign up</a>
+			</Text>
+		</Container>
+	</div>
+[/LAYOUT]
+
+[LAYOUT title="@components/:Layouts / Auth / Sign up"]
+	<div
+		style="display: flex; align-items: center; justify-content: center; min-height: 640px; padding: 48px 24px; background: var(--base-100); box-sizing: border-box;"
+	>
+		<Container
+			width={380}
+			padding={28}
+			radius={14}
+			gap={20}
+			--bg="var(--base-0)"
+			--border="1px solid var(--base-100)"
+			--shadow="0 10px 40px rgb(0 0 0 / 0.08)"
+		>
+			<div style="display: flex; flex-direction: column; gap: 4px;">
+				<Text variant="h3">Create an account</Text>
+				<Text variant="small">Start your free trial — no card required.</Text>
+			</div>
+
+			<FormField label="Full name">
+				<Input placeholder="Jane Doe" />
+			</FormField>
+
+			<FormField label="Email">
+				<Input type="email" placeholder="you@work.com" />
+			</FormField>
+
+			<FormField
+				label="Password"
+				leftHelperText="At least 8 characters."
+				leftHelperIcon="/icons/info.svg"
+			>
+				<Input type="password" placeholder="••••••••" />
+			</FormField>
+
+			<Checkbox label="I agree to the Terms & Privacy Policy" size="sm" />
+
+			<Button text="Create account" size="lg" width="fill" />
+
+			<Divider />
+
+			<Text variant="small" style="text-align: center;">
+				Already have an account?
+				<a href="/login" style="color: var(--action-600); font-weight: 500; text-decoration: none;">Sign in</a>
+			</Text>
+		</Container>
+	</div>
+[/LAYOUT]
+
+[LAYOUT title="@components/:Layouts / Auth / Forgot password"]
+	<div
+		style="display: flex; align-items: center; justify-content: center; min-height: 640px; padding: 48px 24px; background: var(--base-100); box-sizing: border-box;"
+	>
+		<Container
+			width={380}
+			padding={28}
+			radius={14}
+			gap={20}
+			--bg="var(--base-0)"
+			--border="1px solid var(--base-100)"
+			--shadow="0 10px 40px rgb(0 0 0 / 0.08)"
+		>
+			<div style="display: flex; flex-direction: column; gap: 4px;">
+				<Text variant="h3">Reset your password</Text>
+				<Text variant="small">Enter your email and we'll send you a reset link.</Text>
+			</div>
+
+			<FormField
+				label="Email"
+				leftHelperText="The address you signed up with."
+				leftHelperIcon="/icons/info.svg"
+			>
+				<Input type="email" placeholder="you@work.com" />
+			</FormField>
+
+			<Button text="Send reset link" icon="/icons/mail.svg" size="lg" width="fill" />
+
+			<Divider />
+
+			<Text variant="small" style="text-align: center;">
+				Remembered it?
+				<a href="/login" style="color: var(--action-600); font-weight: 500; text-decoration: none;">Back to sign in</a>
+			</Text>
+		</Container>
+	</div>
+[/LAYOUT]

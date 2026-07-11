@@ -1,0 +1,50 @@
+<script lang="ts">
+	import Text from "./Text.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Display / Text"
+	description="Typographic text. `variant` picks a preset (font size + weight + line height + a default colour); `size`, `weight`, and `family` override it, and the `--color` custom property overrides the colour. `as` sets the element, and `width` controls how it sizes."
+]
+
+	[preview component={Text} args={{ variant: "h2" }}]
+		<Text {...args}>The quick brown fox</Text>
+	[/preview]
+
+	[example title="Variants" direction="column" gap="10px"]
+		<Text variant="h1">Heading 1</Text>
+		<Text variant="h2">Heading 2</Text>
+		<Text variant="h3">Heading 3</Text>
+		<Text variant="h4">Heading 4</Text>
+		<Text variant="h5">Heading 5</Text>
+		<Text variant="h6">Heading 6</Text>
+		<Text variant="important">Important — larger and a touch darker for emphasis.</Text>
+		<Text variant="body">Body — the default preset for running text.</Text>
+		<Text variant="small">Small — secondary or supporting text.</Text>
+		<Text variant="caption">Caption — the smallest, most muted preset.</Text>
+	[/example]
+
+	[example title="Overrides" description="`size`, `weight`, `lineHeight`, `family`, and the `--color` custom property each override the variant." direction="column" gap="10px"]
+		<Text variant="h3" --color="var(--accent-600)">Coloured heading</Text>
+		<Text variant="body" weight={700}>Body at weight 700</Text>
+		<Text variant="body" size={20}>Body forced to 20px</Text>
+		<Text variant="body" family="var(--font-mono)">Body in the mono family</Text>
+		<Text variant="body" lineHeight={2} width={280}>Body with a doubled line height — long enough to wrap so the extra spacing between lines shows.</Text>
+	[/example]
+
+	[example title="Element (as)" description="`as` changes the tag without changing the look; the default tag follows the variant." direction="column" gap="10px"]
+		<Text variant="h2" as="span">An h2 preset rendered as a span</Text>
+		<Text variant="body" as="label">Body preset rendered as a label</Text>
+		<Text variant="h4" as="p">An h4 preset rendered as a p</Text>
+	[/example]
+
+	[example title="Width" description="`auto` (default) is natural — a span hugs its text, a block-level element fills its container. `fill` forces 100% and a number a fixed px width (both become inline-block, so they apply to a span too)." direction="column" gap="12px"]
+		<div style="width: 300px; border: 1px dashed var(--base-300); border-radius: 8px; padding: 12px;">
+			<Text as="span" --color="var(--base-0)" style="background: var(--accent-500); padding: 4px 8px; border-radius: 4px;">span · auto → hugs</Text>
+			<Text as="p" --color="var(--base-0)" style="background: var(--accent-500); padding: 4px 8px; border-radius: 4px; margin-top: 10px;">p · auto → fills</Text>
+		</div>
+		<Text as="span" width="fill" --color="var(--base-0)" style="background: var(--accent-500); padding: 4px 8px; border-radius: 4px;">width fill → 100%</Text>
+		<Text as="span" width={200} --color="var(--base-0)" style="background: var(--accent-500); padding: 4px 8px; border-radius: 4px;">width 200px</Text>
+	[/example]
+
+[/SHOWCASE]
