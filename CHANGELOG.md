@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.6] - 2026-07-11
+
+### Added
+
+- Layout primitives with no styling props — theme them through the `--bg`,
+  `--fg`, `--border`, and `--shadow` custom properties:
+  - `Container` — a styled surface (padding, radius, sizing, overflow).
+  - `Divider` — a horizontal or vertical rule.
+  - `Flex` — a 1D layout with physical `contentX` / `contentY` (they stay
+    horizontal / vertical across `direction`), `gap` / `padding` / `margin`,
+    `width`, `wrap`, and per-element `grow` / `shrink` (`boolean | number`).
+  - `Grid` — a 2D layout sharing Flex's props, plus `columns` / `rows` /
+    `rowGap` and a `Grid.Cell` compound for `colSpan` / `rowSpan`.
+- `Text` — type presets (`h1`–`h6`, `body`, `important`, `small`, `caption`)
+  with `size` / `weight` / `lineHeight` / `family` overrides and a `--color`
+  custom property.
+- `FormField` — wraps a single control with a label, a right-aligned hint, and
+  helper text on either side (each with an optional icon), and an `intent` that
+  colours the helper.
+- `width` on `Input`; `icon`, optional `text`, and `alignContent` on `Button`.
+- `--bg` / `--fg` custom properties and a `radius` prop on `Placeholder`.
+
+### Changed
+
+- `Badge` drops `intent` / `variant` in favour of `--bg` / `--fg` custom
+  properties, and renames `label` to `text`.
+
+### Fixed
+
+- `Chip`'s `onselect` prop no longer conflicts with the native handler type.
+
 ## [0.0.5] - 2026-07-09
 
 ### Added

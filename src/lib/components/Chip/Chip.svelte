@@ -3,7 +3,7 @@
 	import Icon from '../Icon/Icon.svelte';
 	import closeRaw from '../../internal/icons/close.svg?raw';
 
-	interface Props extends HTMLAttributes<HTMLSpanElement> {
+	interface Props extends Omit<HTMLAttributes<HTMLSpanElement>, 'onselect'> {
 		label: string;
 		size?: 'xs' | 'sm' | 'md' | 'lg';
 		intent?: 'action' | 'neutral' | 'danger' | 'warning' | 'success';
@@ -59,7 +59,7 @@
 				onselect?.(selected);
 			}
 		}
-		onclick?.(event);
+		onclick?.(event as Parameters<NonNullable<typeof onclick>>[0]);
 	}
 </script>
 
