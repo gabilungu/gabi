@@ -4,9 +4,9 @@
 
 [SHOWCASE title="@components/:Form / Button" description="Buttons trigger an action. Pick an intent for meaning and a variant for emphasis; add an `icon` (before or after the text), or omit the text for a square, icon-only button."]
 
-	[preview component={Button} args={{ text: "Login", icon: "/icons/log-in.svg" }}]
+	[component component={Button} args={{ text: "Login", icon: "/icons/log-in.svg" }}]
 		<Button {...args} />
-	[/preview]
+	[/component]
 
 	[example title="Sizes"]
 		<Button size="xs" text="Extra small" />

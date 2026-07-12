@@ -9,9 +9,9 @@
 	description="Renders an SVG inline in the current text color at any size. Give it an `icon` — a path to a file in the static folder, or raw SVG markup (e.g. from a ?raw import). It's repainted to follow the text color: `mode='stroke'` (the default) outlines it at `weight`, `mode='fill'` fills it."
 ]
 
-	[preview component={Icon} args={{ icon: "icons/search.svg" }}]
+	[component component={Icon} args={{ icon: "icons/search.svg" }}]
 		<Icon {...args} />
-	[/preview]
+	[/component]
 
 	[example title="From a path (static folder)" gap="20px" contentY="bottom"]
 		<Icon icon="icons/folder.svg" dimension={12} />

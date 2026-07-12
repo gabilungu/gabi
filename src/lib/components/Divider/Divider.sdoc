@@ -7,9 +7,9 @@
 	description="A thin rule between content, horizontal or vertical. Colour it with the `--color` custom property; `thickness` and `margin` take a number (px) or any CSS length."
 ]
 
-	[preview component={Divider} args={{ direction: "horizontal", thickness: 1 }}]
+	[component component={Divider} args={{ direction: "horizontal", thickness: 1 }}]
 		<Divider {...args} />
-	[/preview]
+	[/component]
 
 	[example title="Horizontal" direction="column"]
 		<p style="margin: 0 0 8px;">Above the line</p>

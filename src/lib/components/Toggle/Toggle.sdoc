@@ -7,9 +7,9 @@
 	description="An on/off switch on the gabi size scale. Bind `checked` — like Checkbox, each is independent and toggles on its own without any binding."
 ]
 
-	[preview component={Toggle} args={{ label: "Wi-Fi", size: "md" }}]
+	[component component={Toggle} args={{ label: "Wi-Fi", size: "md" }}]
 		<Toggle {...args} />
-	[/preview]
+	[/component]
 
 	[example title="Sizes" gap="24px" contentY="middle"]
 		<Toggle size="sm" label="Small" />

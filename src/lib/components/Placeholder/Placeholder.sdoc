@@ -11,9 +11,9 @@
 		const steps = [120, 240, 360];
 	</script>
 
-	[preview component={Placeholder}]
+	[component component={Placeholder}]
 		<Placeholder {...args} />
-	[/preview]
+	[/component]
 
 	[example title="Width — fill, hug, px, length" direction="column"]
 		<Placeholder text="fill (default) — spans the container" />

@@ -8,13 +8,13 @@
 	description="A styled surface for a region of the page. Sizing, padding, margin, and overflow are props; the shell is themed with CSS custom properties — `--border`, `--bg` (a colour *or* an image), and `--shadow`. Children stack in a flex column by default; set `flexDirection` for a row."
 ]
 
-	[preview component={Container} args={{ padding: 16, gap: 8, radius: 8 }}]
+	[component component={Container} args={{ padding: 16, gap: 8, radius: 8 }}]
 		<Container {...args} --border="1px solid var(--base-100)">
 			<Placeholder text="a" />
 			<Placeholder text="b" />
 			<Placeholder text="c" />
 		</Container>
-	[/preview]
+	[/component]
 
 	[example
 		title="Direction"

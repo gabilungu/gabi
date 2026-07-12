@@ -7,9 +7,9 @@
 	description="Typographic text. `variant` picks a preset (font size + weight + line height + a default colour); `size`, `weight`, and `family` override it, and the `--color` custom property overrides the colour. `as` sets the element, and `width` controls how it sizes."
 ]
 
-	[preview component={Text} args={{ variant: "h2" }}]
+	[component component={Text} args={{ variant: "h2" }}]
 		<Text {...args}>The quick brown fox</Text>
-	[/preview]
+	[/component]
 
 	[example title="Variants" direction="column" gap="10px"]
 		<Text variant="h1">Heading 1</Text>

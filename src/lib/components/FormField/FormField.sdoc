@@ -10,11 +10,11 @@
 	description="Wraps a single form control (Input / Select / Textarea) with a label, a right-aligned hint, and helper text on either side — each with an optional icon. `size` scales the text; `intent` colours the helper text, so an error is just a helper message with `intent` set to `danger`."
 ]
 
-	[preview component={FormField} args={{ label: "Email", required: false, leftHelperText: "Use your work address.", leftHelperIcon: "/icons/info.svg" }}]
+	[component component={FormField} args={{ label: "Email", required: false, leftHelperText: "Use your work address.", leftHelperIcon: "/icons/info.svg" }}]
 		<FormField {...args}>
 			<Placeholder text="Control" />
 		</FormField>
-	[/preview]
+	[/component]
 
 	[example title="Label, required & right text" direction="column"]
 		<FormField label="Full name" required width={300}>

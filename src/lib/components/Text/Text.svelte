@@ -8,12 +8,33 @@
 	interface Props extends HTMLAttributes<HTMLElement> {
 		/** Type preset — sets font size, weight, line height, and a default colour.
 		 * Every other prop overrides it. Default: 'body'. */
-		// prettier-ignore (single-line union so sdocs generates a select control)
-		variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'body' | 'important' | 'small' | 'caption';
+		variant?:
+			| 'h1'
+			| 'h2'
+			| 'h3'
+			| 'h4'
+			| 'h5'
+			| 'h6'
+			| 'body'
+			| 'important'
+			| 'small'
+			| 'caption';
 		/** Element to render. Defaults to a sensible tag for the variant
 		 * (h1–h6 → the heading, body/important/small → `<p>`, caption → `<span>`). */
-		// prettier-ignore (single-line union so sdocs generates a select control)
-		as?: 'p' | 'span' | 'div' | 'label' | 'strong' | 'em' | 'small' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+		as?:
+			| 'p'
+			| 'span'
+			| 'div'
+			| 'label'
+			| 'strong'
+			| 'em'
+			| 'small'
+			| 'h1'
+			| 'h2'
+			| 'h3'
+			| 'h4'
+			| 'h5'
+			| 'h6';
 		/** Font size — a number (px) or any CSS length. Overrides the variant. */
 		size?: number | string;
 		/** Font weight — a number or keyword. Overrides the variant. */

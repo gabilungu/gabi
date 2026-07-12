@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Grid from "./index.js";
-	import GridRoot from "./Grid.svelte";
-	import Cell from "./Cell.svelte";
 	import Placeholder from "../Placeholder/Placeholder.svelte";
 </script>
 
@@ -10,8 +8,8 @@
 	description="A 2D layout primitive — the sibling of Flex. `columns` / `rows` (a number → equal tracks, or raw CSS) with `gap` / `rowGap`, and `contentX` / `contentY` place items within their cells. Shares Flex's `width`, `padding`, `margin`, `grow`, `shrink`, and the `--bg` / `--fg` / `--border` / `--shadow` shell."
 ]
 
-	[preview
-		component={GridRoot}
+	[component
+		component={Grid}
 		title="Grid"
 		args={{ columns: 3, gap: 12, padding: 12, contentX: "stretch", contentY: "stretch" }}
 	]
@@ -23,9 +21,9 @@
 			<Placeholder text="5" height={48} />
 			<Placeholder text="6" height={48} />
 		</Grid>
-	[/preview]
+	[/component]
 
-	[preview component={Cell} title="Grid.Cell" args={{ colSpan: 2 }}]
+	[component component={Grid.Cell} title="Grid.Cell" args={{ colSpan: 2 }}]
 		<Grid columns={4} gap={8} padding={12} --bg="var(--accent-50)">
 			<Grid.Cell {...args}><Placeholder text="cell" height={44} /></Grid.Cell>
 			<Placeholder text="1" height={44} />
@@ -34,7 +32,7 @@
 			<Placeholder text="3" height={44} />
 			<Placeholder text="4" height={44} />
 		</Grid>
-	[/preview]
+	[/component]
 
 	[example title="Columns" description="A number gives that many equal columns; pass a CSS string for custom tracks (e.g. `2fr 1fr`)." direction="column" gap="16px"]
 		<Grid columns={2} gap={8} padding={12} --bg="var(--accent-50)">

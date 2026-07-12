@@ -1,8 +1,5 @@
 <script lang="ts">
 	import NavTree from "./index.js";
-	import Root from "./NavTree.svelte";
-	import Group from "./Group.svelte";
-	import Item from "./Item.svelte";
 </script>
 
 [SHOWCASE
@@ -10,7 +7,7 @@
 	description="A composable tree navigation built from three components — the NavTree root, NavTree.Group, and NavTree.Item. Each tab below previews one of them; the props table follows the selected tab."
 ]
 
-	[preview component={Root} title="NavTree"]
+	[component component={NavTree} title="NavTree"]
 		<NavTree>
 			<NavTree.Group label="Getting started">
 				<NavTree.Item label="Introduction" href="#introduction" active />
@@ -36,10 +33,10 @@
 				</NavTree.Item>
 			</NavTree.Group>
 		</NavTree>
-	[/preview]
+	[/component]
 
-	[preview
-		component={Group}
+	[component
+		component={NavTree.Group}
 		title="NavTree.Group"
 		args={{ label: "Getting started", expanded: true }}
 	]
@@ -49,10 +46,10 @@
 				<NavTree.Item label="Installation" href="#installation" />
 			</NavTree.Group>
 		</NavTree>
-	[/preview]
+	[/component]
 
-	[preview
-		component={Item}
+	[component
+		component={NavTree.Item}
 		title="NavTree.Item"
 		args={{ label: "Projects", href:"#projects", active: true }}
 	]
@@ -61,13 +58,13 @@
 			<NavTree.Item {...args} />
 			<NavTree.Item label="Team" href="#team" />
 		</NavTree>
-	[/preview]
+	[/component]
 
 	[example title="Expandable folders"]
 		<NavTree>
 			<NavTree.Item label="src" expanded>
 				<NavTree.Item label="components" expanded>
-					<NavTree.Item label={"asd"} href="#f1" />
+					<NavTree.Item label="Button.svelte" href="#f1" />
 					<NavTree.Item label="Input.svelte" href="#f2" />
 				</NavTree.Item>
 				<NavTree.Item label="index.ts" href="#f3" active />
@@ -77,29 +74,36 @@
 	[/example]
 
 	[example
-		title="Driven by data"
-		description="The items array and the active state live in this example's own script."
+		title="Selection state"
+		description="The active state lives in this example's own script — click an item to select it."
 		background="var(--bg-l)"
 	]
 		<script lang="ts">
-			const items = [
-				{ label: "Introduction", href: "#intro" },
-				{ label: "Installation", href: "#install" },
-				{ label: "Components", href: "#components" },
-				{ label: "Theming", href: "#theming" },
-			];
 			let active = $state("Introduction");
 		</script>
 
 		<div class="sidebar">
 			<NavTree>
-				{#each items as item (item.label)}
-					<NavTree.Item
-						label={item.label}
-						active={active === item.label}
-						onclick={() => (active = item.label)}
-					/>
-				{/each}
+				<NavTree.Item
+					label="Introduction"
+					active={active === "Introduction"}
+					onclick={() => (active = "Introduction")}
+				/>
+				<NavTree.Item
+					label="Installation"
+					active={active === "Installation"}
+					onclick={() => (active = "Installation")}
+				/>
+				<NavTree.Item
+					label="Components"
+					active={active === "Components"}
+					onclick={() => (active = "Components")}
+				/>
+				<NavTree.Item
+					label="Theming"
+					active={active === "Theming"}
+					onclick={() => (active = "Theming")}
+				/>
 			</NavTree>
 			<p class="current">Active: {active}</p>
 		</div>

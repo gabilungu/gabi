@@ -7,7 +7,7 @@
 	description="A custom select with a top-layer dropdown, keyboard navigation, configurable width and placement, optional search, and clear."
 ]
 
-	[preview
+	[component
 		component={Select}
 		args={{ placeholder: "Choose a size…", size: "md", placement: "auto", search: false, clearable: false }}
 		minHeight="200px"
@@ -23,7 +23,7 @@
 		</script>
 
 		<Select {...args} options={sizes} />
-	[/preview]
+	[/component]
 
 	[example title="Sizes" maxWidth="200px"]
 		<script>

@@ -7,12 +7,12 @@
 	description="A compact pill for tags, filters, and attributes. Pick an intent for colour and a variant for emphasis; make it removable to show a × button."
 ]
 
-	[preview
+	[component
 		component={Chip}
 		args={{ label: "Chip", intent: "neutral", variant: "secondary" }}
 	]
 		<Chip {...args} />
-	[/preview]
+	[/component]
 
 	[example title="Intents & variants" direction="column" gap="12px"]
 		<script>

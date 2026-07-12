@@ -7,9 +7,9 @@
 	description="A text input using the gabi size scale. Fills its container by default; set `width` for a fixed or intrinsic size."
 ]
 
-	[preview component={Input} args={{ placeholder: "Type here…", size: "md" }} maxWidth="220px"]
+	[component component={Input} args={{ placeholder: "Type here…", size: "md" }} maxWidth="220px"]
 		<Input {...args} />
-	[/preview]
+	[/component]
 
 	[example title="Sizes" maxWidth="220px"]
 		<Input size="xs" placeholder="Extra small" />

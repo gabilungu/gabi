@@ -7,9 +7,9 @@
 	description="A tiny status or count indicator — the small, non-interactive sibling of Chip. Give it `text` (or `dot` for a status dot) and colour it with the `--bg` and `--fg` custom properties."
 ]
 
-	[preview component={Badge} args={{ text: "3", size: "md" }}]
+	[component component={Badge} args={{ text: "3", size: "md" }}]
 		<Badge {...args} />
-	[/preview]
+	[/component]
 
 	[example title="Colours"]
 		<Badge text="Neutral" />

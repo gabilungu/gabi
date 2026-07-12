@@ -4,9 +4,9 @@
 
 [SHOWCASE title="@components/:Form / Textarea" description="A multi-line text input using the gabi size scale."]
 
-	[preview component={Textarea} args={{ placeholder: "Write something…", size: "md", rows: 3 }}]
+	[component component={Textarea} args={{ placeholder: "Write something…", size: "md", rows: 3 }}]
 		<Textarea {...args} />
-	[/preview]
+	[/component]
 
 	[example title="Sizes"]
 		<Textarea size="xs" placeholder="Extra small" />

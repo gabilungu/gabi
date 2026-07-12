@@ -9,12 +9,12 @@
 	description="A single choice from a group, on the gabi size scale. Bind `group` across the radios that share a selection; the one whose `value` matches is filled."
 ]
 
-	[preview
+	[component
 		component={Radio}
 		args={{ value: "email", label: "Email", size: "md" }}
 	]
 		<Radio {...args} bind:group={picked} />
-	[/preview]
+	[/component]
 
 	[example title="Sizes" gap="24px" contentY="middle"]
 		<script>

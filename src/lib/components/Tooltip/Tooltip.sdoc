@@ -8,7 +8,7 @@
 	description="A short hint shown on hover or keyboard focus of its trigger. Rendered in the top layer so it's never clipped; opens on the chosen side and clamps to the viewport."
 ]
 
-	[preview
+	[component
 		component={Tooltip}
 		args={{ content: "Copy link", placement: "top" }}
 		minHeight="140px"
@@ -17,7 +17,7 @@
 		<Tooltip {...args}>
 			<Button text="Hover me" variant="secondary" />
 		</Tooltip>
-	[/preview]
+	[/component]
 
 	[example title="Placements" gap="16px" contentY="middle" minHeight="160px"]
 		<Tooltip content="On top" placement="top">

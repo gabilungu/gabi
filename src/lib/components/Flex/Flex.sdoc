@@ -8,7 +8,7 @@
 	description="A 1D layout primitive. `contentX` / `contentY` place the content along physical axes (they stay horizontal / vertical whatever the `direction`), with `gap`, `padding`, `margin`, `wrap`, and per-element `grow` / `flexGrow` / `flexShrink` / `flexBasis` for nesting. No styling props — theme the optional shell with `--bg`, `--fg`, `--border`, `--shadow`."
 ]
 
-	[preview
+	[component
 		component={Flex}
 		args={{ gap: 8, padding: 12, direction: "row", contentX: "left", contentY: "top", wrap: "nowrap", width: "fill" }}
 	]
@@ -19,7 +19,7 @@
 			<Placeholder text="4" width={64} height={48} />
 			<Placeholder text="5" width={64} height={48} />
 		</Flex>
-	[/preview]
+	[/component]
 
 	[example
 		title="Direction"
