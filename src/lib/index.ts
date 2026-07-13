@@ -30,3 +30,4 @@ export { default as SegmentedControl } from './components/SegmentedControl/Segme
 export { default as Pagination } from './components/Pagination/Pagination.svelte';
 // Toast: the presentational card, the Toaster viewport, and the toaster queue.
 export { Toast, Toaster, toaster } from './components/Toast/index.js';
+export { default as Code } from './components/Code/Code.svelte';

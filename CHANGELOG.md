@@ -51,6 +51,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (with a `position`) and drive it from the `toaster` queue —
   `toaster.success(title, description?)` / `.info` / `.danger` / `.warning` /
   `.neutral`, plus `toaster.dismiss(id)` and `toaster.clear()`.
+- `Code` — a multi-file code viewer: a top tab bar of files (each hugging its
+  `icon` and `title`), the selected file's `code` below, and a copy button.
+  `value` (the active file) is bindable, `variant` picks a light or dark
+  surface, and `maxHeight` scrolls a long file. Theme with `--bg` / `--fileBg` /
+  `--border`.
 
 ## [0.0.8] - 2026-07-13
 

@@ -1,0 +1,61 @@
+<script lang="ts">
+	import Code from "./Code.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/Code"
+	description="A multi-file code viewer — a top tab bar of files (each hugging its `icon` and `title`), the selected file's `code` below, with a copy button. `value` is bindable, `variant` picks a light or dark surface, and the active tab uses the shared selection highlight. Theme with `--bg` / `--fileBg` / `--border`."
+]
+
+	[component
+		component={Code}
+		args={{ width: "fill", variant: "light", maxHeight: 260, copyable: true }}
+	]
+		<script lang="ts">
+			const files = [
+				{
+					title: "index.ts",
+					icon: "/icons/file-code.svg",
+					code: "export { sum, clamp } from './math';\nexport { slugify } from './string';\n\nexport const VERSION = '1.0.0';"
+				},
+				{
+					title: "math.ts",
+					icon: "/icons/file-code.svg",
+					code: "export function sum(a: number, b: number) {\n  return a + b;\n}\n\nexport function clamp(v: number, min: number, max: number) {\n  return Math.min(Math.max(v, min), max);\n}"
+				},
+				{
+					title: "package.json",
+					icon: "/icons/file-json.svg",
+					code: '{\n  "name": "utils",\n  "version": "1.0.0",\n  "type": "module"\n}'
+				}
+			];
+			let active = $state("index.ts");
+		</script>
+
+		<Code {...args} {files} bind:value={active} />
+	[/component]
+
+	[example
+		title="Dark variant, scrolling"
+		description="`variant='dark'` for a dark surface; a `maxHeight` scrolls a long file (the tab bar scrolls sideways if the files overflow)."
+		direction="column"
+	]
+		<script lang="ts">
+			const files = [
+				{
+					title: "app.css",
+					icon: "/icons/file-text.svg",
+					code: ":root {\n  --gap: 12px;\n  --radius: 8px;\n}\n\n.card {\n  display: flex;\n  flex-direction: column;\n  gap: var(--gap);\n  padding: 16px;\n  border-radius: var(--radius);\n  border: 1px solid #e5e7eb;\n  background: #fff;\n}\n\n.card h2 {\n  margin: 0;\n  font-size: 16px;\n  font-weight: 600;\n}\n\n.card p {\n  margin: 0;\n  color: #6b7280;\n}\n\n.card:hover {\n  border-color: #d1d5db;\n}"
+				},
+				{
+					title: "reset.css",
+					icon: "/icons/file-text.svg",
+					code: "*,\n*::before,\n*::after {\n  box-sizing: border-box;\n}\n\nbody {\n  margin: 0;\n  font-family: system-ui, sans-serif;\n}"
+				}
+			];
+		</script>
+
+		<Code {files} variant="dark" maxHeight={220} />
+	[/example]
+
+[/SHOWCASE]
