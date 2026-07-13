@@ -1,0 +1,73 @@
+<script lang="ts">
+	import SegmentedControl from "./SegmentedControl.svelte";
+
+	const views = [
+		{ value: "list", label: "List", icon: "/icons/list.svg" },
+		{ value: "grid", label: "Grid", icon: "/icons/layout-grid.svg" },
+		{ value: "board", label: "Board", icon: "/icons/columns-3.svg" }
+	];
+	const range = [
+		{ value: "day", label: "Day" },
+		{ value: "week", label: "Week" },
+		{ value: "month", label: "Month" }
+	];
+	const alignIcons = [
+		{ value: "left", icon: "/icons/align-left.svg" },
+		{ value: "center", icon: "/icons/align-center.svg" },
+		{ value: "right", icon: "/icons/align-right.svg" }
+	];
+</script>
+
+[SHOWCASE
+	title="@components/SegmentedControl"
+	description="A compact single-select — connected segments with a sliding-thumb look, for picking one value (a view, a range). Give it `options` and bind `value`; arrow keys move the selection. `size` shares Button's height scale, so it lines up with buttons and inputs. Theme with `--bg` / `--thumbBg` / `--activeFg`."
+]
+
+	[component
+		component={SegmentedControl}
+		args={{ size: "md", width: "hug" }}
+	]
+		<script lang="ts">
+			let view = $state("grid");
+		</script>
+
+		<SegmentedControl {...args} options={views} bind:value={view} />
+	[/component]
+
+	[example
+		title="Sizes"
+		description="`xs` / `sm` / `md` (default) / `lg` — the whole control's height matches Button and the other controls at each preset."
+		direction="column"
+		gap="16px"
+	]
+		<SegmentedControl options={range} value="week" size="xs" />
+		<SegmentedControl options={range} value="week" size="sm" />
+		<SegmentedControl options={range} value="week" size="md" />
+		<SegmentedControl options={range} value="week" size="lg" />
+	[/example]
+
+	[example
+		title="Icon only"
+		description="Omit the `label` for an icon-only segment; the `value` becomes its accessible name."
+		direction="column"
+	]
+		<SegmentedControl options={alignIcons} value="left" />
+	[/example]
+
+	[example
+		title="Fill width"
+		description="`width='fill'` spans the container with equal segments; disable a segment with `disabled`."
+		direction="column"
+	]
+		<SegmentedControl
+			width="fill"
+			value="list"
+			options={[
+				{ value: "list", label: "List", icon: "/icons/list.svg" },
+				{ value: "grid", label: "Grid", icon: "/icons/layout-grid.svg" },
+				{ value: "board", label: "Board", icon: "/icons/columns-3.svg", disabled: true }
+			]}
+		/>
+	[/example]
+
+[/SHOWCASE]

@@ -1,0 +1,129 @@
+<script lang="ts">
+	import Tabs from "./index.js";
+	import Text from "../Text/Text.svelte";
+	import Placeholder from "../Placeholder/Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/Tabs"
+	description="Composable tabs — `Tabs.List` holds the `Tabs.Tab` triggers and each `Tabs.Panel` shows when its tab is active. `value` is bindable; arrow keys move between tabs (Home / End for the ends). `size` shares Button's height scale (`xs` / `sm` / `md` / `lg`). Each tab below previews one part. Theme with `--accent` / `--border`."
+]
+
+	[component
+		component={Tabs}
+		title="Tabs"
+		args={{ value: "overview", size: "md" }}
+	]
+		<Tabs {...args}>
+			<Tabs.List aria-label="Sections">
+				<Tabs.Tab value="overview" icon="/icons/layout-dashboard.svg">Overview</Tabs.Tab>
+				<Tabs.Tab value="activity" icon="/icons/activity.svg">Activity</Tabs.Tab>
+				<Tabs.Tab value="settings" icon="/icons/settings.svg">Settings</Tabs.Tab>
+			</Tabs.List>
+			<Tabs.Panel value="overview">
+				<div class="panel">
+					<Text variant="h4">Overview</Text>
+					<Placeholder text="overview" height={120} />
+				</div>
+			</Tabs.Panel>
+			<Tabs.Panel value="activity">
+				<div class="panel">
+					<Text variant="h4">Activity</Text>
+					<Placeholder text="activity" height={120} />
+				</div>
+			</Tabs.Panel>
+			<Tabs.Panel value="settings">
+				<div class="panel">
+					<Text variant="h4">Settings</Text>
+					<Placeholder text="settings" height={120} />
+				</div>
+			</Tabs.Panel>
+		</Tabs>
+
+		<style>
+			.panel {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+			}
+		</style>
+	[/component]
+
+	[component component={Tabs.List} title="Tabs.List"]
+		<Tabs value="one">
+			<Tabs.List {...args} aria-label="Example">
+				<Tabs.Tab value="one">One</Tabs.Tab>
+				<Tabs.Tab value="two">Two</Tabs.Tab>
+				<Tabs.Tab value="three">Three</Tabs.Tab>
+			</Tabs.List>
+		</Tabs>
+	[/component]
+
+	[component
+		component={Tabs.Tab}
+		title="Tabs.Tab"
+		args={{ value: "inbox", icon: "/icons/inbox.svg" }}
+	]
+		<Tabs value="inbox">
+			<Tabs.List aria-label="Mail">
+				<Tabs.Tab {...args}>Inbox</Tabs.Tab>
+				<Tabs.Tab value="drafts">Drafts</Tabs.Tab>
+				<Tabs.Tab value="archive" disabled>Archive</Tabs.Tab>
+			</Tabs.List>
+		</Tabs>
+	[/component]
+
+	[component
+		component={Tabs.Panel}
+		title="Tabs.Panel"
+		args={{ value: "a" }}
+	]
+		<Tabs value="a">
+			<Tabs.List aria-label="Example">
+				<Tabs.Tab value="a">First</Tabs.Tab>
+				<Tabs.Tab value="b">Second</Tabs.Tab>
+			</Tabs.List>
+			<Tabs.Panel {...args}>
+				<Text>This panel shows while its tab is active.</Text>
+			</Tabs.Panel>
+			<Tabs.Panel value="b">
+				<Text>The second panel.</Text>
+			</Tabs.Panel>
+		</Tabs>
+	[/component]
+
+	[example
+		title="Sizes"
+		description="`xs` / `sm` / `md` (default) / `lg` — heights match Button and the other controls."
+		direction="column"
+		gap="20px"
+	]
+		<Tabs value="a" size="xs">
+			<Tabs.List aria-label="xs"><Tabs.Tab value="a">Extra small</Tabs.Tab><Tabs.Tab value="b">Two</Tabs.Tab></Tabs.List>
+		</Tabs>
+		<Tabs value="a" size="sm">
+			<Tabs.List aria-label="sm"><Tabs.Tab value="a">Small</Tabs.Tab><Tabs.Tab value="b">Two</Tabs.Tab></Tabs.List>
+		</Tabs>
+		<Tabs value="a" size="md">
+			<Tabs.List aria-label="md"><Tabs.Tab value="a">Medium</Tabs.Tab><Tabs.Tab value="b">Two</Tabs.Tab></Tabs.List>
+		</Tabs>
+		<Tabs value="a" size="lg">
+			<Tabs.List aria-label="lg"><Tabs.Tab value="a">Large</Tabs.Tab><Tabs.Tab value="b">Two</Tabs.Tab></Tabs.List>
+		</Tabs>
+	[/example]
+
+	[example
+		title="Icons and a disabled tab"
+		description="A leading `icon` per tab; mark a tab `disabled` to skip it (arrow-key navigation skips it too)."
+		direction="column"
+	]
+		<Tabs value="inbox">
+			<Tabs.List aria-label="Mail">
+				<Tabs.Tab value="inbox" icon="/icons/inbox.svg">Inbox</Tabs.Tab>
+				<Tabs.Tab value="sent" icon="/icons/send.svg">Sent</Tabs.Tab>
+				<Tabs.Tab value="archive" icon="/icons/archive.svg" disabled>Archive</Tabs.Tab>
+			</Tabs.List>
+		</Tabs>
+	[/example]
+
+[/SHOWCASE]

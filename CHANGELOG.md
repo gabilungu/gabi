@@ -29,6 +29,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   per-column `align`, zebra `striped` rows, hover, and a `maxHeight` scroll
   region. Theme with `--border` / `--headerBg` / `--rowHoverBg` / `--stripeBg` /
   `--selectedBg`.
+- `Tabs` — composable tabs (`Tabs.List` / `Tabs.Tab` / `Tabs.Panel`) with a
+  bindable `value`, roving arrow-key navigation, per-tab `icon` and `disabled`,
+  and a `size` on Button's height scale (`xs` / `sm` / `md` / `lg`). Underline
+  style; theme with `--accent` / `--border`.
+- `SegmentedControl` — a compact single-select from an `options` array with a
+  bindable `value`, a sliding-thumb look, arrow-key navigation, per-option
+  `icon` / `disabled`, and a `size` whose total height matches Button's scale.
+  `width` fills or hugs; theme with `--bg` / `--thumbBg` / `--activeFg`.
 
 ## [0.0.8] - 2026-07-13
 

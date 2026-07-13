@@ -24,3 +24,6 @@ export { default as Shell } from './components/Shell/Shell.svelte';
 export { NavTree } from './components/NavTree/index.js';
 // Compound component: Table with .Head/.Column/.Body/.Row/.Cell/.Pager attached.
 export { Table } from './components/Table/index.js';
+// Compound component: Tabs with .List/.Tab/.Panel attached.
+export { Tabs } from './components/Tabs/index.js';
+export { default as SegmentedControl } from './components/SegmentedControl/SegmentedControl.svelte';
