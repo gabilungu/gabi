@@ -22,3 +22,5 @@ export { default as TwoPaneSplit } from './components/TwoPaneSplit/TwoPaneSplit.
 export { default as Shell } from './components/Shell/Shell.svelte';
 // Compound component: NavTree with .Group and .Item attached.
 export { NavTree } from './components/NavTree/index.js';
+// Compound component: Table with .Head/.Column/.Body/.Row/.Cell/.Pager attached.
+export { Table } from './components/Table/index.js';

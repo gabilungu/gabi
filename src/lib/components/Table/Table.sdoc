@@ -1,0 +1,270 @@
+<script lang="ts">
+	import Table from "./index.js";
+	import Badge from "../Badge/Badge.svelte";
+	import Button from "../Button/Button.svelte";
+	import Text from "../Text/Text.svelte";
+
+	interface Person {
+		id: number;
+		name: string;
+		role: string;
+		team: string;
+		age: number;
+	}
+
+	const people: Person[] = [
+		{ id: 1, name: "Ada Lovelace", role: "Engineer", team: "Platform", age: 36 },
+		{ id: 2, name: "Alan Turing", role: "Engineer", team: "Research", age: 41 },
+		{ id: 3, name: "Grace Hopper", role: "Lead", team: "Platform", age: 45 },
+		{ id: 4, name: "Katherine Johnson", role: "Analyst", team: "Data", age: 39 },
+		{ id: 5, name: "Edsger Dijkstra", role: "Engineer", team: "Research", age: 52 },
+		{ id: 6, name: "Barbara Liskov", role: "Lead", team: "Research", age: 48 },
+		{ id: 7, name: "Margaret Hamilton", role: "Engineer", team: "Platform", age: 33 },
+		{ id: 8, name: "Donald Knuth", role: "Analyst", team: "Data", age: 58 },
+		{ id: 9, name: "Radia Perlman", role: "Engineer", team: "Networking", age: 44 }
+	];
+
+	const roleColor: Record<string, string> = {
+		Engineer: "var(--accent-100)",
+		Lead: "var(--focus-100)",
+		Analyst: "var(--base-100)"
+	};
+</script>
+
+[SHOWCASE
+	title="@components/Table"
+	description="A composable data table built from `Table.Head` / `Table.Column` / `Table.Body` / `Table.Row` / `Table.Cell` / `Table.Pager`. It owns the UI state — sorting, selection, paging, column widths — and hands it back so you sort and slice your own rows. Each tab below previews one part; the props table follows the selected tab. Theme with `--border` / `--headerBg` / `--rowHoverBg` / `--stripeBg` / `--selectedBg`."
+]
+
+	[component
+		component={Table}
+		title="Table"
+		args={{ selectable: true, striped: true, maxHeight: 300 }}
+	]
+		<script lang="ts">
+			const pageSize = 5;
+			let sort = $state<{ key: string; dir: "asc" | "desc" } | null>(null);
+			let selected = $state<number[]>([]);
+			let page = $state(1);
+
+			const sorted = $derived.by(() => {
+				if (!sort) return people;
+				const { key, dir } = sort;
+				const factor = dir === "asc" ? 1 : -1;
+				return [...people].sort((a, b) => {
+					const av = (a as Record<string, unknown>)[key];
+					const bv = (b as Record<string, unknown>)[key];
+					if (typeof av === "number" && typeof bv === "number") return (av - bv) * factor;
+					return String(av).localeCompare(String(bv)) * factor;
+				});
+			});
+			const pageRows = $derived(sorted.slice((page - 1) * pageSize, page * pageSize));
+		</script>
+
+		<Table {...args} {pageSize} bind:sort bind:selected bind:page>
+			<Table.Head>
+				<Table.Column sortable sortKey="name" resizable>Name</Table.Column>
+				<Table.Column sortable sortKey="role">Role</Table.Column>
+				<Table.Column sortable sortKey="team">Team</Table.Column>
+				<Table.Column sortable sortKey="age" align="right" width={90}>Age</Table.Column>
+			</Table.Head>
+			<Table.Body>
+				{#each pageRows as p (p.id)}
+					<Table.Row value={p.id}>
+						<Table.Cell>{p.name}</Table.Cell>
+						<Table.Cell><Badge text={p.role} size="xs" --bg={roleColor[p.role]} /></Table.Cell>
+						<Table.Cell>{p.team}</Table.Cell>
+						<Table.Cell align="right">{p.age}</Table.Cell>
+					</Table.Row>
+				{/each}
+			</Table.Body>
+			<Table.Pager total={sorted.length} />
+		</Table>
+	[/component]
+
+	[component component={Table.Head} title="Table.Head"]
+		<Table>
+			<Table.Head {...args}>
+				<Table.Column>Name</Table.Column>
+				<Table.Column>Role</Table.Column>
+			</Table.Head>
+			<Table.Body>
+				<Table.Row>
+					<Table.Cell>Ada Lovelace</Table.Cell>
+					<Table.Cell>Engineer</Table.Cell>
+				</Table.Row>
+			</Table.Body>
+		</Table>
+	[/component]
+
+	[component
+		component={Table.Column}
+		title="Table.Column"
+		args={{ sortable: true, sortKey: "name", align: "left", resizable: true }}
+	]
+		<Table>
+			<Table.Head>
+				<Table.Column {...args}>Name</Table.Column>
+				<Table.Column>Role</Table.Column>
+			</Table.Head>
+			<Table.Body>
+				<Table.Row>
+					<Table.Cell>Ada Lovelace</Table.Cell>
+					<Table.Cell>Engineer</Table.Cell>
+				</Table.Row>
+				<Table.Row>
+					<Table.Cell>Alan Turing</Table.Cell>
+					<Table.Cell>Engineer</Table.Cell>
+				</Table.Row>
+			</Table.Body>
+		</Table>
+	[/component]
+
+	[component component={Table.Body} title="Table.Body"]
+		<Table>
+			<Table.Head>
+				<Table.Column>Name</Table.Column>
+			</Table.Head>
+			<Table.Body {...args}>
+				<Table.Row><Table.Cell>Ada Lovelace</Table.Cell></Table.Row>
+				<Table.Row><Table.Cell>Alan Turing</Table.Cell></Table.Row>
+			</Table.Body>
+		</Table>
+	[/component]
+
+	[component
+		component={Table.Row}
+		title="Table.Row"
+		args={{ value: 1 }}
+	]
+		<Table selectable>
+			<Table.Head>
+				<Table.Column>Name</Table.Column>
+				<Table.Column>Role</Table.Column>
+			</Table.Head>
+			<Table.Body>
+				<Table.Row {...args}>
+					<Table.Cell>Ada Lovelace</Table.Cell>
+					<Table.Cell>Engineer</Table.Cell>
+				</Table.Row>
+				<Table.Row value={2}>
+					<Table.Cell>Alan Turing</Table.Cell>
+					<Table.Cell>Engineer</Table.Cell>
+				</Table.Row>
+			</Table.Body>
+		</Table>
+	[/component]
+
+	[component
+		component={Table.Cell}
+		title="Table.Cell"
+		args={{ align: "right" }}
+	]
+		<Table>
+			<Table.Head>
+				<Table.Column>Name</Table.Column>
+				<Table.Column align="right">Age</Table.Column>
+			</Table.Head>
+			<Table.Body>
+				<Table.Row>
+					<Table.Cell>Ada Lovelace</Table.Cell>
+					<Table.Cell {...args}>36</Table.Cell>
+				</Table.Row>
+			</Table.Body>
+		</Table>
+	[/component]
+
+	[component
+		component={Table.Pager}
+		title="Table.Pager"
+		args={{ total: 42 }}
+	]
+		<Table pageSize={10}>
+			<Table.Head>
+				<Table.Column>Name</Table.Column>
+			</Table.Head>
+			<Table.Body>
+				<Table.Row><Table.Cell>Ada Lovelace</Table.Cell></Table.Row>
+			</Table.Body>
+			<Table.Pager {...args} />
+		</Table>
+	[/component]
+
+	[example
+		title="Minimal"
+		description="Just the structure — `Head` / `Column`, then a `Row` of `Cell`s per record. Alignment is per column."
+		direction="column"
+	]
+		<Table>
+			<Table.Head>
+				<Table.Column>Name</Table.Column>
+				<Table.Column>Role</Table.Column>
+				<Table.Column align="right">Age</Table.Column>
+			</Table.Head>
+			<Table.Body>
+				{#each people.slice(0, 4) as p (p.id)}
+					<Table.Row>
+						<Table.Cell>{p.name}</Table.Cell>
+						<Table.Cell>{p.role}</Table.Cell>
+						<Table.Cell align="right">{p.age}</Table.Cell>
+					</Table.Row>
+				{/each}
+			</Table.Body>
+		</Table>
+	[/example]
+
+	[example
+		title="Resizable columns"
+		description="Mark columns `resizable` and drag the right edge (or focus it and use ← / →). Widths are `table-layout: fixed`, so the body follows the header; leave one column unsized to absorb the slack."
+		direction="column"
+	]
+		<Table>
+			<Table.Head>
+				<Table.Column resizable width={200}>Name</Table.Column>
+				<Table.Column resizable width={140}>Role</Table.Column>
+				<Table.Column>Team</Table.Column>
+			</Table.Head>
+			<Table.Body>
+				{#each people.slice(0, 4) as p (p.id)}
+					<Table.Row>
+						<Table.Cell>{p.name}</Table.Cell>
+						<Table.Cell>{p.role}</Table.Cell>
+						<Table.Cell>{p.team}</Table.Cell>
+					</Table.Row>
+				{/each}
+			</Table.Body>
+		</Table>
+	[/example]
+
+	[example
+		title="Custom cells & row click"
+		description="Cells hold any markup — badges, buttons. Give `Table.Row` an `onclick` for row actions."
+		direction="column"
+	]
+		<script lang="ts">
+			let opened = $state("");
+		</script>
+
+		<Table>
+			<Table.Head>
+				<Table.Column>Name</Table.Column>
+				<Table.Column>Team</Table.Column>
+				<Table.Column align="right" width={120}>Action</Table.Column>
+			</Table.Head>
+			<Table.Body>
+				{#each people.slice(0, 4) as p (p.id)}
+					<Table.Row onclick={() => (opened = p.name)}>
+						<Table.Cell>{p.name}</Table.Cell>
+						<Table.Cell><Badge text={p.team} size="xs" /></Table.Cell>
+						<Table.Cell align="right">
+							<Button size="xs" variant="ghost" text="Open" onclick={() => (opened = p.name)} />
+						</Table.Cell>
+					</Table.Row>
+				{/each}
+			</Table.Body>
+		</Table>
+
+		<Text variant="small">Opened: {opened || "—"}</Text>
+	[/example]
+
+[/SHOWCASE]

@@ -19,6 +19,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   after image slider. The handle is a `role="slider"` and rides above the panes'
   clip. Theme with `--leftBg` / `--rightBg` / `--handleBg` / `--hoverHandleBg` /
   `--handleColor` / `--hoverHandleColor`.
+- `Table` — a composable data table (`Table.Head` / `Table.Column` /
+  `Table.Body` / `Table.Row` / `Table.Cell` / `Table.Pager`) over real
+  `<table>` semantics. It owns the UI state and hands it back so you sort and
+  slice your own rows: `sort` (click a `sortable` column), `selected` (a
+  checkbox column with select-all when `selectable`), and `page` / `pageSize`
+  (driven by `Table.Pager`) are all bindable. `resizable` columns drag to new
+  widths — the body follows via `table-layout: fixed` — plus a sticky header,
+  per-column `align`, zebra `striped` rows, hover, and a `maxHeight` scroll
+  region. Theme with `--border` / `--headerBg` / `--rowHoverBg` / `--stripeBg` /
+  `--selectedBg`.
 
 ## [0.0.8] - 2026-07-13
 
