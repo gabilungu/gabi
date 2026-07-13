@@ -1,5 +1,6 @@
 <script lang="ts">
 	import NavTree from "./index.js";
+	import Badge from "../Badge/Badge.svelte";
 </script>
 
 [SHOWCASE
@@ -8,28 +9,63 @@
 ]
 
 	[component component={NavTree} title="NavTree"]
-		<NavTree>
+		<script lang="ts">
+			let active = $state("Introduction");
+		</script>
+
+		<NavTree {...args}>
 			<NavTree.Group label="Getting started">
-				<NavTree.Item label="Introduction" href="#introduction" active />
-				<NavTree.Item label="Installation" href="#installation" />
+				<NavTree.Item
+					text="Introduction"
+					icon="/icons/book-open.svg"
+					active={active === "Introduction"}
+					onclick={() => (active = "Introduction")}
+				>
+					{#snippet right()}<Badge text={12} size="xs" />{/snippet}
+				</NavTree.Item>
+				<NavTree.Item
+					text="Installation"
+					icon="/icons/download.svg"
+					active={active === "Installation"}
+					onclick={() => (active = "Installation")}
+				/>
 			</NavTree.Group>
 
 			<NavTree.Group label="Components">
-				<NavTree.Item label="Forms" expanded>
-					{#snippet left()}<span
-							class="dot"
-							style="background: var(--action)"
-						></span>{/snippet}
-					<NavTree.Item label="Button" href="#button" />
-					<NavTree.Item label="Input" href="#input" />
-					<NavTree.Item label="Select" href="#select" />
+				<NavTree.Item
+					text="Forms"
+					icon="/icons/inbox.svg"
+					expanded
+					active={active === "Forms"}
+					onclick={() => (active = "Forms")}
+				>
+					{#snippet right()}<Badge text={3} size="xs" />{/snippet}
+					<NavTree.Item
+						text="Button"
+						icon="/icons/square-mouse-pointer.svg"
+						active={active === "Button"}
+						onclick={() => (active = "Button")}
+					/>
+					<NavTree.Item
+						text="Input"
+						icon="/icons/text-cursor-input.svg"
+						active={active === "Input"}
+						onclick={() => (active = "Input")}
+					/>
+					<NavTree.Item
+						text="Select"
+						icon="/icons/chevrons-up-down.svg"
+						active={active === "Select"}
+						onclick={() => (active = "Select")}
+					/>
 				</NavTree.Item>
-				<NavTree.Item label="Navigation">
-					{#snippet left()}<span
-							class="dot"
-							style="background: var(--success)"
-						></span>{/snippet}
-					<NavTree.Item label="NavTree" href="#navtree" />
+				<NavTree.Item text="Navigation" icon="/icons/layout-dashboard.svg">
+					<NavTree.Item
+						text="NavTree"
+						icon="/icons/list-tree.svg"
+						active={active === "NavTree"}
+						onclick={() => (active = "NavTree")}
+					/>
 				</NavTree.Item>
 			</NavTree.Group>
 		</NavTree>
@@ -42,8 +78,8 @@
 	]
 		<NavTree>
 			<NavTree.Group {...args}>
-				<NavTree.Item label="Introduction" href="#introduction" active />
-				<NavTree.Item label="Installation" href="#installation" />
+				<NavTree.Item text="Introduction" href="#introduction" active />
+				<NavTree.Item text="Installation" href="#installation" />
 			</NavTree.Group>
 		</NavTree>
 	[/component]
@@ -51,25 +87,31 @@
 	[component
 		component={NavTree.Item}
 		title="NavTree.Item"
-		args={{ label: "Projects", href:"#projects", active: true }}
+		args={{ text: "Projects", href: "#projects", active: true }}
 	]
+		<script lang="ts">
+			let active = $state("Introduction");
+		</script>
+
 		<NavTree>
-			<NavTree.Item label="About" href="#about" />
-			<NavTree.Item {...args} />
-			<NavTree.Item label="Team" href="#team" />
+			<NavTree.Item text="About" />
+			<NavTree.Item {...args}>
+				<NavTree.Item text="Team" />
+			</NavTree.Item>
+			<NavTree.Item text="Team" />
 		</NavTree>
 	[/component]
 
 	[example title="Expandable folders"]
 		<NavTree>
-			<NavTree.Item label="src" expanded>
-				<NavTree.Item label="components" expanded>
-					<NavTree.Item label="Button.svelte" href="#f1" />
-					<NavTree.Item label="Input.svelte" href="#f2" />
+			<NavTree.Item text="src" expanded>
+				<NavTree.Item text="components">
+					<NavTree.Item text="Button.svelte" href="#f1" />
+					<NavTree.Item text="Input.svelte" href="#f2" />
 				</NavTree.Item>
-				<NavTree.Item label="index.ts" href="#f3" active />
+				<NavTree.Item text="index.ts" href="#f3" active />
 			</NavTree.Item>
-			<NavTree.Item label="package.json" href="#f4" />
+			<NavTree.Item text="package.json" href="#f4" />
 		</NavTree>
 	[/example]
 
@@ -85,22 +127,22 @@
 		<div class="sidebar">
 			<NavTree>
 				<NavTree.Item
-					label="Introduction"
+					text="Introduction"
 					active={active === "Introduction"}
 					onclick={() => (active = "Introduction")}
 				/>
 				<NavTree.Item
-					label="Installation"
+					text="Installation"
 					active={active === "Installation"}
 					onclick={() => (active = "Installation")}
 				/>
 				<NavTree.Item
-					label="Components"
+					text="Components"
 					active={active === "Components"}
 					onclick={() => (active = "Components")}
 				/>
 				<NavTree.Item
-					label="Theming"
+					text="Theming"
 					active={active === "Theming"}
 					onclick={() => (active = "Theming")}
 				/>
@@ -120,36 +162,29 @@
 		</style>
 	[/example]
 
-	[example title="Left and right slots"]
+	[example
+		title="Icons"
+		description="A leading `icon` — a path to an SVG in /static, or raw SVG markup — sized to the item."
+	]
 		<NavTree>
-			<NavTree.Item label="Inbox" href="#inbox" active>
-				{#snippet left()}<span
-						class="dot"
-						style="background: var(--action)"
-					></span>{/snippet}
-				{#snippet right()}<span class="count">12</span>{/snippet}
-			</NavTree.Item>
-			<NavTree.Item label="Drafts" href="#drafts">
-				{#snippet right()}<span class="count">3</span>{/snippet}
-			</NavTree.Item>
-			<NavTree.Item label="Sent" href="#sent" />
+			<NavTree.Item text="Inbox" icon="/icons/inbox.svg" href="#inbox" active />
+			<NavTree.Item text="Drafts" icon="/icons/file.svg" href="#drafts" />
+			<NavTree.Item text="Sent" icon="/icons/send.svg" href="#sent" />
+			<NavTree.Item text="Settings" icon="/icons/settings.svg" href="#settings" />
+		</NavTree>
+	[/example]
+
+	[example
+		title="Sizes"
+		description="`xs` / `sm` / `md` (default) — height, padding, gap, and font scale together (matching Button)."
+		direction="column"
+		gap="16px"
+	]
+		<NavTree width={200}>
+			<NavTree.Item size="xs" text="Extra small" icon="/icons/inbox.svg" active />
+			<NavTree.Item size="sm" text="Small" icon="/icons/inbox.svg" />
+			<NavTree.Item size="md" text="Medium" icon="/icons/inbox.svg" />
 		</NavTree>
 	[/example]
 
 [/SHOWCASE]
-
-<style>
-	.dot {
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		display: inline-block;
-	}
-	.count {
-		font-size: 11px;
-		color: var(--fg-l);
-		background: hsl(45, 18%, 90%);
-		border-radius: 999px;
-		padding: 1px 7px;
-	}
-</style>

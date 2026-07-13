@@ -28,9 +28,6 @@
 		maxHeight?: number | string;
 		/** Flex direction of the children. Default: 'column'. */
 		flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-		/** Overflow: 'visible' (spill out), 'hidden' (clip), 'scroll' (both axes),
-		 * 'scrollX' (horizontal only), 'scrollY' (vertical only). */
-		overflow?: 'visible' | 'hidden' | 'scroll' | 'scrollX' | 'scrollY';
 		children?: Snippet;
 	}
 
@@ -46,7 +43,6 @@
 		minHeight,
 		maxHeight,
 		flexDirection = 'column',
-		overflow,
 		children,
 		class: className = '',
 		...rest
@@ -64,7 +60,6 @@
 <div
 	{...rest}
 	class="Container {className}"
-	data-overflow={overflow}
 	style:padding={px(padding)}
 	style:gap={px(gap)}
 	style:border-radius={px(radius)}
@@ -88,23 +83,5 @@
 		border: var(--border, none);
 		background: var(--bg, none);
 		box-shadow: var(--shadow, none);
-	}
-
-	.Container[data-overflow='visible'] {
-		overflow: visible;
-	}
-	.Container[data-overflow='hidden'] {
-		overflow: hidden;
-	}
-	.Container[data-overflow='scroll'] {
-		overflow: auto;
-	}
-	.Container[data-overflow='scrollX'] {
-		overflow-x: auto;
-		overflow-y: hidden;
-	}
-	.Container[data-overflow='scrollY'] {
-		overflow-y: auto;
-		overflow-x: hidden;
 	}
 </style>

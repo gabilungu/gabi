@@ -1,0 +1,62 @@
+<script lang="ts">
+	import Scrollable from "./Scrollable.svelte";
+	import Placeholder from "../Placeholder/Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Layout / Scrollable"
+	description="A scrolling flex container — it lays its children out (`direction`, `gap`) and scrolls once they outgrow the box. `width` and `height` fill by default; `overflowX` / `overflowY` set each axis (vertical auto-scrolls). No styling props — theme the optional shell with `--bg`, `--border`, `--shadow`."
+]
+
+	[component
+		component={Scrollable}
+		args={{ width: "fill", height: 180, padding: 12, gap: 8, overflowX: "hidden", overflowY: "auto" }}
+	]
+		<Scrollable {...args} --bg="var(--accent-50)">
+			<Placeholder text="1" height={36} />
+			<Placeholder text="2" height={36} />
+			<Placeholder text="3" height={36} />
+			<Placeholder text="4" height={36} />
+			<Placeholder text="5" height={36} />
+			<Placeholder text="6" height={36} />
+			<Placeholder text="7" height={36} />
+			<Placeholder text="8" height={36} />
+		</Scrollable>
+	[/component]
+
+	[example title="Vertical (default)" description="A fixed height plus `overflowY` auto scrolls a taller list; `gap` spaces the rows." direction="column"]
+		<Scrollable height={160} padding={12} gap={8} --bg="var(--accent-50)">
+			<Placeholder text="1" height={40} />
+			<Placeholder text="2" height={40} />
+			<Placeholder text="3" height={40} />
+			<Placeholder text="4" height={40} />
+			<Placeholder text="5" height={40} />
+			<Placeholder text="6" height={40} />
+		</Scrollable>
+	[/example]
+
+	[example title="Horizontal" description="Set `overflowX` and lay the children in a `row`; keep the height hugging." direction="column"]
+		<Scrollable overflowX="auto" direction="row" gap={8} width={320} height="hug" padding={12} --bg="var(--accent-50)">
+			<Placeholder text="1" width={120} height={64} />
+			<Placeholder text="2" width={120} height={64} />
+			<Placeholder text="3" width={120} height={64} />
+			<Placeholder text="4" width={120} height={64} />
+		</Scrollable>
+	[/example]
+
+	[example title="Both axes" description="`overflowX` and `overflowY` scroll independently." direction="column"]
+		<Scrollable overflowX="auto" overflowY="auto" width={300} height={170} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="720 × 440" width={720} height={440} />
+		</Scrollable>
+	[/example]
+
+	[example title="Grow, then scroll" description="With `height='hug'` plus a `maxHeight`, the box grows with its content up to the cap, then scrolls." direction="column" gap="16px"]
+		<Scrollable height="hug" maxHeight={170} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="short — fits under the cap" height={90} />
+		</Scrollable>
+		<Scrollable height="hug" maxHeight={170} padding={12} --bg="var(--accent-50)">
+			<Placeholder text="tall — hits the cap, then scrolls" height={420} />
+		</Scrollable>
+	[/example]
+
+[/SHOWCASE]
