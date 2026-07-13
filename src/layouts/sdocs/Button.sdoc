@@ -1,0 +1,195 @@
+<script lang="ts">
+	import Shell from "../../lib/components/Shell/Shell.svelte";
+	import NavTree from "../../lib/components/NavTree/index.js";
+	import Tabs from "../../lib/components/Tabs/index.js";
+	import Table from "../../lib/components/Table/index.js";
+	import Code from "../../lib/components/Code/Code.svelte";
+	import SegmentedControl from "../../lib/components/SegmentedControl/SegmentedControl.svelte";
+	import Input from "../../lib/components/Input/Input.svelte";
+	import Button from "../../lib/components/Button/Button.svelte";
+	import Badge from "../../lib/components/Badge/Badge.svelte";
+	import Text from "../../lib/components/Text/Text.svelte";
+
+	const files = [
+		{
+			title: "usage.svelte",
+			icon: "/icons/square-mouse-pointer.svg",
+			code: '<Button text="Save changes" icon="/icons/check.svg" />\n\n<Button variant="secondary" text="Cancel" />\n\n<Button intent="danger" text="Delete" />'
+		},
+		{
+			title: "props.ts",
+			icon: "/icons/text-cursor-input.svg",
+			code: "export interface ButtonProps {\n  text?: string;\n  icon?: string;\n  variant?: 'primary' | 'secondary' | 'ghost' | 'link';\n  intent?: 'action' | 'danger' | 'success';\n  size?: 'xs' | 'sm' | 'md' | 'lg';\n  disabled?: boolean;\n}"
+		}
+	];
+</script>
+
+[LAYOUT title="@components/:Layouts / sdocs / Button"]
+	<Shell height="fill" sidebarWidth={244} breakpoint={720}>
+		{#snippet brand()}
+			<span class="brand">gabi</span>
+		{/snippet}
+
+		{#snippet sections()}
+			<Tabs value="components" size="sm">
+				<Tabs.List aria-label="Sections">
+					<Tabs.Tab value="guides">Guides</Tabs.Tab>
+					<Tabs.Tab value="components">Components</Tabs.Tab>
+				</Tabs.List>
+			</Tabs>
+		{/snippet}
+
+		{#snippet actions()}
+			<Badge text="v0.0.8" size="xs" />
+			<Button icon="/icons/sun.svg" variant="ghost" size="sm" />
+		{/snippet}
+
+		{#snippet sidebar()}
+			<div class="side">
+				<div class="side-search">
+					<Input placeholder="Search…" size="sm" />
+				</div>
+				<NavTree padding={8}>
+					<NavTree.Group label="Layout">
+						<NavTree.Item text="Container" icon="/icons/square-dashed.svg" />
+						<NavTree.Item text="Shell" icon="/icons/panels-top-left.svg" />
+						<NavTree.Item text="Table" icon="/icons/table-2.svg" />
+					</NavTree.Group>
+					<NavTree.Group label="Form">
+						<NavTree.Item text="Button" icon="/icons/square-mouse-pointer.svg" active />
+						<NavTree.Item text="Input" icon="/icons/text-cursor-input.svg" />
+						<NavTree.Item text="Select" icon="/icons/chevrons-up-down.svg" />
+					</NavTree.Group>
+					<NavTree.Group label="Display">
+						<NavTree.Item text="Badge" icon="/icons/columns-3.svg" />
+						<NavTree.Item text="Toast" icon="/icons/bell.svg" />
+					</NavTree.Group>
+				</NavTree>
+			</div>
+		{/snippet}
+
+		<div class="view">
+			<div class="view-head">
+				<Text variant="h1">Button</Text>
+				<Text variant="small">A clickable button — variants, sizes, and intents. Theme-aware and keyboard-accessible.</Text>
+			</div>
+
+			<div class="showcase">
+				<div class="toolbar">
+					<SegmentedControl
+						size="sm"
+						value="light"
+						options={[{ value: "light", label: "Light" }, { value: "dark", label: "Dark" }]}
+					/>
+				</div>
+				<div class="stage">
+					<Button text="Primary" icon="/icons/plus.svg" />
+					<Button text="Secondary" variant="secondary" />
+					<Button text="Outlined" variant="outlined" />
+					<Button text="Ghost" variant="ghost" />
+					<Button text="Delete" intent="danger" />
+					<Button icon="/icons/settings.svg" variant="ghost" />
+				</div>
+			</div>
+
+			<Code {files} maxHeight={200} />
+
+			<div class="section-title"><Text variant="h3">Props</Text></div>
+			<Table>
+				<Table.Head>
+					<Table.Column width={150}>Name</Table.Column>
+					<Table.Column>Type</Table.Column>
+					<Table.Column width={110}>Default</Table.Column>
+					<Table.Column>Description</Table.Column>
+				</Table.Head>
+				<Table.Body>
+					<Table.Row>
+						<Table.Cell>text</Table.Cell>
+						<Table.Cell><Badge text="string" size="xs" /></Table.Cell>
+						<Table.Cell>—</Table.Cell>
+						<Table.Cell>Button label. Omit (with an icon) for an icon-only button.</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>variant</Table.Cell>
+						<Table.Cell><Badge text="primary | secondary | ghost | …" size="xs" /></Table.Cell>
+						<Table.Cell>primary</Table.Cell>
+						<Table.Cell>Visual style.</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>intent</Table.Cell>
+						<Table.Cell><Badge text="action | danger | success | …" size="xs" /></Table.Cell>
+						<Table.Cell>action</Table.Cell>
+						<Table.Cell>Semantic colour.</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>size</Table.Cell>
+						<Table.Cell><Badge text="xs | sm | md | lg" size="xs" /></Table.Cell>
+						<Table.Cell>md</Table.Cell>
+						<Table.Cell>Height on the shared control scale.</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>icon</Table.Cell>
+						<Table.Cell><Badge text="string" size="xs" /></Table.Cell>
+						<Table.Cell>—</Table.Cell>
+						<Table.Cell>Leading icon — a path or raw SVG.</Table.Cell>
+					</Table.Row>
+					<Table.Row>
+						<Table.Cell>disabled</Table.Cell>
+						<Table.Cell><Badge text="boolean" size="xs" /></Table.Cell>
+						<Table.Cell>false</Table.Cell>
+						<Table.Cell>Disable the button.</Table.Cell>
+					</Table.Row>
+				</Table.Body>
+			</Table>
+		</div>
+	</Shell>
+
+	<style>
+		.brand {
+			font-weight: 700;
+			font-size: 16px;
+		}
+		.side {
+			display: flex;
+			flex-direction: column;
+		}
+		.side-search {
+			padding: 12px 12px 6px;
+		}
+		.view {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+			padding: 28px 32px;
+			max-width: 1000px;
+		}
+		.view-head {
+			display: flex;
+			flex-direction: column;
+			gap: 6px;
+		}
+		.showcase {
+			border: 1px solid var(--base-200);
+			border-radius: 10px;
+			overflow: hidden;
+		}
+		.toolbar {
+			display: flex;
+			justify-content: flex-end;
+			padding: 10px 12px;
+			border-bottom: 1px solid var(--base-150);
+			background: var(--base-50);
+		}
+		.stage {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 12px;
+			padding: 32px;
+			min-height: 120px;
+		}
+		.section-title {
+			margin-top: 4px;
+		}
+	</style>
+[/LAYOUT]
