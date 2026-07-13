@@ -12,6 +12,7 @@
 ]
 
 	[component
+		padding="0"
 		component={Shell}
 		args={{ width: "fill", sidebarWidth: 240, breakpoint: 600, height: 480 }}
 	]
@@ -22,7 +23,7 @@
 				Dashboard: ["Overview", "Analytics", "Reports"],
 				Projects: ["All projects", "Active", "Archived"],
 				Team: ["Members", "Roles", "Invitations"],
-				Settings: ["General", "Billing", "Security"]
+				Settings: ["General", "Billing", "Security"],
 			};
 			function go(s: string) {
 				section = s;
@@ -34,10 +35,34 @@
 			{#snippet brand()}<span>Acme</span>{/snippet}
 
 			{#snippet sections()}
-				<Button text="Dashboard" icon="/icons/layout-dashboard.svg" size="sm" variant={section === "Dashboard" ? "secondary" : "ghost"} onclick={() => go("Dashboard")} />
-				<Button text="Projects" icon="/icons/folder.svg" size="sm" variant={section === "Projects" ? "secondary" : "ghost"} onclick={() => go("Projects")} />
-				<Button text="Team" icon="/icons/users.svg" size="sm" variant={section === "Team" ? "secondary" : "ghost"} onclick={() => go("Team")} />
-				<Button text="Settings" icon="/icons/settings.svg" size="sm" variant={section === "Settings" ? "secondary" : "ghost"} onclick={() => go("Settings")} />
+				<Button
+					text="Dashboard"
+					icon="/icons/layout-dashboard.svg"
+					size="sm"
+					variant={section === "Dashboard" ? "secondary" : "ghost"}
+					onclick={() => go("Dashboard")}
+				/>
+				<Button
+					text="Projects"
+					icon="/icons/folder.svg"
+					size="sm"
+					variant={section === "Projects" ? "secondary" : "ghost"}
+					onclick={() => go("Projects")}
+				/>
+				<Button
+					text="Team"
+					icon="/icons/users.svg"
+					size="sm"
+					variant={section === "Team" ? "secondary" : "ghost"}
+					onclick={() => go("Team")}
+				/>
+				<Button
+					text="Settings"
+					icon="/icons/settings.svg"
+					size="sm"
+					variant={section === "Settings" ? "secondary" : "ghost"}
+					onclick={() => go("Settings")}
+				/>
 			{/snippet}
 
 			{#snippet actions()}
@@ -49,7 +74,11 @@
 				<NavTree padding={12}>
 					<NavTree.Group label={section}>
 						{#each nav[section] as item (item)}
-							<NavTree.Item text={item} active={page === item} onclick={() => (page = item)} />
+							<NavTree.Item
+								text={item}
+								active={page === item}
+								onclick={() => (page = item)}
+							/>
 						{/each}
 					</NavTree.Group>
 				</NavTree>
@@ -95,20 +124,47 @@
 			{#snippet brand()}<span>Acme</span>{/snippet}
 
 			{#snippet sections()}
-				<Button text="Dashboard" icon="/icons/layout-dashboard.svg" size="sm" variant="secondary" width="fill" alignContent="left" />
-				<Button text="Projects" icon="/icons/folder.svg" size="sm" variant="ghost" width="fill" alignContent="left" />
-				<Button text="Settings" icon="/icons/settings.svg" size="sm" variant="ghost" width="fill" alignContent="left" />
+				<Button
+					text="Dashboard"
+					icon="/icons/layout-dashboard.svg"
+					size="sm"
+					variant="secondary"
+					width="fill"
+					alignContent="left"
+				/>
+				<Button
+					text="Projects"
+					icon="/icons/folder.svg"
+					size="sm"
+					variant="ghost"
+					width="fill"
+					alignContent="left"
+				/>
+				<Button
+					text="Settings"
+					icon="/icons/settings.svg"
+					size="sm"
+					variant="ghost"
+					width="fill"
+					alignContent="left"
+				/>
 			{/snippet}
 
 			{#snippet sidebar()}
 				<NavTree>
-					<NavTree.Item text="Overview" icon="/icons/layout-dashboard.svg" active />
+					<NavTree.Item
+						text="Overview"
+						icon="/icons/layout-dashboard.svg"
+						active
+					/>
 					<NavTree.Item text="Analytics" icon="/icons/line-chart.svg" />
 					<NavTree.Item text="Reports" icon="/icons/file-text.svg" />
 				</NavTree>
 			{/snippet}
 
-			<div style="padding: 24px; display: flex; flex-direction: column; gap: 12px;">
+			<div
+				style="padding: 24px; display: flex; flex-direction: column; gap: 12px;"
+			>
 				<Text variant="h3">Overview</Text>
 				<Placeholder text="content" height={160} />
 			</div>
@@ -129,19 +185,29 @@
 
 			{#snippet sidebar()}
 				<NavTree padding={12}>
-					<NavTree.Item text="Overview" icon="/icons/layout-dashboard.svg" active />
+					<NavTree.Item
+						text="Overview"
+						icon="/icons/layout-dashboard.svg"
+						active
+					/>
 					<NavTree.Item text="Analytics" icon="/icons/line-chart.svg" />
 					<NavTree.Item text="Reports" icon="/icons/file-text.svg" />
 				</NavTree>
 			{/snippet}
 
 			{#snippet rail()}
-				<Button icon="/icons/layout-dashboard.svg" variant="tertiary" size="sm" />
+				<Button
+					icon="/icons/layout-dashboard.svg"
+					variant="tertiary"
+					size="sm"
+				/>
 				<Button icon="/icons/line-chart.svg" variant="ghost" size="sm" />
 				<Button icon="/icons/file-text.svg" variant="ghost" size="sm" />
 			{/snippet}
 
-			<div style="padding: 24px; display: flex; flex-direction: column; gap: 12px;">
+			<div
+				style="padding: 24px; display: flex; flex-direction: column; gap: 12px;"
+			>
 				<Text variant="h3">Welcome back</Text>
 				<Placeholder text="content" height={180} />
 			</div>
