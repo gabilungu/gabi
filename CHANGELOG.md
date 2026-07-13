@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `TwoPaneSplit` — a two-pane split: a `left` and a `right` slot with a draggable
+  handle bar between them. Drag the handle (or focus it and use the arrow keys,
+  Home / End for the extremes) to move the split; `leftWidth` is bindable and
+  reads back the pixel size. `leftMinWidth` / `rightMinWidth` clamp each pane —
+  both default 0, so a pane can take the whole size and the bar spills past the
+  edge. `direction` splits `horizontal` (default) or `vertical`, and
+  `mode='compare'` overlays the two panes at a shared origin for a before /
+  after image slider. The handle is a `role="slider"` and rides above the panes'
+  clip. Theme with `--leftBg` / `--rightBg` / `--handleBg` / `--hoverHandleBg` /
+  `--handleColor` / `--hoverHandleColor`.
+
 ## [0.0.8] - 2026-07-13
 
 ### Added

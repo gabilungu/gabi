@@ -18,6 +18,7 @@ export { default as Divider } from './components/Divider/Divider.svelte';
 export { default as Flex } from './components/Flex/Flex.svelte';
 export { Grid } from './components/Grid/index.js';
 export { default as Scrollable } from './components/Scrollable/Scrollable.svelte';
+export { default as TwoPaneSplit } from './components/TwoPaneSplit/TwoPaneSplit.svelte';
 export { default as Shell } from './components/Shell/Shell.svelte';
 // Compound component: NavTree with .Group and .Item attached.
 export { NavTree } from './components/NavTree/index.js';

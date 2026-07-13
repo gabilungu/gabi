@@ -1,0 +1,129 @@
+<script lang="ts">
+	import TwoPaneSplit from "./TwoPaneSplit.svelte";
+	import NavTree from "../NavTree/index.js";
+	import Text from "../Text/Text.svelte";
+	import Placeholder from "../Placeholder/Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Layout / TwoPaneSplit"
+	description="A two-pane split: a `left` and a `right` slot with a draggable handle bar between them. Drag it (or focus the handle and use the arrow keys, Home / End for the extremes) to move the split. `leftWidth` is bindable; `leftMinWidth` / `rightMinWidth` clamp each pane; `direction` splits horizontally or vertically; and `mode='compare'` overlays the panes for a before / after slider. Theme with `--leftBg` / `--rightBg` / `--handleBg` / `--hoverHandleBg` / `--handleColor` / `--hoverHandleColor`."
+]
+
+	[component
+		component={TwoPaneSplit}
+		args={{ leftWidth: 240, handleBarWidth: 8, leftMinWidth: 120, rightMinWidth: 120, direction: "horizontal", mode: "split", height: 240 }}
+	]
+		<TwoPaneSplit {...args} --leftBg="var(--base-50)" --rightBg="var(--base-0)">
+			{#snippet left()}
+				<div class="pane"><Text variant="small">Left pane</Text></div>
+			{/snippet}
+			{#snippet right()}
+				<div class="pane"><Text variant="small">Right pane</Text></div>
+			{/snippet}
+		</TwoPaneSplit>
+
+		<style>
+			.pane {
+				padding: 16px;
+			}
+		</style>
+	[/component]
+
+	[example
+		title="Sidebar and content"
+		description="A `NavTree` on the left, content on the right — the classic app split. `leftMinWidth` / `rightMinWidth` stop either side collapsing too far."
+		direction="column"
+	]
+		<TwoPaneSplit leftWidth={200} leftMinWidth={140} rightMinWidth={220} height={280} --leftBg="var(--base-50)">
+			{#snippet left()}
+				<NavTree padding={12}>
+					<NavTree.Item text="Overview" icon="/icons/layout-dashboard.svg" active />
+					<NavTree.Item text="Analytics" icon="/icons/line-chart.svg" />
+					<NavTree.Item text="Reports" icon="/icons/file-text.svg" />
+					<NavTree.Item text="Settings" icon="/icons/settings.svg" />
+				</NavTree>
+			{/snippet}
+			{#snippet right()}
+				<div class="body">
+					<Text variant="h3">Overview</Text>
+					<Placeholder text="content" height={160} />
+				</div>
+			{/snippet}
+		</TwoPaneSplit>
+
+		<style>
+			.body {
+				padding: 20px;
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+			}
+		</style>
+	[/example]
+
+	[example
+		title="Vertical split"
+		description="`direction='vertical'` stacks the panes and drags on the Y axis; the handle bar spans across."
+		direction="column"
+	]
+		<TwoPaneSplit direction="vertical" leftWidth={110} leftMinWidth={60} rightMinWidth={60} height={280} --leftBg="var(--base-50)">
+			{#snippet left()}
+				<div class="cell"><Text variant="small">Top</Text></div>
+			{/snippet}
+			{#snippet right()}
+				<div class="cell"><Text variant="small">Bottom</Text></div>
+			{/snippet}
+		</TwoPaneSplit>
+
+		<style>
+			.cell {
+				padding: 16px;
+			}
+		</style>
+	[/example]
+
+	[example
+		title="Compare — before / after"
+		description="`mode='compare'` anchors both contents to the same origin, so the handle wipes between them like an image-comparison slider. Put the two versions in `left` and `right`."
+		direction="column"
+	]
+		<TwoPaneSplit
+			mode="compare"
+			leftWidth="50%"
+			height={240}
+			handleBarWidth={2}
+			--handleBg="#ffffff"
+			--handleColor="#ffffff"
+			--hoverHandleColor="#ffffff"
+		>
+			{#snippet left()}
+				<div class="shot before">Before</div>
+			{/snippet}
+			{#snippet right()}
+				<div class="shot after">After</div>
+			{/snippet}
+		</TwoPaneSplit>
+
+		<style>
+			.shot {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 22px;
+				font-weight: 700;
+				color: #ffffff;
+				letter-spacing: 0.02em;
+			}
+			.before {
+				background: linear-gradient(135deg, #94a3b8, #334155);
+			}
+			.after {
+				background: linear-gradient(135deg, #fbbf24, #db2777);
+			}
+		</style>
+	[/example]
+
+[/SHOWCASE]
