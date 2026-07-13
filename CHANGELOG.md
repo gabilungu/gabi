@@ -7,6 +7,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.7] - 2026-07-13
+
+### Added
+
+- `Scrollable` — a scrolling flex container: `direction` / `gap` lay children
+  out, `overflowX` / `overflowY` control each axis (vertical auto-scrolls),
+  `width` / `height` fill by default, and `maxWidth` / `maxHeight` give a
+  grow-then-scroll box. Theme the optional shell with `--bg` / `--border` /
+  `--shadow`.
+- `NavTree` gains `width` (fill / number / CSS), `padding`, and `margin` props.
+- `NavTree.Item` gains a `size` (`xs` / `sm` / `md`, on Button's scale) and a
+  leading `icon`; its folder chevron is now an independent toggle button (its
+  own hover / press), and the selected item is highlighted with `--focus-300`.
+
+### Changed
+
+- **Breaking:** `Container` drops the `overflow` prop — wrap content in a
+  `Scrollable` instead.
+- **Breaking:** `NavTree.Item` renames `label` to `text` (matching Button) and
+  replaces its `left` snippet with the `icon` prop.
+- The `NavTree` family no longer exposes the ad-hoc `--p` / `--m` / `--r` /
+  `--b` / `--font-color` custom properties.
+
 ## [0.0.6] - 2026-07-11
 
 ### Added
