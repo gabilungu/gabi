@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import Icon from '../Icon/Icon.svelte';
+	import chevronRaw from '../../internal/icons/chevron.svg?raw';
 
 	interface Props {
 		label: string;
@@ -20,7 +22,7 @@
 	<button class="NavTree-group-label" onclick={onclick ?? toggle}>
 		<span class="NavTree-group-text">{label}</span>
 		<span class="NavTree-chevron" class:expanded>
-			<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+			<Icon icon={chevronRaw} dimension={14} />
 		</span>
 	</button>
 	{#if expanded && children}
@@ -35,10 +37,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 4px;
-		padding: var(--p, 0);
-		margin: var(--m, 12px 0);
-		border-radius: var(--r, 0);
-		border: var(--b, none);
+		margin: 12px 0;
 	}
 
 	.NavTree-group-label {
@@ -48,9 +47,9 @@
 		padding: 0 12px;
 		border: none;
 		background: none;
-		font: inherit;
+		font-family: inherit;
 		font-size: 11px;
-		font-weight: var(--font-weight, 600);
+		font-weight: 600;
 		color: var(--fg-ll);
 		letter-spacing: 0.05em;
 		text-transform: uppercase;
@@ -66,22 +65,21 @@
 		flex: 1;
 	}
 
+	/* Inherits the label colour; the internal chevron points down, so rotate it
+	   to point right when collapsed, back to down when expanded. */
 	.NavTree-chevron {
 		display: inline-flex;
 		align-items: center;
 		margin-left: auto;
-	}
-
-	.NavTree-chevron svg {
+		transform: rotate(-90deg);
 		transition: transform 0.15s ease;
 	}
 
-	.NavTree-chevron.expanded svg {
-		transform: rotate(90deg);
+	.NavTree-chevron.expanded {
+		transform: rotate(0deg);
 	}
 
 	.NavTree-group-children {
-		padding-left: 0;
 		display: flex;
 		flex-direction: column;
 		gap: 1px;

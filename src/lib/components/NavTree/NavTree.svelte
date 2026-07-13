@@ -39,11 +39,9 @@
 		min-width: 0;
 		font-size: 13px;
 		line-height: 1.4;
-		color: var(--font-color, var(--fg));
+		color: var(--fg);
 		display: flex;
 		flex-direction: column;
 		gap: 1px;
-		border-radius: var(--r, 0);
-		border: var(--b, none);
 	}
 </style>
