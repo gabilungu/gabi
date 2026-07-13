@@ -37,6 +37,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   bindable `value`, a sliding-thumb look, arrow-key navigation, per-option
   `icon` / `disabled`, and a `size` whose total height matches Button's scale.
   `width` fills or hugs; theme with `--bg` / `--thumbBg` / `--activeFg`.
+- `Pagination` — page navigation with previous / next and numbered pages that
+  collapse to an ellipsis for long ranges (`siblingCount` / `boundaryCount` tune
+  it). Give it `total` + `pageSize` or a `pageCount` directly; `page` is
+  bindable; optional `firstLast` jump buttons; `size` matches Button's height
+  scale. Theme with `--activeBg` / `--activeFg` / `--hoverBg`.
 
 ## [0.0.8] - 2026-07-13
 

@@ -27,3 +27,4 @@ export { Table } from './components/Table/index.js';
 // Compound component: Tabs with .List/.Tab/.Panel attached.
 export { Tabs } from './components/Tabs/index.js';
 export { default as SegmentedControl } from './components/SegmentedControl/SegmentedControl.svelte';
+export { default as Pagination } from './components/Pagination/Pagination.svelte';
