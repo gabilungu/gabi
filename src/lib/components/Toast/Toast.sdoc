@@ -1,0 +1,102 @@
+<script lang="ts">
+	import Toast from "./Toast.svelte";
+	import Toaster from "./Toaster.svelte";
+	import { toaster } from "./toaster.svelte.js";
+	import Button from "../Button/Button.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/Toast"
+	description="A transient notification. Use the presentational `<Toast>` card on its own, or drive a stacked, auto-dismissing queue: mount one `<Toaster />` and call `toaster.success(…)` / `.info(…)` / `.danger(…)` from anywhere. `intent` tints it, `variant` picks a light or dark surface, and a finite `duration` shows a countdown line that pauses on hover."
+]
+
+	[component
+		component={Toast}
+		args={{ intent: "info", variant: "light", title: "Workspace updated", description: "A revamped activity report is now available.", duration: null, showProgress: false }}
+	]
+		<script lang="ts">
+			let visible = $state(true);
+		</script>
+
+		{#if visible}
+			<Toast {...args} onClose={() => (visible = false)} />
+		{:else}
+			<Button text="Show toast" size="sm" variant="secondary" onclick={() => (visible = true)} />
+		{/if}
+	[/component]
+
+	[example
+		title="Queue"
+		description="Mount one `<Toaster />`, then call the `toaster` methods from anywhere. Toasts stack, auto-dismiss after their `duration` (hover to pause), and animate out."
+		direction="column"
+	]
+		<div class="triggers">
+			<Button size="sm" text="Success" onclick={() => toaster.success("Changes saved", "Your workspace is up to date.")} />
+			<Button size="sm" variant="secondary" text="Info" onclick={() => toaster.info("Heads up", "A revamped activity report is available.")} />
+			<Button size="sm" variant="secondary" text="Danger" onclick={() => toaster.danger("Upload failed", "Check your connection and try again.")} />
+			<Button size="sm" variant="secondary" text="With action" onclick={() => toaster.success("Invite sent", "Sam will get an email shortly.", { actionLabel: "Undo", onAction: () => toaster.info("Invite undone") })} />
+		</div>
+		<Toaster position="bottom-right" />
+
+		<style>
+			.triggers {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+			}
+		</style>
+	[/example]
+
+	[example
+		title="Intents"
+		description="`neutral` / `info` / `success` / `danger` / `warning` — each tints the icon (and the countdown line)."
+		direction="column"
+		gap="10px"
+	]
+		<Toast intent="neutral" title="Copied to clipboard" showProgress={false} />
+		<Toast intent="info" title="Workspace updated" description="A revamped activity report is now available." showProgress={false} />
+		<Toast intent="success" title="Changes saved" description="Your workspace is up to date." showProgress={false} />
+		<Toast intent="danger" title="Upload failed" description="Check your connection and try again." showProgress={false} />
+		<Toast intent="warning" title="Storage almost full" description="You've used 92% of your plan." showProgress={false} />
+	[/example]
+
+	[example
+		title="Dark variant"
+		description="`variant='dark'` renders a deep, **intent-coloured** surface — the whole card takes the intent's tone."
+		direction="column"
+		gap="10px"
+		background="var(--base-100)"
+	]
+		<Toast variant="dark" intent="info" title="Workspace updated" description="A revamped activity report is now available." onClose={() => {}} showProgress={false} />
+		<Toast variant="dark" intent="success" title="Invite sent" description="Sam will get an email shortly." actionLabel="Undo" onClose={() => {}} showProgress={false} />
+		<Toast variant="dark" intent="danger" title="Upload failed" description="Check your connection and try again." onClose={() => {}} showProgress={false} />
+		<Toast variant="dark" intent="warning" title="Storage almost full" description="You've used 92% of your plan." onClose={() => {}} showProgress={false} />
+	[/example]
+
+	[example
+		title="With action & close"
+		description="`actionLabel` + `onAction` add a trailing button; pass `onClose` to show the ✕."
+		direction="column"
+	]
+		<Toast
+			intent="success"
+			title="Invite sent"
+			description="Sam will get an email shortly."
+			actionLabel="Undo"
+			onAction={() => {}}
+			onClose={() => {}}
+			showProgress={false}
+		/>
+	[/example]
+
+	[example
+		title="With countdown"
+		description="A finite `duration` with `showProgress` draws a depleting line, coloured by intent. Hover to pause it."
+		direction="column"
+		gap="10px"
+	]
+		<Toast intent="info" title="Auto-dismissing" description="The line below shows the remaining time. Hover to pause it." duration={12} onClose={() => {}} />
+		<Toast intent="success" title="Changes saved" duration={12} onClose={() => {}} />
+	[/example]
+
+[/SHOWCASE]

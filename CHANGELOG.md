@@ -42,6 +42,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   it). Give it `total` + `pageSize` or a `pageCount` directly; `page` is
   bindable; optional `firstLast` jump buttons; `size` matches Button's height
   scale. Theme with `--activeBg` / `--activeFg` / `--hoverBg`.
+- `Toast` — a transient notification. The presentational `<Toast>` card takes an
+  `intent` (neutral / info / success / danger / warning), a light or dark
+  `variant`, a `title` + `description` (or `children`), an optional leading
+  `icon`, a trailing `actionLabel` / `onAction`, and `onClose` for the ✕; a
+  finite `duration` with `showProgress` draws a countdown line that pauses on
+  hover. For stacked, auto-dismissing notifications, mount one `<Toaster />`
+  (with a `position`) and drive it from the `toaster` queue —
+  `toaster.success(title, description?)` / `.info` / `.danger` / `.warning` /
+  `.neutral`, plus `toaster.dismiss(id)` and `toaster.clear()`.
 
 ## [0.0.8] - 2026-07-13
 

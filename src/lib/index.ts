@@ -28,3 +28,5 @@ export { Table } from './components/Table/index.js';
 export { Tabs } from './components/Tabs/index.js';
 export { default as SegmentedControl } from './components/SegmentedControl/SegmentedControl.svelte';
 export { default as Pagination } from './components/Pagination/Pagination.svelte';
+// Toast: the presentational card, the Toaster viewport, and the toaster queue.
+export { Toast, Toaster, toaster } from './components/Toast/index.js';
