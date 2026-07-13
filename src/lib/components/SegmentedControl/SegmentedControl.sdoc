@@ -20,7 +20,7 @@
 
 [SHOWCASE
 	title="@components/SegmentedControl"
-	description="A compact single-select — connected segments with a sliding-thumb look, for picking one value (a view, a range). Give it `options` and bind `value`; arrow keys move the selection. `size` shares Button's height scale, so it lines up with buttons and inputs. Theme with `--bg` / `--thumbBg` / `--activeFg`."
+	description="A compact single-select — connected segments, for picking one value (a view, a range). Give it `options` and bind `value`; arrow keys move the selection. The selected segment uses the shared selection highlight. `size` shares Button's height scale, so it lines up with buttons and inputs. Theme the track with `--bg`."
 ]
 
 	[component

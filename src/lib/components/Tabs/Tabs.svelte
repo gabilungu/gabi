@@ -4,7 +4,6 @@
 	import { TABS_KEY, type TabsContext } from './context.js';
 
 	/**
-	 * @cssvar {color} --accent - Active tab colour + underline (default: `var(--action-600)`)
 	 * @cssvar {shorthand} --border - Track divider under the tabs (default: `1px solid var(--base-150)`)
 	 */
 	interface Props extends HTMLAttributes<HTMLDivElement> {
@@ -78,8 +77,8 @@
 		color: var(--fg);
 	}
 	.Tabs :global(.Tabs-tab[aria-selected='true']) {
-		color: var(--accent, var(--action-600));
-		border-bottom-color: var(--accent, var(--action-600));
+		color: var(--fg);
+		border-bottom-color: var(--focus-400);
 	}
 	.Tabs :global(.Tabs-tab:disabled) {
 		opacity: 0.5;

@@ -14,8 +14,6 @@
 
 	/**
 	 * @cssvar {shorthand} --bg - Track background (default: `var(--base-100)`)
-	 * @cssvar {shorthand} --thumbBg - Selected segment background (default: `var(--base-0)`)
-	 * @cssvar {color} --activeFg - Selected segment text (default: `var(--fg)`)
 	 */
 	interface Props extends HTMLAttributes<HTMLDivElement> {
 		/** The segments. */
@@ -130,9 +128,8 @@
 		color: var(--fg);
 	}
 	.Segmented-active {
-		background: var(--thumbBg, var(--base-0));
-		color: var(--activeFg, var(--fg));
-		box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+		background: var(--focus-300);
+		color: var(--fg);
 	}
 	.Segmented-item:disabled {
 		opacity: 0.5;

@@ -4,12 +4,12 @@
 
 [SHOWCASE
 	title="@components/Pagination"
-	description="Page navigation — previous / next plus numbered pages that collapse to an ellipsis for long ranges. Give it `total` (items) and `pageSize`, or a `pageCount` directly, and bind `page`. `siblingCount` / `boundaryCount` tune how many numbers show; `size` shares Button's height scale. Theme with `--activeBg` / `--activeFg` / `--hoverBg`."
+	description="Page navigation — previous / next plus numbered pages that collapse to an ellipsis for long ranges. Give it `total` (items) and `pageSize`, or a `pageCount` directly, and bind `page`. `siblingCount` / `boundaryCount` tune how many numbers show; `size` shares Button's height scale. The current page uses the shared selection highlight."
 ]
 
 	[component
 		component={Pagination}
-		args={{ total: 200, pageSize: 10, siblingCount: 1, boundaryCount: 1, firstLast: false, size: "md" }}
+		args={{ total: 200, pageSize: 10, siblingCount: 1, boundaryCount: 1, size: "md" }}
 	]
 		<script lang="ts">
 			let page = $state(5);
@@ -28,14 +28,6 @@
 		<Pagination total={120} page={3} size="sm" />
 		<Pagination total={120} page={3} size="md" />
 		<Pagination total={120} page={3} size="lg" />
-	[/example]
-
-	[example
-		title="First / last jumps"
-		description="`firstLast` adds double-chevron buttons that jump to the first and last page."
-		direction="column"
-	]
-		<Pagination total={500} pageSize={20} page={13} firstLast />
 	[/example]
 
 	[example

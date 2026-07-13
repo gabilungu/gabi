@@ -6,7 +6,7 @@
 
 [SHOWCASE
 	title="@components/Tabs"
-	description="Composable tabs — `Tabs.List` holds the `Tabs.Tab` triggers and each `Tabs.Panel` shows when its tab is active. `value` is bindable; arrow keys move between tabs (Home / End for the ends). `size` shares Button's height scale (`xs` / `sm` / `md` / `lg`). Each tab below previews one part. Theme with `--accent` / `--border`."
+	description="Composable tabs — `Tabs.List` holds the `Tabs.Tab` triggers and each `Tabs.Panel` shows when its tab is active. `value` is bindable; arrow keys move between tabs (Home / End for the ends). `size` shares Button's height scale (`xs` / `sm` / `md` / `lg`). Each tab below previews one part. Theme the divider with `--border`."
 ]
 
 	[component

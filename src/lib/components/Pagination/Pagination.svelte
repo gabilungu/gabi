@@ -3,14 +3,7 @@
 	import Icon from '../Icon/Icon.svelte';
 	import chevronLeft from '../../internal/icons/chevron-left.svg?raw';
 	import chevronRight from '../../internal/icons/chevron-right.svg?raw';
-	import chevronsLeft from '../../internal/icons/chevrons-left.svg?raw';
-	import chevronsRight from '../../internal/icons/chevrons-right.svg?raw';
 
-	/**
-	 * @cssvar {shorthand} --activeBg - Current-page background (default: `var(--action-600)`)
-	 * @cssvar {color} --activeFg - Current-page text (default: `var(--base-0)`)
-	 * @cssvar {shorthand} --hoverBg - Hover background for the other pages (default: `var(--base-100)`)
-	 */
 	interface Props extends HTMLAttributes<HTMLElement> {
 		/** Current page, 1-based. Bindable. */
 		page?: number;
@@ -24,8 +17,6 @@
 		siblingCount?: number;
 		/** Pages pinned at each end. Default: 1. */
 		boundaryCount?: number;
-		/** Also show jump-to-first / jump-to-last buttons. */
-		firstLast?: boolean;
 		/** Size preset — heights match Button's scale. Default: 'md'. */
 		size?: 'xs' | 'sm' | 'md' | 'lg';
 		disabled?: boolean;
@@ -38,7 +29,6 @@
 		pageCount,
 		siblingCount = 1,
 		boundaryCount = 1,
-		firstLast = false,
 		size = 'md',
 		disabled = false,
 		class: className = '',
@@ -89,18 +79,6 @@
 </script>
 
 <nav {...rest} class="Pagination {className}" data-size={size} aria-label="Pagination">
-	{#if firstLast}
-		<button
-			type="button"
-			class="Pagination-item Pagination-nav"
-			aria-label="First page"
-			disabled={disabled || page <= 1}
-			onclick={() => go(1)}
-		>
-			<Icon icon={chevronsLeft} dimension={iconSize} />
-		</button>
-	{/if}
-
 	<button
 		type="button"
 		class="Pagination-item Pagination-nav"
@@ -138,18 +116,6 @@
 	>
 		<Icon icon={chevronRight} dimension={iconSize} />
 	</button>
-
-	{#if firstLast}
-		<button
-			type="button"
-			class="Pagination-item Pagination-nav"
-			aria-label="Last page"
-			disabled={disabled || page >= count}
-			onclick={() => go(count)}
-		>
-			<Icon icon={chevronsRight} dimension={iconSize} />
-		</button>
-	{/if}
 </nav>
 
 <style>
@@ -176,12 +142,12 @@
 			color 0.12s ease;
 	}
 	.Pagination-item:hover:not(:disabled):not(.Pagination-current) {
-		background: var(--hoverBg, var(--base-100));
+		background: var(--base-100);
 		color: var(--fg);
 	}
 	.Pagination-current {
-		background: var(--activeBg, var(--action-600));
-		color: var(--activeFg, var(--base-0));
+		background: var(--focus-300);
+		color: var(--fg);
 		cursor: default;
 	}
 	.Pagination-item:disabled {

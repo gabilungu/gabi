@@ -9,7 +9,6 @@
 	 * @cssvar {shorthand} --headerBg - Header background (default: `var(--base-50)`)
 	 * @cssvar {shorthand} --rowHoverBg - Row hover background (default: `var(--base-50)`)
 	 * @cssvar {shorthand} --stripeBg - Zebra-stripe background when `striped` (default: `var(--base-50)`)
-	 * @cssvar {shorthand} --selectedBg - Selected row background (default: `var(--focus-100)`)
 	 */
 	interface Props extends HTMLTableAttributes {
 		/** Show a leading selection checkbox column. */
@@ -176,7 +175,7 @@
 		background: var(--stripeBg, var(--base-50));
 	}
 	.Table :global(.Table-row.Table-selected) {
-		background: var(--selectedBg, var(--focus-100));
+		background: var(--focus-300);
 	}
 
 	/* Selection checkbox column --------------------------------------------- */
