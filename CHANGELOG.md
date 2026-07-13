@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.8] - 2026-07-13
+
+### Added
+
+- `Shell` — an application shell: a header of top-level `sections`, a
+  collapsible `sidebar` of subsections, and a scrolling main area, composed
+  from `brand` / `sections` / `actions` / `sidebar` snippets plus the main
+  `children`. It's responsive off its **own** width (a `ResizeObserver`, not a
+  viewport media query), so below `breakpoint` the sidebar becomes a drawer
+  that also carries the sections — correct even when embedded in a narrow
+  panel. `width` / `height` fill by default; `sidebarWidth` sizes the sidebar;
+  `collapsed` and `menuOpen` are bindable, and a built-in menu button collapses
+  the sidebar (desktop) or opens the drawer (mobile). Supply a `rail` snippet
+  (with `railWidth`) to show a compact icon rail while collapsed instead of
+  hiding. The mobile drawer is a focus-trapping modal (`role="dialog"`,
+  `aria-modal`): it takes focus on open, cycles Tab within itself, and restores
+  focus on close (Esc or the backdrop). Theme with `--bg` / `--border`.
+
 ## [0.0.7] - 2026-07-13
 
 ### Added

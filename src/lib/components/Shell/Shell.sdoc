@@ -1,0 +1,151 @@
+<script lang="ts">
+	import Shell from "./Shell.svelte";
+	import NavTree from "../NavTree/index.js";
+	import Button from "../Button/Button.svelte";
+	import Text from "../Text/Text.svelte";
+	import Placeholder from "../Placeholder/Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Layout / Shell"
+	description="An application shell: a header of top-level `sections`, a collapsible `sidebar` of subsections, and a scrolling main area. It's responsive off its **own** width (a `ResizeObserver`, not a viewport media query), so below `breakpoint` the sidebar becomes a drawer even when the shell is embedded in a narrow panel. No styling props — theme it with `--bg` / `--border`."
+]
+
+	[component
+		component={Shell}
+		args={{ width: "fill", sidebarWidth: 240, breakpoint: 600, height: 480 }}
+	]
+		<script lang="ts">
+			let section = $state("Dashboard");
+			let page = $state("Overview");
+			const nav: Record<string, string[]> = {
+				Dashboard: ["Overview", "Analytics", "Reports"],
+				Projects: ["All projects", "Active", "Archived"],
+				Team: ["Members", "Roles", "Invitations"],
+				Settings: ["General", "Billing", "Security"]
+			};
+			function go(s: string) {
+				section = s;
+				page = nav[s][0];
+			}
+		</script>
+
+		<Shell {...args}>
+			{#snippet brand()}<span>Acme</span>{/snippet}
+
+			{#snippet sections()}
+				<Button text="Dashboard" icon="/icons/layout-dashboard.svg" size="sm" variant={section === "Dashboard" ? "secondary" : "ghost"} onclick={() => go("Dashboard")} />
+				<Button text="Projects" icon="/icons/folder.svg" size="sm" variant={section === "Projects" ? "secondary" : "ghost"} onclick={() => go("Projects")} />
+				<Button text="Team" icon="/icons/users.svg" size="sm" variant={section === "Team" ? "secondary" : "ghost"} onclick={() => go("Team")} />
+				<Button text="Settings" icon="/icons/settings.svg" size="sm" variant={section === "Settings" ? "secondary" : "ghost"} onclick={() => go("Settings")} />
+			{/snippet}
+
+			{#snippet actions()}
+				<Button icon="/icons/bell.svg" size="sm" variant="ghost" />
+				<Button text="New" icon="/icons/plus.svg" size="sm" />
+			{/snippet}
+
+			{#snippet sidebar()}
+				<NavTree padding={12}>
+					<NavTree.Group label={section}>
+						{#each nav[section] as item (item)}
+							<NavTree.Item text={item} active={page === item} onclick={() => (page = item)} />
+						{/each}
+					</NavTree.Group>
+				</NavTree>
+			{/snippet}
+
+			<div class="page">
+				<Text variant="h3">{page}</Text>
+				<Text variant="small">{section} · {page}</Text>
+				<div class="cards">
+					<Placeholder text="42" height={88} />
+					<Placeholder text="$12.4k" height={88} />
+					<Placeholder text="89" height={88} />
+				</div>
+				<Placeholder text="Recent activity" height={220} />
+			</div>
+		</Shell>
+
+		<style>
+			.page {
+				display: flex;
+				flex-direction: column;
+				gap: 16px;
+				padding: 24px;
+			}
+			.cards {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 12px;
+			}
+		</style>
+	[/component]
+
+	[example
+		title="Goes mobile"
+		description="This shell is a narrow 380px — below the default 720 `breakpoint` — so the sidebar collapses into a drawer and the sections move into it. Tap ☰ (Esc or the backdrop closes it). The switch keys off the shell's own width, so embedding it in any narrow panel does the same."
+		direction="column"
+	]
+		<script lang="ts">
+			let open = $state(false);
+		</script>
+
+		<Shell width={380} height={420} sidebarWidth={220} bind:menuOpen={open}>
+			{#snippet brand()}<span>Acme</span>{/snippet}
+
+			{#snippet sections()}
+				<Button text="Dashboard" icon="/icons/layout-dashboard.svg" size="sm" variant="secondary" width="fill" alignContent="left" />
+				<Button text="Projects" icon="/icons/folder.svg" size="sm" variant="ghost" width="fill" alignContent="left" />
+				<Button text="Settings" icon="/icons/settings.svg" size="sm" variant="ghost" width="fill" alignContent="left" />
+			{/snippet}
+
+			{#snippet sidebar()}
+				<NavTree>
+					<NavTree.Item text="Overview" icon="/icons/layout-dashboard.svg" active />
+					<NavTree.Item text="Analytics" icon="/icons/line-chart.svg" />
+					<NavTree.Item text="Reports" icon="/icons/file-text.svg" />
+				</NavTree>
+			{/snippet}
+
+			<div style="padding: 24px; display: flex; flex-direction: column; gap: 12px;">
+				<Text variant="h3">Overview</Text>
+				<Placeholder text="content" height={160} />
+			</div>
+		</Shell>
+	[/example]
+
+	[example
+		title="Collapsible sidebar → icon rail"
+		description="On desktop the ☰ button collapses the sidebar. Supply a `rail` snippet and the collapsed state shows a compact icon rail instead of hiding — `collapsed` is bindable, so you can drive it yourself too."
+		direction="column"
+	]
+		<script lang="ts">
+			let collapsed = $state(true);
+		</script>
+
+		<Shell width="fill" height={340} sidebarWidth={220} bind:collapsed>
+			{#snippet brand()}<span>Acme</span>{/snippet}
+
+			{#snippet sidebar()}
+				<NavTree padding={12}>
+					<NavTree.Item text="Overview" icon="/icons/layout-dashboard.svg" active />
+					<NavTree.Item text="Analytics" icon="/icons/line-chart.svg" />
+					<NavTree.Item text="Reports" icon="/icons/file-text.svg" />
+				</NavTree>
+			{/snippet}
+
+			{#snippet rail()}
+				<Button icon="/icons/layout-dashboard.svg" variant="tertiary" size="sm" />
+				<Button icon="/icons/line-chart.svg" variant="ghost" size="sm" />
+				<Button icon="/icons/file-text.svg" variant="ghost" size="sm" />
+			{/snippet}
+
+			<div style="padding: 24px; display: flex; flex-direction: column; gap: 12px;">
+				<Text variant="h3">Welcome back</Text>
+				<Placeholder text="content" height={180} />
+			</div>
+		</Shell>
+	[/example]
+
+[/SHOWCASE]
