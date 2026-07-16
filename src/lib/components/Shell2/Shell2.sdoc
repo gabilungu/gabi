@@ -1,0 +1,54 @@
+<script lang="ts">
+	import Shell2 from "./Shell2.svelte";
+	import Placeholder from "../Placeholder/Placeholder.svelte";
+</script>
+
+[SHOWCASE
+	title="@components/:Layout / Shell2"
+	description="A five-slot border frame: a `top` and `bottom` bar that span the full width and hug their content height, a `left` and `right` sidebar that fill the height between them and hug their content width, and `children` filling the centre. Any slot you leave out collapses to nothing. `width` / `height` default to `100vw` / `100vh` — override with any CSS length. Each edge slot draws a divider on the edge facing the centre — theme the frame with `--bg` and the four `--…SlotBorder` custom properties (default `1px solid var(--base-200)`)."
+]
+
+	[component padding="0" component={Shell2} minHeight="400px"]
+		<Shell2 {...args}>
+			{#snippet top()}
+				<Placeholder
+					text="top — 40px"
+					height={40}
+					width="fill"
+					--bg="var(--info-100)"
+					--fg="var(--info-600)"
+				/>
+			{/snippet}
+			{#snippet left()}
+				<Placeholder
+					text="left — 200px"
+					width={200}
+					height="fill"
+					--bg="var(--success-100)"
+					--fg="var(--success-600)"
+				/>
+			{/snippet}
+			{#snippet right()}
+				<Placeholder
+					text="right — 200px"
+					width={200}
+					height="fill"
+					--bg="var(--success-100)"
+					--fg="var(--success-600)"
+				/>
+			{/snippet}
+			{#snippet bottom()}
+				<Placeholder
+					text="bottom — 40px"
+					height={40}
+					width="fill"
+					--bg="var(--info-100)"
+					--fg="var(--info-600)"
+				/>
+			{/snippet}
+
+			<Placeholder text="children" width="fill" height="fill" />
+		</Shell2>
+	[/component]
+
+[/SHOWCASE]

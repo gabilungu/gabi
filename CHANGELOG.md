@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `Shell2` — a five-slot border frame: a `top` and `bottom` bar spanning the
+  full width (hugging their content height), a `left` and `right` sidebar
+  filling the height between them (hugging their content width), and `children`
+  filling the centre. Any slot left unset collapses to nothing. `width` /
+  `height` default to `100vw` / `100vh` and take `fill`, a number (px), or any
+  CSS length. No styling props; theme the frame with `--bg` and the four slot
+  dividers (`--topSlotBottomBorder` / `--rightSlotLeftBorder` /
+  `--bottomSlotTopBorder` / `--leftSlotRightBorder`, each defaulting to
+  `1px solid var(--base-200)`).
 - `TwoPaneSplit` — a two-pane split: a `left` and a `right` slot with a draggable
   handle bar between them. Drag the handle (or focus it and use the arrow keys,
   Home / End for the extremes) to move the split; `leftWidth` is bindable and
@@ -27,21 +36,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (driven by `Table.Pager`) are all bindable. `resizable` columns drag to new
   widths — the body follows via `table-layout: fixed` — plus a sticky header,
   per-column `align`, zebra `striped` rows, hover, and a `maxHeight` scroll
-  region. Theme with `--border` / `--headerBg` / `--rowHoverBg` / `--stripeBg` /
-  `--selectedBg`.
+  region. Theme with `--border` / `--headerBg` / `--rowHoverBg` / `--stripeBg`;
+  the selected row uses the shared selection highlight.
 - `Tabs` — composable tabs (`Tabs.List` / `Tabs.Tab` / `Tabs.Panel`) with a
   bindable `value`, roving arrow-key navigation, per-tab `icon` and `disabled`,
   and a `size` on Button's height scale (`xs` / `sm` / `md` / `lg`). Underline
-  style; theme with `--accent` / `--border`.
+  style — the active tab's underline uses the shared selection accent. Theme
+  the divider with `--border`.
 - `SegmentedControl` — a compact single-select from an `options` array with a
-  bindable `value`, a sliding-thumb look, arrow-key navigation, per-option
-  `icon` / `disabled`, and a `size` whose total height matches Button's scale.
-  `width` fills or hugs; theme with `--bg` / `--thumbBg` / `--activeFg`.
+  bindable `value`, arrow-key navigation, per-option `icon` / `disabled`, and a
+  `size` whose total height matches Button's scale. `width` fills or hugs; the
+  active segment uses the shared selection highlight. Theme the track with
+  `--bg`.
 - `Pagination` — page navigation with previous / next and numbered pages that
   collapse to an ellipsis for long ranges (`siblingCount` / `boundaryCount` tune
   it). Give it `total` + `pageSize` or a `pageCount` directly; `page` is
-  bindable; optional `firstLast` jump buttons; `size` matches Button's height
-  scale. Theme with `--activeBg` / `--activeFg` / `--hoverBg`.
+  bindable; `size` matches Button's height scale. The current page uses the
+  shared selection highlight.
 - `Toast` — a transient notification. The presentational `<Toast>` card takes an
   `intent` (neutral / info / success / danger / warning), a light or dark
   `variant`, a `title` + `description` (or `children`), an optional leading

@@ -20,6 +20,7 @@ export { Grid } from './components/Grid/index.js';
 export { default as Scrollable } from './components/Scrollable/Scrollable.svelte';
 export { default as TwoPaneSplit } from './components/TwoPaneSplit/TwoPaneSplit.svelte';
 export { default as Shell } from './components/Shell/Shell.svelte';
+export { default as Shell2 } from './components/Shell2/Shell2.svelte';
 // Compound component: NavTree with .Group and .Item attached.
 export { NavTree } from './components/NavTree/index.js';
 // Compound component: Table with .Head/.Column/.Body/.Row/.Cell/.Pager attached.
