@@ -5,6 +5,8 @@
 	import Table from "../../lib/components/Table/index.js";
 	import Code from "../../lib/components/Code/Code.svelte";
 	import SegmentedControl from "../../lib/components/SegmentedControl/SegmentedControl.svelte";
+	import Select from "../../lib/components/Select/Select.svelte";
+	import Toggle from "../../lib/components/Toggle/Toggle.svelte";
 	import Input from "../../lib/components/Input/Input.svelte";
 	import Button from "../../lib/components/Button/Button.svelte";
 	import Badge from "../../lib/components/Badge/Badge.svelte";
@@ -22,10 +24,32 @@
 			code: "export interface ButtonProps {\n  text?: string;\n  icon?: string;\n  variant?: 'primary' | 'secondary' | 'ghost' | 'link';\n  intent?: 'action' | 'danger' | 'success';\n  size?: 'xs' | 'sm' | 'md' | 'lg';\n  disabled?: boolean;\n}"
 		}
 	];
+
+	const variantOptions = [
+		{ value: "primary", label: "primary" },
+		{ value: "secondary", label: "secondary" },
+		{ value: "tertiary", label: "tertiary" },
+		{ value: "outlined", label: "outlined" },
+		{ value: "ghost", label: "ghost" },
+		{ value: "link", label: "link" }
+	];
+	const intentOptions = [
+		{ value: "action", label: "action" },
+		{ value: "neutral", label: "neutral" },
+		{ value: "danger", label: "danger" },
+		{ value: "warning", label: "warning" },
+		{ value: "success", label: "success" }
+	];
+	const sizeOptions = [
+		{ value: "xs", label: "xs" },
+		{ value: "sm", label: "sm" },
+		{ value: "md", label: "md" },
+		{ value: "lg", label: "lg" }
+	];
 </script>
 
 [LAYOUT title="@components/:Layouts / sdocs / Button"]
-	<Shell height="fill" sidebarWidth={244} breakpoint={720}>
+	<Shell height="100vh" sidebarWidth={244} breakpoint={720}>
 		{#snippet brand()}
 			<span class="brand">gabi</span>
 		{/snippet}
@@ -51,18 +75,29 @@
 				</div>
 				<NavTree padding={8}>
 					<NavTree.Group label="Layout">
-						<NavTree.Item text="Container" icon="/icons/square-dashed.svg" />
-						<NavTree.Item text="Shell" icon="/icons/panels-top-left.svg" />
-						<NavTree.Item text="Table" icon="/icons/table-2.svg" />
+						<NavTree.Item text="Container" icon="/icons/square-dashed.svg" size="sm" />
+						<NavTree.Item text="Shell" icon="/icons/panels-top-left.svg" size="sm" />
+						<NavTree.Item text="Table" icon="/icons/table-2.svg" size="sm">
+							<NavTree.Item text="Sorting" size="sm" />
+							<NavTree.Item text="Selection" size="sm" />
+						</NavTree.Item>
 					</NavTree.Group>
 					<NavTree.Group label="Form">
-						<NavTree.Item text="Button" icon="/icons/square-mouse-pointer.svg" active />
-						<NavTree.Item text="Input" icon="/icons/text-cursor-input.svg" />
-						<NavTree.Item text="Select" icon="/icons/chevrons-up-down.svg" />
+						<NavTree.Item text="Button" icon="/icons/square-mouse-pointer.svg" size="sm" active expanded>
+							<NavTree.Item text="Sizes" size="sm" />
+							<NavTree.Item text="Variants" size="sm" />
+							<NavTree.Item text="Icon buttons" size="sm" />
+							<NavTree.Item text="Intents" size="sm" />
+						</NavTree.Item>
+						<NavTree.Item text="Input" icon="/icons/text-cursor-input.svg" size="sm">
+							<NavTree.Item text="Sizes" size="sm" />
+							<NavTree.Item text="Validation" size="sm" />
+						</NavTree.Item>
+						<NavTree.Item text="Select" icon="/icons/chevrons-up-down.svg" size="sm" />
 					</NavTree.Group>
 					<NavTree.Group label="Display">
-						<NavTree.Item text="Badge" icon="/icons/columns-3.svg" />
-						<NavTree.Item text="Toast" icon="/icons/bell.svg" />
+						<NavTree.Item text="Badge" icon="/icons/columns-3.svg" size="sm" />
+						<NavTree.Item text="Toast" icon="/icons/bell.svg" size="sm" />
 					</NavTree.Group>
 				</NavTree>
 			</div>
@@ -99,48 +134,111 @@
 				<Table.Head>
 					<Table.Column width={150}>Name</Table.Column>
 					<Table.Column>Type</Table.Column>
-					<Table.Column width={110}>Default</Table.Column>
-					<Table.Column>Description</Table.Column>
+					<Table.Column width={96}>Default</Table.Column>
+					<Table.Column width={216}>Control</Table.Column>
 				</Table.Head>
 				<Table.Body>
 					<Table.Row>
-						<Table.Cell>text</Table.Cell>
-						<Table.Cell><Badge text="string" size="xs" /></Table.Cell>
+						<Table.Cell><span class="prop-name">text</span></Table.Cell>
+						<Table.Cell>
+							<div class="ty">
+								<Badge text="string" size="xs" --bg="var(--success-100)" />
+								<span class="ty-desc">Button label. Omit (with an icon) for an icon-only button.</span>
+							</div>
+						</Table.Cell>
 						<Table.Cell>—</Table.Cell>
-						<Table.Cell>Button label. Omit (with an icon) for an icon-only button.</Table.Cell>
+						<Table.Cell><Input size="sm" placeholder="Save changes" /></Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell>variant</Table.Cell>
-						<Table.Cell><Badge text="primary | secondary | ghost | …" size="xs" /></Table.Cell>
+						<Table.Cell><span class="prop-name">variant</span></Table.Cell>
+						<Table.Cell>
+							<div class="ty">
+								<Badge text="'primary' | 'secondary' | …" size="xs" />
+								<span class="ty-desc">Visual style.</span>
+							</div>
+						</Table.Cell>
 						<Table.Cell>primary</Table.Cell>
-						<Table.Cell>Visual style.</Table.Cell>
+						<Table.Cell><Select size="sm" options={variantOptions} value="primary" /></Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell>intent</Table.Cell>
-						<Table.Cell><Badge text="action | danger | success | …" size="xs" /></Table.Cell>
+						<Table.Cell><span class="prop-name">intent</span></Table.Cell>
+						<Table.Cell>
+							<div class="ty">
+								<Badge text="'action' | 'danger' | …" size="xs" />
+								<span class="ty-desc">Semantic colour.</span>
+							</div>
+						</Table.Cell>
 						<Table.Cell>action</Table.Cell>
-						<Table.Cell>Semantic colour.</Table.Cell>
+						<Table.Cell><Select size="sm" options={intentOptions} value="action" /></Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell>size</Table.Cell>
-						<Table.Cell><Badge text="xs | sm | md | lg" size="xs" /></Table.Cell>
+						<Table.Cell><span class="prop-name">size</span></Table.Cell>
+						<Table.Cell>
+							<div class="ty">
+								<Badge text="'xs' | 'sm' | 'md' | 'lg'" size="xs" />
+								<span class="ty-desc">Height on the shared control scale.</span>
+							</div>
+						</Table.Cell>
 						<Table.Cell>md</Table.Cell>
-						<Table.Cell>Height on the shared control scale.</Table.Cell>
+						<Table.Cell><SegmentedControl size="xs" width="fill" options={sizeOptions} value="md" /></Table.Cell>
 					</Table.Row>
 					<Table.Row>
-						<Table.Cell>icon</Table.Cell>
-						<Table.Cell><Badge text="string" size="xs" /></Table.Cell>
-						<Table.Cell>—</Table.Cell>
-						<Table.Cell>Leading icon — a path or raw SVG.</Table.Cell>
-					</Table.Row>
-					<Table.Row>
-						<Table.Cell>disabled</Table.Cell>
-						<Table.Cell><Badge text="boolean" size="xs" /></Table.Cell>
+						<Table.Cell><span class="prop-name">disabled</span></Table.Cell>
+						<Table.Cell>
+							<div class="ty">
+								<Badge text="boolean" size="xs" --bg="var(--accent-100)" />
+								<span class="ty-desc">Disable the button.</span>
+							</div>
+						</Table.Cell>
 						<Table.Cell>false</Table.Cell>
-						<Table.Cell>Disable the button.</Table.Cell>
+						<Table.Cell><Toggle size="sm" /></Table.Cell>
 					</Table.Row>
 				</Table.Body>
 			</Table>
+
+			<div class="section-title"><Text variant="h3">Examples</Text></div>
+
+			<div class="example">
+				<div class="example-head">
+					<Text variant="h5">Sizes</Text>
+					<Text variant="small">xs / sm / md / lg — heights on the shared control scale.</Text>
+				</div>
+				<div class="example-stage">
+					<Button size="xs" text="Extra small" />
+					<Button size="sm" text="Small" />
+					<Button size="md" text="Medium" />
+					<Button size="lg" text="Large" />
+				</div>
+			</div>
+
+			<div class="example">
+				<div class="example-head">
+					<Text variant="h5">Variants</Text>
+					<Text variant="small">primary · secondary · tertiary · outlined · ghost · link.</Text>
+				</div>
+				<div class="example-stage">
+					<Button variant="primary" text="Primary" />
+					<Button variant="secondary" text="Secondary" />
+					<Button variant="tertiary" text="Tertiary" />
+					<Button variant="outlined" text="Outlined" />
+					<Button variant="ghost" text="Ghost" />
+					<Button variant="link" text="Link" />
+				</div>
+			</div>
+
+			<div class="example">
+				<div class="example-head">
+					<Text variant="h5">Intents</Text>
+					<Text variant="small">Semantic colours, on any variant.</Text>
+				</div>
+				<div class="example-stage">
+					<Button intent="action" text="Action" />
+					<Button intent="danger" text="Danger" />
+					<Button intent="success" text="Success" />
+					<Button intent="warning" text="Warning" />
+					<Button intent="neutral" text="Neutral" />
+				</div>
+			</div>
 		</div>
 	</Shell>
 
@@ -159,9 +257,9 @@
 		.view {
 			display: flex;
 			flex-direction: column;
-			gap: 24px;
+			gap: 22px;
 			padding: 28px 32px;
-			max-width: 1000px;
+			max-width: 1040px;
 		}
 		.view-head {
 			display: flex;
@@ -189,7 +287,51 @@
 			min-height: 120px;
 		}
 		.section-title {
-			margin-top: 4px;
+			margin-top: 6px;
+		}
+
+		/* Props table — let cells wrap and top-align so the type + description read
+		   like the real API table. */
+		.view :global(.Table-td),
+		.view :global(.Table-th) {
+			white-space: normal;
+			vertical-align: top;
+		}
+		.prop-name {
+			font-weight: 600;
+		}
+		.ty {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 4px;
+		}
+		.ty-desc {
+			font-size: 12px;
+			line-height: 1.4;
+			color: var(--fg-l);
+		}
+
+		/* Examples */
+		.example {
+			border: 1px solid var(--base-200);
+			border-radius: 10px;
+			overflow: hidden;
+		}
+		.example-head {
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+			padding: 12px 16px;
+			border-bottom: 1px solid var(--base-150);
+			background: var(--base-50);
+		}
+		.example-stage {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 12px;
+			padding: 24px;
 		}
 	</style>
 [/LAYOUT]
