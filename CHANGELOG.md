@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.9] - 2026-07-16
+
 ### Added
 
 - `Shell2` — a five-slot border frame: a `top` and `bottom` bar spanning the
