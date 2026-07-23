@@ -55,7 +55,7 @@
 			<Text variant="small" style="text-align: center;">
 				Don't have an account?
 				<a
-					href="/signup"
+					href="components/layouts/auth/sign-up"
 					style="color: var(--action-600); font-weight: 500; text-decoration: none;"
 				>
 					Sign up
@@ -110,7 +110,7 @@
 			<Text variant="small" style="text-align: center;">
 				Already have an account?
 				<a
-					href="/login"
+					href="components/layouts/auth/sign-in"
 					style="color: var(--action-600); font-weight: 500; text-decoration: none;"
 				>
 					Sign in
@@ -160,7 +160,7 @@
 			<Text variant="small" style="text-align: center;">
 				Remembered it?
 				<a
-					href="/login"
+					href="components/layouts/auth/sign-in"
 					style="color: var(--action-600); font-weight: 500; text-decoration: none;"
 				>
 					Back to sign in

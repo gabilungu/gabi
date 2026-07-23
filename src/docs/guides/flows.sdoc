@@ -1,0 +1,124 @@
+<script lang="ts">
+	import Container from "../../lib/components/Container/Container.svelte";
+	import FormField from "../../lib/components/FormField/FormField.svelte";
+	import Input from "../../lib/components/Input/Input.svelte";
+	import Button from "../../lib/components/Button/Button.svelte";
+	import Divider from "../../lib/components/Divider/Divider.svelte";
+	import Text from "../../lib/components/Text/Text.svelte";
+	import Badge from "../../lib/components/Badge/Badge.svelte";
+</script>
+
+[LAYOUT title="@guides/:Flows / Cart" background="var(--base-100)"]
+	<div
+		style="display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 48px 24px; box-sizing: border-box;"
+	>
+		<Container
+			width={420}
+			padding={28}
+			radius={14}
+			gap={20}
+			--bg="var(--base-0)"
+			--border="1px solid var(--base-100)"
+			--shadow="0 10px 40px rgb(0 0 0 / 0.08)"
+		>
+			<div style="display: flex; align-items: center; justify-content: space-between;">
+				<Text variant="h3">Your cart</Text>
+				<Badge text="3 items" size="xs" />
+			</div>
+
+			<div style="display: flex; flex-direction: column; gap: 12px;">
+				<div style="display: flex; justify-content: space-between;">
+					<Text variant="body">Wireless keyboard</Text>
+					<Text variant="important">€89.00</Text>
+				</div>
+				<div style="display: flex; justify-content: space-between;">
+					<Text variant="body">Laser mouse</Text>
+					<Text variant="important">€49.00</Text>
+				</div>
+				<div style="display: flex; justify-content: space-between;">
+					<Text variant="body">USB-C dock</Text>
+					<Text variant="important">€129.00</Text>
+				</div>
+			</div>
+
+			<Divider />
+
+			<div style="display: flex; justify-content: space-between;">
+				<Text variant="important">Total</Text>
+				<Text variant="h4">€267.00</Text>
+			</div>
+
+			<a href="guides/flows/payment" style="display: block; text-decoration: none;">
+				<Button
+					text="Continue to payment"
+					icon="/icons/arrow-right.svg"
+					iconAfterText
+					size="lg"
+					width="fill"
+				/>
+			</a>
+
+			<Text variant="small" style="text-align: center;">
+				Links between layouts: this sketch opens its
+				<a
+					href="guides/flows/payment"
+					style="color: var(--action-600); font-weight: 500; text-decoration: none;"
+				>
+					Payment
+				</a>
+				sister page.
+			</Text>
+		</Container>
+	</div>
+[/LAYOUT]
+
+[LAYOUT title="@guides/:Flows / Payment" background="var(--base-100)"]
+	<div
+		style="display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 48px 24px; box-sizing: border-box;"
+	>
+		<Container
+			width={420}
+			padding={28}
+			radius={14}
+			gap={20}
+			--bg="var(--base-0)"
+			--border="1px solid var(--base-100)"
+			--shadow="0 10px 40px rgb(0 0 0 / 0.08)"
+		>
+			<div style="display: flex; flex-direction: column; gap: 4px;">
+				<Text variant="h3">Payment</Text>
+				<Text variant="small">€267.00 — 3 items</Text>
+			</div>
+
+			<FormField label="Cardholder">
+				<Input placeholder="Ada Lovelace" />
+			</FormField>
+
+			<FormField label="Card number">
+				<Input placeholder="4242 4242 4242 4242" />
+			</FormField>
+
+			<div style="display: flex; gap: 12px;">
+				<FormField label="Expiry">
+					<Input placeholder="12/28" />
+				</FormField>
+				<FormField label="CVC">
+					<Input placeholder="123" />
+				</FormField>
+			</div>
+
+			<Button text="Pay €267.00" icon="/icons/lock.svg" size="lg" width="fill" />
+
+			<Divider />
+
+			<Text variant="small" style="text-align: center;">
+				<a
+					href="guides/flows/cart"
+					style="color: var(--action-600); font-weight: 500; text-decoration: none;"
+				>
+					← Back to cart
+				</a>
+			</Text>
+		</Container>
+	</div>
+[/LAYOUT]
